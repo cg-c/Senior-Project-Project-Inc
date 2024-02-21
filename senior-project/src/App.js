@@ -16,20 +16,20 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          /* Info Pages */
+          {/* Info Pages */}
           <Route index element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/FAQ" element={<FAQ />} />
 
-          /* Need to be logged in */
+          {/* Need to be logged in */}
           <Route path="/projectpitch" element={<ProjPitch />} />
           <Route path="/advisorsprojects" element={<AdvProj />} />
           <Route path="/myteam" element={<MyTeam />} />
           <Route path="/students" element={<AdvStudents />} />
           <Route path="/grades" element={<Grades />} />
 
-          /* Error Page */
+          {/* Error Page */}
           <Route path="*" element={<NoPage />} />
         </Routes>
       </BrowserRouter>
