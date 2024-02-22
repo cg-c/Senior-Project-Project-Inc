@@ -9,12 +9,14 @@ import AdvProj from './pages/AdvProj';
 import MyTeam from './pages/MyTeam';
 import AdvStudents from './pages/AdvStudents';
 import Grades from './pages/Grades';
-
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
+        <Navbar />
         <Routes>
           {/* Info Pages */}
           <Route index element={<Home />} />
@@ -32,6 +34,7 @@ function App() {
           {/* Error Page */}
           <Route path="*" element={<NoPage />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );
