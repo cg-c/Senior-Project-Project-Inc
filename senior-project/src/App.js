@@ -9,6 +9,7 @@ import AdvProj from './pages/AdvProj';
 import MyTeam from './pages/MyTeam';
 import AdvStudents from './pages/AdvStudents';
 import Grades from './pages/Grades';
+import RequiredAuth from './components/RequiredAuth';
 
 
 function App() {
@@ -24,28 +25,31 @@ function App() {
 
           {/* Need to be logged in */}
 
-          {/* Students */}
-          <Route element={<RequiredAuth />}>
-            <Route path="/projectpitch" element={<ProjPitch />} />
-            <Route path="/advisorsprojects" element={<AdvProj />} />
-            <Route path="/myteam" element={<MyTeam />} />
-          </Route>
 
           {/* Faculty */}
-          <Route element={<RequiredAuth />}>
-            <Route path="/projectpitch" element={<ProjPitch />} />
-            <Route path="/advisorsprojects" element={<AdvProj />} />
-            <Route path="/myteam" element={<MyTeam />} />
+          <Route element={<RequiredAuth allowedRoles={["faculty"]} />}>
             <Route path="/students" element={<AdvStudents />} />
-            <Route path="/grades" element={<Grades />} />
           </Route>
 
           {/* Admin */}
-          <Route element={<RequiredAuth />}>
+          <Route element={<RequiredAuth allowedRoles={["admin"]} />}>
+            <Route path="/info" element={<StudentInfo />} />
+          </Route>
+
+          {/* Student, Faculty */}
+          <Route element={<RequiredAuth allowedRoles={["student", "faculty"]} />}>
+            <Route path="/myteam" element={<MyTeam />} />
+          </Route>
+
+          {/* Faculty, Admin */}
+          <Route element={<RequiredAuth allowedRoles={["faculty", "admin"]} />}>
+            <Route path="/grades" element={<Grades />} />
+          </Route>
+
+          {/* Student, Faculty, Admin */}
+          <Route element={<RequiredAuth allowedRoles={["student", "faculty", "admin"]} />}>
             <Route path="/projectpitch" element={<ProjPitch />} />
             <Route path="/advisorsprojects" element={<AdvProj />} />
-            <Route path="/students" element={<AdvStudents />} />
-            <Route path="/info" element={<StudentInfo />} />
           </Route>
 
           {/* Error Page */}
