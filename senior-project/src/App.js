@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import FAQ from './pages/FAQ';
 import NoPage from './pages/NoPage';
-
+import StudentInfo from './pages/StudentInfo';
 import ProjPitch from './pages/ProjPitch';
 import AdvProj from './pages/AdvProj';
 import MyTeam from './pages/MyTeam';
@@ -23,11 +23,30 @@ function App() {
           <Route path="/FAQ" element={<FAQ />} />
 
           {/* Need to be logged in */}
-          <Route path="/projectpitch" element={<ProjPitch />} />
-          <Route path="/advisorsprojects" element={<AdvProj />} />
-          <Route path="/myteam" element={<MyTeam />} />
-          <Route path="/students" element={<AdvStudents />} />
-          <Route path="/grades" element={<Grades />} />
+
+          {/* Students */}
+          <Route element={<RequiredAuth />}>
+            <Route path="/projectpitch" element={<ProjPitch />} />
+            <Route path="/advisorsprojects" element={<AdvProj />} />
+            <Route path="/myteam" element={<MyTeam />} />
+          </Route>
+
+          {/* Faculty */}
+          <Route element={<RequiredAuth />}>
+            <Route path="/projectpitch" element={<ProjPitch />} />
+            <Route path="/advisorsprojects" element={<AdvProj />} />
+            <Route path="/myteam" element={<MyTeam />} />
+            <Route path="/students" element={<AdvStudents />} />
+            <Route path="/grades" element={<Grades />} />
+          </Route>
+
+          {/* Admin */}
+          <Route element={<RequiredAuth />}>
+            <Route path="/projectpitch" element={<ProjPitch />} />
+            <Route path="/advisorsprojects" element={<AdvProj />} />
+            <Route path="/students" element={<AdvStudents />} />
+            <Route path="/info" element={<StudentInfo />} />
+          </Route>
 
           {/* Error Page */}
           <Route path="*" element={<NoPage />} />

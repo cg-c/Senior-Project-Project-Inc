@@ -1,10 +1,10 @@
 import LoggedNavbar from "../components/LoggedInNavbar"
 
-export default function ProjPitch() {
+export default function StudentInfo() {
     return (
         <>
             <LoggedNavbar />
-            <h2>Project Pitch</h2>
+            <h2>Student Info</h2>
         </>
     )
 }

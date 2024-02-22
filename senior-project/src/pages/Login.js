@@ -1,12 +1,17 @@
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import AuthContext from "../context/AuthProvider";
+import axios from '../api/axios';
+
+const LOGIN_URL = '/login';
 
 export default function Login() {
 
     {/* More global state or redux to manage user --> don't use states, just here for now*/}
     const [ user, setUser ] = useState({});
+    const { setAuth } = useContext(AuthContext);
 
     function handleCallbackResponse(response) {
         console.log("Encoded JWT ID Token: " + response.credential);
