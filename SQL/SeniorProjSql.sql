@@ -1,0 +1,1 @@
+INSERT INTO student values(74425040, 'maingotj@ufl.edu', 'Jonathan Maingot');
