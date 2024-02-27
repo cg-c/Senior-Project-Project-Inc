@@ -1,1 +1,11 @@
-INSERT INTO student values(74425040, 'maingotj@ufl.edu', 'Jonathan Maingot');
+DROP TABLE student;
+    
+DROP TABLE team;
+    
+DROP TABLE advisor;
+    
+DROP TABLE project;
+
+DROP TABLE language;
+    
+DROP TABLE type;

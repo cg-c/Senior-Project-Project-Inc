@@ -21,7 +21,7 @@ CREATE TABLE advisor (
 CREATE TABLE project (
     name varchar(255),
     pID int Primary KEY,
-    desc varchar(1000),
+    descInput varchar(1000),
     pass varchar(100)
     );
 
