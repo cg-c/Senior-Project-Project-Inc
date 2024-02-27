@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "universal-cookie";
-
+/*global google*/
 
 
 export default function Login() {
@@ -39,13 +39,16 @@ export default function Login() {
         
         google.accounts.id.initialize({
             client_id: "429389368839-m58qo46gt4olevpripa856uvrlnl8arb.apps.googleusercontent.com",
-            callback: handleCallbackResponse
+            callback: handleCallbackResponse,
+            auto_select: true
         });
 
         google.accounts.id.renderButton(
             document.getElementById("signInDiv"),
             { theme: "outline", size: "large" }
         );
+
+        google.accounts.id.prompt();
 
     }, []);
 

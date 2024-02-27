@@ -11,6 +11,7 @@ import AdvStudents from './pages/AdvStudents';
 import Grades from './pages/Grades';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+/*global google*/
 
 function App() {
   return (

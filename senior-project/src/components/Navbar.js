@@ -1,29 +1,27 @@
-/*
-import { Link } from "react-router-dom";
-
-
-export default function Navbar() {
-    return(
-        <nav className="nav">
-            <Link to="/" className="home">
-                Senior Project
-            </Link>
-            <ul>
-                <Link to="/home">Home</Link>
-                <Link to="/login">Login</Link>
-                <Link to="/FAQ">FAQ</Link>
-            </ul>
-        </nav>
-    )
-}
-*/
-
 import React, { useState, useEffect } from 'react';
+import { jwtDecode } from "jwt-decode";
 import { Button } from './Button';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+/*global google*/
 
 function Navbar() {
+  //login stuff
+  const [ user, setUser ] = useState({});
+
+  function handleCallbackResponse(response) {
+    console.log("Encoded JWT ID Token: " + response.credential);
+    var userObj = jwtDecode(response.credential);
+    console.log(userObj);
+    setUser(userObj);
+    
+  }
+
+  function handleSignOut(event) {
+    setUser({});
+  }
+
+  //menu stuff
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -39,6 +37,21 @@ function Navbar() {
   };
 
   useEffect(() => {
+    //login stuff
+    google.accounts.id.initialize({
+        client_id: "429389368839-m58qo46gt4olevpripa856uvrlnl8arb.apps.googleusercontent.com",
+        callback: handleCallbackResponse,
+        auto_select: true
+    });
+
+    google.accounts.id.renderButton(
+        document.getElementById("signInDiv"),
+        { theme: "outline", size: "large" }
+    );
+
+    google.accounts.id.prompt();
+
+    //menu stuff
     showButton();
   }, []);
 
@@ -73,15 +86,26 @@ function Navbar() {
               </Link>
             </li>
 
-            <li>
+            {Object.keys(user).length !== 0 &&
+            <div>
+            <li className='nav-item'>
               <Link
-                to='/login'
-                className='nav-links-mobile'
-                onClick={closeMobileMenu}
+                to='/'
+                className='nav-links'
+                onClick={(e) => handleSignOut(e)}
               >
-                Login
+                Logout
               </Link>
             </li>
+
+            <img src={user.picture} width={50} height={50}></img>
+
+            </div>
+            }
+
+            {user &&
+            <div id="signInDiv"></div>
+            }
           </ul>
           {button && <Button buttonStyle='btn--outline'>LOGIN</Button>}
         </div>
