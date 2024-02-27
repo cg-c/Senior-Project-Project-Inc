@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import ProjCard from "../components/StuProjCard";
+import AddStuProj from "../components/AddStuProj";
 import "../components/style.css"
 
 
@@ -21,6 +22,7 @@ export default function ProjPitch() {
 
             {/*Display like 4-5 of them*/}
             <ProjCard />
+            <AddStuProj />
         </body>
             
     )
