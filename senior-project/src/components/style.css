@@ -1,0 +1,66 @@
+body {
+    background-color: rgba(7, 16, 49, 1);
+    color:#ffffff;
+}
+
+
+
+.page-title {
+    height: 38px;
+    width: 292px;
+}
+
+.page-title .text-wrapper {
+    color: #f5f6f7;
+    font-family: "Inter-Regular", Helvetica;
+    font-size: 40px;
+    font-weight: 400;
+    left: 0;
+    letter-spacing: 0;
+    line-height: normal;
+    position: fixed;
+    top: 0;
+    white-space: nowrap;
+    width: 292px;
+}
+
+.flex-title {
+    display: flex;
+    flex-direction: row;
+    height: 29px;
+    left: 0;
+    top: 0;
+    width: 90px;
+}
+
+
+/* Will have to do page math thing to size it correctly*/
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(42, 42, 64, 1);
+    border-radius: 20px;
+    height: 143px;
+    position: relative;
+    width: 1120px;
+    color: #ffffff;
+    font-family: "Inter-Medium", Helvetica;
+    font-size: 30px;
+    font-weight: 500;
+    left: 20px;
+    letter-spacing: 0;
+}
+
+.add {
+    background-color: rgba(34, 136, 76, 1);
+    color: #f5f6f7;
+    font-size: 60px;
+    font-family: "Inter-Regular", Helvetica;
+    border-radius: 10px;
+    float: right;
+    height: 74px;
+    position: relative;
+    top: 1px;
+    width: 74px;
+}
+
