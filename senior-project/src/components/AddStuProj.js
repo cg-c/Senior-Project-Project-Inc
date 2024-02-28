@@ -26,7 +26,7 @@ export default function AddStuProj() {
                     <input type="text" />
                 </label>
                 <h4>Select Programming Languages: </h4>
-                <MultiSelect value={selectedLang} options={options} onChange={setSelectedLang} />
+                <MultiSelect className="multiselect" value={selectedLang} options={options} onChange={setSelectedLang} />
                 <h4>Select Application Type:</h4>
                 <select name="type">
                     <option value="mobile">Mobile App</option>

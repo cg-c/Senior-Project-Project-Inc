@@ -51,6 +51,18 @@ body {
     letter-spacing: 0;
 }
 
+.desc {
+    background-color: #f5f6f7;
+}
+
+.descHeader {
+    color: black;
+}
+
+.descText {
+    color: black;
+}
+
 .add {
     background-color: rgba(34, 136, 76, 1);
     color: #f5f6f7;
@@ -62,5 +74,36 @@ body {
     position: relative;
     top: 1px;
     width: 74px;
+}
+
+.joinButton {
+    background-color: rgba(34, 136, 76, 1);
+    color: #f5f6f7;
+    font-size: 30px;
+    font-family: "Inter-Regular", Helvetica;
+    border-radius: 10px;
+    float: right;
+    height: 60px;
+    width: 207px;
+}
+
+.closeButton {
+    background-color: rgba(228, 130, 73, 1);
+    color: black;
+    font-size: 30px;
+    border-radius: 15px;
+    height: 60px;
+    position: relative;
+    width: 60px;
+    height: 54px;
+    float: right;
+    /* left: 3px;
+    position: absolute;
+    top: 3px;
+    width: 54px; */
+}
+
+.multiselect {
+    color: black;
 }
 
