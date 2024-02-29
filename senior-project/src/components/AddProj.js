@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import "./style.css"
+import CloseButton from "./CloseButton";
 
 const options = [
     { label: "C++", value: "C++" },
@@ -8,7 +9,7 @@ const options = [
     { label: "C#", value: "C#" }
 ]
 
-export default function AddStuProj() {
+export default function AddProj() {
 
     const [selectedLang, setSelectedLang] = useState([]);
 
@@ -20,7 +21,7 @@ export default function AddStuProj() {
 
 
     return (
-        <div>
+        <div className="form">
             <form onSubmit={handleSubmit}>
                 <label>Project Name: 
                     <input type="text" />

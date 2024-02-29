@@ -4,7 +4,7 @@ export default function StuProjCard() {
 
 
     return (
-        <div className="flex-container">
+        <div className="flex-container projCard">
             <div>Topic</div>
             <div>slot img</div>
             <div>Type</div>

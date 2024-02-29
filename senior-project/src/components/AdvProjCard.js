@@ -4,7 +4,7 @@ export default function AdvProjCard() {
 
 
     return (
-        <div className="flex-container">
+        <div className="flex-container projCard">
             <div>Topic Name</div>
             <div>slot img</div>
             <div>Description button</div>

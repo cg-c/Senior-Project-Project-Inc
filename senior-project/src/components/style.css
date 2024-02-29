@@ -4,7 +4,6 @@ body {
 }
 
 
-
 .page-title {
     height: 38px;
     width: 292px;
@@ -18,7 +17,6 @@ body {
     left: 0;
     letter-spacing: 0;
     line-height: normal;
-    position: fixed;
     top: 0;
     white-space: nowrap;
     width: 292px;
@@ -40,7 +38,7 @@ body {
     flex-direction: row;
     background-color: rgba(42, 42, 64, 1);
     border-radius: 20px;
-    height: 143px;
+    height: 170px;
     position: relative;
     width: 1120px;
     color: #ffffff;
@@ -49,6 +47,18 @@ body {
     font-weight: 500;
     left: 20px;
     letter-spacing: 0;
+}
+
+.projCard {
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form {
+    color: black;
 }
 
 .desc {

@@ -9,6 +9,7 @@ import AdvProj from './pages/AdvProj';
 import MyTeam from './pages/MyTeam';
 import AdvStudents from './pages/AdvStudents';
 import Grades from './pages/Grades';
+import Directory from './pages/Directory';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/myteam" element={<MyTeam />} />
           <Route path="/students" element={<AdvStudents />} />
           <Route path="/grades" element={<Grades />} />
+          <Route path="/directory" element={<Directory />} />
 
           {/* Error Page */}
           <Route path="*" element={<NoPage />} />
