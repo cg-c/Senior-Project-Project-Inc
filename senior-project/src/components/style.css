@@ -43,6 +43,7 @@ body {
 .flex-container {
     display: flex;
     flex-direction: row;
+    align-content: space-between;
     background-color: rgba(42, 42, 64, 1);
     border-radius: 20px;
     height: 170px;
@@ -62,6 +63,14 @@ body {
     margin: 10px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.projCard:hover {
+    background-color: #374D76;
+}
+
+.projTitle {
+    margin-left: 150px;
 }
 
 .form {
@@ -92,6 +101,7 @@ body {
 .add {
     background-color: rgba(34, 136, 76, 1);
     color: #f5f6f7;
+    border: none;
     font-size: 60px;
     font-family: "Inter-Regular", Helvetica;
     border-radius: 10px;
@@ -105,6 +115,7 @@ body {
 .joinButton {
     background-color: rgba(34, 136, 76, 1);
     color: #f5f6f7;
+    border: none;
     font-size: 30px;
     font-family: "Inter-Regular", Helvetica;
     border-radius: 10px;
@@ -116,6 +127,7 @@ body {
 .closeButton {
     background-color: rgba(228, 130, 73, 1);
     color: black;
+    border: none;
     font-size: 30px;
     border-radius: 15px;
     height: 60px;

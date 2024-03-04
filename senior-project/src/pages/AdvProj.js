@@ -20,18 +20,17 @@ export default function AdvProj() {
             <div className="page-title">
                 <div className="text-wrapper">Posted by Advisor</div>
             </div>
-            <h2 className="flex-title">
-                <div className="ind-title">Project</div>
-                <div className="ind-title">Slots</div>
-                <div className="ind-title">Description</div>
-            </h2>
             <button className="add" onClick={()=>setPopup(true)}>+</button>
             <Model isOpen={popup}>
                 <button className="closeButton" onClick={()=>setPopup(false)}>X</button>
                 <AddProj />
             </Model>
+            <h2 className="flex-title">
+                <div className="ind-title">Project</div>
+                <div className="ind-title">Slots</div>
+                <div className="ind-title">Description</div>
+            </h2>
             <hr />
-
             <InfiniteScroll dataLength={numPitch.length}
                 loader={<p>Loading...</p>}
             >
