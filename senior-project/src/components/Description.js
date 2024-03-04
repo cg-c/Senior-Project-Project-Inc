@@ -7,7 +7,6 @@ export default function Description() {
 
     return (
         <div className="desc">
-            <CloseButton />
             <h2 className="descHeader">Description</h2>
             <hr />
             <p className="descText">lorem ipsum</p>

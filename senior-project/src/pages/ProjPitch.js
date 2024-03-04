@@ -11,6 +11,13 @@ export default function ProjPitch() {
 
     const [ popup, setPopup ] = useState(false);
     const [ numPitch, setNumPitch ] = useState(Array.from({length : 10}));
+    const [ des, setDes ] = useState(false);
+
+    const fetchMorePitch = () => {
+        {/* MAKE API CALLS 
+        https://www.youtube.com/watch?v=31icbDtaO-k
+        */}
+    }
 
     return (
         <body>
@@ -33,14 +40,15 @@ export default function ProjPitch() {
                 loader={<p>Loading...</p>}
             >
                 {numPitch.map((item, index) => {
-                    return <ProjCard />
+                    return <button className="clickDes" onClick={()=>setDes(true)}><ProjCard /></button>   
                 })}
+
+                <Model isOpen={des}>
+                    <button className="closeButton" onClick={()=>setDes(false)}>X</button>
+                    <Description />
+                </Model>
+
             </InfiniteScroll>
-
-            {/*Display like 4-5 of them*/}
-
-            {/* Testing */}
-            <Description />
         </body>
             
     )

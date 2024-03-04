@@ -3,7 +3,6 @@ body {
     color:#ffffff;
 }
 
-
 .page-title {
     height: 38px;
     width: 292px;
@@ -24,11 +23,19 @@ body {
 
 .flex-title {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+    align-items: center;
+    justify-content: center;
     height: 29px;
     left: 0;
     top: 0;
     width: 90px;
+}
+
+.ind-title {
+    margin-left: 420%;
 }
 
 
@@ -71,6 +78,15 @@ body {
 
 .descText {
     color: black;
+}
+
+.clickDes {
+    align-self: center;
+    float: inherit;
+    background: none;
+    border: none;
+    display: flex;
+    margin: auto;
 }
 
 .add {

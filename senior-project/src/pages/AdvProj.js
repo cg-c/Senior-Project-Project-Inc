@@ -4,6 +4,7 @@ import AddProj from "../components/AddProj";
 import React from "react";
 import Model from "react-modal";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Description from "../components/Description";
 import { useState } from "react";
 import "../components/style.css"
 
@@ -11,6 +12,7 @@ export default function AdvProj() {
 
     const [ popup, setPopup ] = useState(false);
     const [ numPitch, setNumPitch ] = useState(Array.from({length : 10}));
+    const [ des, setDes ] = useState(false);
 
 
     return (
@@ -19,9 +21,9 @@ export default function AdvProj() {
                 <div className="text-wrapper">Posted by Advisor</div>
             </div>
             <h2 className="flex-title">
-                <div>Project</div>
-                <div>Slots</div>
-                <div>Descriptiom</div>
+                <div className="ind-title">Project</div>
+                <div className="ind-title">Slots</div>
+                <div className="ind-title">Description</div>
             </h2>
             <button className="add" onClick={()=>setPopup(true)}>+</button>
             <Model isOpen={popup}>
@@ -34,8 +36,12 @@ export default function AdvProj() {
                 loader={<p>Loading...</p>}
             >
                 {numPitch.map((item, index) => {
-                    return <ProjCard />
+                    return <button className="clickDes" onClick={()=>setDes(true)}><ProjCard /></button>
                 })}
+                <Model isOpen={des}>
+                    <button className="closeButton" onClick={()=>setDes(false)}>X</button>
+                    <Description />
+                </Model>
             </InfiniteScroll>
             
         </body>
