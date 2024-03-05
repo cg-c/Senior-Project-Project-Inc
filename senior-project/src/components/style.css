@@ -57,6 +57,19 @@ body {
     letter-spacing: 0;
 }
 
+.listPeople {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    width: 1120px;
+    color: #ffffff;
+    font-family: "Inter-Medium", Helvetica;
+    font-size: 30px;
+    font-weight: 500;
+    left: 20px;
+    letter-spacing: 0;
+}
+
 .projCard {
     align-items: center;
     padding: 10px;
