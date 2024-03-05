@@ -26,9 +26,9 @@ export default function AdvProj() {
                 <AddProj />
             </Model>
             <h2 className="flex-title">
-                <div className="ind-title">Project</div>
-                <div className="ind-title">Slots</div>
-                <div className="ind-title">Description</div>
+                <div className="adv1-title">Project</div>
+                <div className="adv2-title">Slots</div>
+                <div className="adv3-title">Description</div>
             </h2>
             <hr />
             <InfiniteScroll dataLength={numPitch.length}

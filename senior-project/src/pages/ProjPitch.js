@@ -24,17 +24,17 @@ export default function ProjPitch() {
             <div className="page-title">
                 <div className="text-wrapper">Project Pitch</div>
             </div>
-            <h2 className="flex-title">
-                <div>Topic</div>
-                <div>Slots</div>
-                <div>Type</div>
-                <div>Language</div>
-            </h2>
             <button className="add" onClick={()=>setPopup(true)}>+</button>
             <Model isOpen={popup}>
                 <button className="closeButton" onClick={()=>setPopup(false)}>X</button>
                 <AddProj />
             </Model>
+            <h2 className="flex-title">
+                <div className="pitch-title1">Topic</div>
+                <div className="pitch-title2">Slots</div>
+                <div className="pitch-title3">Type</div>
+                <div className="pitch-title4">Language</div>
+            </h2>
             <hr />
             <InfiniteScroll dataLength={numPitch.length}
                 loader={<p>Loading...</p>}

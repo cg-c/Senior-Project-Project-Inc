@@ -12,13 +12,14 @@ export default function Directory() {
     return (
         <body>
             <div className="page-title">
-                <div className="text-wrapper">Directory</div>
+                <div >Directory</div>
             </div>
             <h2 className="flex-title">
-                <div>Name</div>
-                <div>UFID</div>
-                <div>Role</div>
-                <div>Team</div>
+                <div className="dir-title1">Name</div>
+                <div className="dir-title2">UFID</div>
+                <div className="dir-title3">Email</div>
+                <div className="dir-title4">Role</div>
+                <div className="dir-title5">Team</div>
             </h2>
             <hr />
             <div>

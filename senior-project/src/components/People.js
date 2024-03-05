@@ -9,12 +9,13 @@ export default function People() {
 
     return (
         <div>
-            <div className="listPeople">
-                <div>Name</div>
-                <div>UFID</div>
-                <div>Role</div>
-                <div>Team</div>
-                <button className="close" onClick={()=>setDeletePopup(true)}>X</button>
+            <div className="flex-title listPeople">
+                <div className="pplCar1">Name</div>
+                <div className="pplCar2">UFID</div>
+                <div className="pplCar3">Email</div>
+                <div className="pplCar4">Role</div>
+                <div className="pplCar5">Team</div>
+                <button className="deleteButton" onClick={()=>setDeletePopup(true)}>X</button>
             </div>
             <Model isOpen={deletePopUp}>
                 <button className="closeButton" onClick={()=>setDeletePopup(false)}>X</button>
