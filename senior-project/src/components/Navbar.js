@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { jwtDecode } from "jwt-decode";
-import { Button } from './Button';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 /*global google*/
@@ -14,11 +13,12 @@ function Navbar() {
     var userObj = jwtDecode(response.credential);
     console.log(userObj);
     setUser(userObj);
-    
+    document.getElementById("signInDiv").hidden = true;
   }
 
   function handleSignOut(event) {
     setUser({});
+    document.getElementById("signInDiv").hidden = false;
   }
 
   //menu stuff
@@ -87,7 +87,17 @@ function Navbar() {
             </li>
 
             {Object.keys(user).length !== 0 &&
-            <div>
+            <li className='nav-item'>
+              <Link
+                to='/'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                New Tab
+              </Link>
+            </li>
+            }
+            {Object.keys(user).length !== 0 &&
             <li className='nav-item'>
               <Link
                 to='/'
@@ -97,17 +107,13 @@ function Navbar() {
                 Logout
               </Link>
             </li>
-
-            <img src={user.picture} width={50} height={50}></img>
-
-            </div>
             }
-
+            
             {user &&
-            <div id="signInDiv"></div>
+            <div className='nav-item pt-4 pl-4' id="signInDiv"></div>
             }
           </ul>
-          {button && <Button buttonStyle='btn--outline'>LOGIN</Button>}
+
         </div>
       </nav>
     </>
