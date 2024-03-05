@@ -2,18 +2,53 @@ import React, { useState, useEffect } from 'react';
 import { jwtDecode } from "jwt-decode";
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+
+import { Dialog, Transition } from '@headlessui/react'
+import { Fragment } from 'react'
+
+import { RadioGroup } from '@headlessui/react'
+import { CheckIcon } from '@heroicons/react/20/solid'
+
+const types = ['Student', 'Advisor']
 /*global google*/
 
 function Navbar() {
   //login stuff
   const [ user, setUser ] = useState({});
 
+  //popups
+  let [isOpen, setIsOpen] = useState(false);
+  let [selected, setSelected] = useState(types[0])
+  let [error, setError] = useState(false);
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+  function openModal() {
+    setIsOpen(true);
+  }
+  function closeError() {
+    setError(false);
+  }
+  function openError() {
+    setError(true);
+  }
+
   function handleCallbackResponse(response) {
     console.log("Encoded JWT ID Token: " + response.credential);
     var userObj = jwtDecode(response.credential);
     console.log(userObj);
-    setUser(userObj);
-    document.getElementById("signInDiv").hidden = true;
+
+    //checking if user has gatorlink
+    if (userObj.email && userObj.email.includes("@ufl.edu")) {
+      setUser(userObj);
+      document.getElementById("signInDiv").hidden = true;
+      openModal();
+    } else {
+      console.log("User's email is not a gatorlink");
+      openError();
+    }
+    
   }
 
   function handleSignOut(event) {
@@ -116,6 +151,170 @@ function Navbar() {
 
         </div>
       </nav>
+
+
+
+
+      <Transition appear show={isOpen} as={Fragment}>
+            <Dialog as="div" className="relative z-10" onClose={closeModal}>
+            <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+            >
+                <div className="fixed inset-0 bg-black/25" />
+            </Transition.Child>
+
+            <div className="fixed inset-0 overflow-y-auto">
+                <div className="flex min-h-full items-center justify-center p-4 text-center">
+                <Transition.Child
+                    as={Fragment}
+                    enter="ease-out duration-300"
+                    enterFrom="opacity-0 scale-95"
+                    enterTo="opacity-100 scale-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100 scale-100"
+                    leaveTo="opacity-0 scale-95"
+                >
+                    <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                    <Dialog.Title
+                        as="h3"
+                        className="text-lg font-medium leading-6 text-gray-900"
+                    >
+                        Account Type
+                    </Dialog.Title>
+                    <div className="mt-2">
+
+
+                        <div className="w-full px-4 py-4">
+                            <div className="mx-auto w-full max-w-md">
+                                <RadioGroup value={selected} onChange={setSelected}>
+                                
+                                <div className="space-y-2">
+                                    {types.map((type) => (
+                                    <RadioGroup.Option
+                                        key={type}
+                                        value={type}
+                                        className={({ active, checked }) =>
+                                        `${
+                                            active
+                                            ? 'ring-2 ring-white/60 ring-offset-2 ring-offset-sky-300'
+                                            : ''
+                                        }
+                                        ${checked ? 'bg-sky-900/75 text-white' : 'bg-white'}
+                                            relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
+                                        }
+                                    >
+                                        {({ active, checked }) => (
+                                        <>
+                                            <div className="flex w-full items-center justify-between">
+                                            <div className="flex items-center">
+                                                <div className="text-sm">
+
+                                                <RadioGroup.Label
+                                                    as="p"
+                                                    className={`font-medium  ${
+                                                    checked ? 'text-white' : 'text-gray-900'
+                                                    }`}
+                                                >
+                                                    {type}
+                                                </RadioGroup.Label>
+                                                
+                                                </div>
+                                            </div>
+                                            {checked && (
+                                                <div className="shrink-0 text-white">
+                                                <CheckIcon className="h-6 w-6" />
+                                                </div>
+                                            )}
+                                            </div>
+                                        </>
+                                        )}
+                                    </RadioGroup.Option>
+                                    ))}
+                                </div>
+                                </RadioGroup>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div className="mt-4">
+                        <button
+                        type="button"
+                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                        onClick={closeModal}
+                        >
+                        Submit
+                        </button>
+                    </div>
+                    </Dialog.Panel>
+                </Transition.Child>
+                </div>
+            </div>
+            </Dialog>
+        </Transition>
+
+
+
+
+        <Transition appear show={error} as={Fragment}>
+            <Dialog as="div" className="relative z-10" onClose={closeError}>
+            <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+            >
+                <div className="fixed inset-0 bg-black/25" />
+            </Transition.Child>
+
+            <div className="fixed inset-0 overflow-y-auto">
+                <div className="flex min-h-full items-center justify-center p-4 text-center">
+                <Transition.Child
+                    as={Fragment}
+                    enter="ease-out duration-300"
+                    enterFrom="opacity-0 scale-95"
+                    enterTo="opacity-100 scale-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100 scale-100"
+                    leaveTo="opacity-0 scale-95"
+                >
+                    <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                    <Dialog.Title
+                        as="h3"
+                        className="text-lg font-medium leading-6 text-gray-900"
+                    >
+                        Invalid Sign-in
+                    </Dialog.Title>
+                    <div className="mt-2">
+                    <p className="text-sm text-gray-500">
+                      Please log in with a gatorlink account.
+                    </p>
+                    </div>
+
+                    <div className="mt-4">
+                        <button
+                        type="button"
+                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                        onClick={closeError}
+                        >
+                        Got It!
+                        </button>
+                    </div>
+                    </Dialog.Panel>
+                </Transition.Child>
+                </div>
+            </div>
+            </Dialog>
+        </Transition>
     </>
   );
 }
