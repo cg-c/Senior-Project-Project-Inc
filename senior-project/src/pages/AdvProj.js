@@ -18,7 +18,7 @@ export default function AdvProj() {
     return (
         <body>
             <div className="page-title">
-                <div className="text-wrapper">Posted by Advisor</div>
+                <div>Posted by Advisor</div>
             </div>
             <button className="add" onClick={()=>setPopup(true)}>+</button>
             <Model isOpen={popup}>
@@ -36,10 +36,16 @@ export default function AdvProj() {
             >
                 {numPitch.map((item, index) => {
                     return <button className="clickDes" onClick={()=>setDes(true)}><ProjCard /></button>
+                    {/*
+                        Jonathan: load in all advisor projects 
+                    */}
                 })}
                 <Model isOpen={des}>
                     <button className="closeButton" onClick={()=>setDes(false)}>X</button>
                     <Description />
+                    {/*
+                        Jonathan: load in description of selected project 
+                    */}
                 </Model>
             </InfiniteScroll>
             
