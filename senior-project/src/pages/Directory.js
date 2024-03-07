@@ -32,6 +32,9 @@ export default function Directory() {
                 })}
                 <Model isOpen={deletePopUp}>
                     <button className="closeButton" onClick={()=>setDeletePopup(false)}>X</button>
+                    <h3 className="descText">Do you want to delete the user?</h3>
+                    <button>Yes</button>
+                    <button>No</button>
                 </Model>
             </InfiniteScroll>
                 {/* 
