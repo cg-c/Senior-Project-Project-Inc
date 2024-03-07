@@ -20,6 +20,9 @@ export default function MyTeam() {
                 <div className="team-title3">Contact</div>
             </h2>
             <hr />
+            {/*
+                Jonathan: load all members & advisors 
+             */}
             <Members />
             <Members />
             <Members />
@@ -29,8 +32,12 @@ export default function MyTeam() {
             <Model isOpen={leavePopUp}>
                     <button className="closeButton" onClick={()=>setLeavePopup(false)}>X</button>
                     <h3 className="descText">Do you want to leave the team?</h3>
-                    <button>Yes</button>
-                    <button>No</button>
+                    <button className="eventButton">Yes</button>
+                        {/* yes button:
+                            redirect and refresh the page
+                            Jonathan: delete user from the team
+                        */}
+                    <button className="eventButton" onClick={()=>setLeavePopup(false)}>No</button>
                 </Model>
         </body>
     );

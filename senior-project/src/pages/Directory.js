@@ -6,7 +6,6 @@ import "../components/style.css";
 
 export default function Directory() {
 
-    const [ deletePopUp, setDeletePopup ] = useState(false);
     const [ numPeople, setNumPeople ] = useState(Array.from({length : 10}));
 
     return (
@@ -29,18 +28,13 @@ export default function Directory() {
             >
                 {numPeople.map((item, index) => {
                     return <div><People /></div>
+                    {/*
+                        Jonathan: load in all students, faculity, admins?
+                    */}
                 })}
-                <Model isOpen={deletePopUp}>
-                    <button className="closeButton" onClick={()=>setDeletePopup(false)}>X</button>
-                    <h3 className="descText">Do you want to delete the user?</h3>
-                    <button>Yes</button>
-                    <button>No</button>
-                </Model>
             </InfiniteScroll>
                 {/* 
-                    USE INFINITE SCROLL
                     LOAD ALL FACULTY + STUDENTS
-                    COMBINE COMBINE FROM DATABASE
                     also add icon to delete them or make them faculty??
                 */}
 

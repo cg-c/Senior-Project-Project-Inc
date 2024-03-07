@@ -123,35 +123,11 @@ body {
     flex: 1;
 }
 
-.dir-title1 {
+.dir-title1, .dir-title2, .dir-title3, .dir-title4, .dir-title5 {
     flex: 1;
 }
 
-.dir-title2 {
-    flex: 1;
-}
-
-.dir-title3 {
-    flex: 1;
-}
-
-.dir-title4 {
-    flex: 1;
-}
-
-.dir-title5 {
-    flex: 1;
-}
-
-.team-title1 {
-    flex: 1;
-}
-
-.team-title2 {
-    flex: 1;
-}
-
-.team-title3 {
+.team-title1, .team-title2, .team-title3 {
     flex: 1;
 }
 
@@ -185,36 +161,17 @@ body {
     flex: 1;
 }
 
-.pplCar1 {
+.pplCar1, .pplCar2, .pplCar3, .pplCar4, .pplCar5 {
     flex: 1;
 }
 
-.pplCar2 {
+.memCar1, .memCar2, .memCar3 {
     flex: 1;
 }
 
-.pplCar3 {
+.addCar1, .addCar2, .addCar3, .addCar4, .addCar5  {
     flex: 1;
-}
-
-.pplCar4 {
-    flex: 1;
-}
-
-.pplCar5 {
-    flex: 1;
-}
-
-.memCar1 {
-    flex: 1;
-}
-
-.memCar2 {
-    flex: 1;
-}
-
-.memCar3 {
-    flex: 1;
+    margin: 2%;
 }
 
 
@@ -222,6 +179,9 @@ body {
 /* POPUPS*/
 
 .form {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
     color: black;
 }
 
@@ -245,6 +205,46 @@ body {
     display: flex;
     margin: auto;
 }
+
+.addFormReq {
+    color: black;
+    font-family: "Inter-Regular", Helvetica;
+    font-size: 35px;
+    font-weight: 400;
+    margin: 1%;
+}
+
+textarea {
+    padding: 10px;
+    width: 89%;
+    height: 200px;
+    border: 1px solid black;
+    border-radius: 4px;
+    resize: vertical;
+    resize  : none;
+    overflow: auto;
+}
+
+input[type=text] {
+    width: 90%;
+    padding: 10px;
+    height: 45px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 4px;
+  }
+
+  select {
+    width: 90%;
+    height: 45px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: white;
+  }
+
+
 
 
 /* BUTTONS */
@@ -298,6 +298,18 @@ body {
     border: none;
     font-size: 30px;
     font-family: "Inter-Regular", Helvetica;
+}
+
+.eventButton {
+    background-color: rgba(34, 136, 76, 1);
+    color: #f5f6f7;
+    border: none;
+    font-size: 30px;
+    font-family: "Inter-Regular", Helvetica;
+    border-radius: 10px;
+    height: 60px;
+    width: 207px;
+    margin: 3%;
 }
 
 .leaveButton {

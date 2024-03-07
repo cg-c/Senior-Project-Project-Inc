@@ -18,13 +18,15 @@ export default function People() {
                 <button className="deleteButton" onClick={()=>setDeletePopup(true)}>X</button>
             </div>
             <Model isOpen={deletePopUp}>
-                <button className="closeButton" onClick={()=>setDeletePopup(false)}>X</button>
-                <h2 className="descHeader">Delete User?</h2>
-                <div>
-                    <button>Yes</button>
-                    <button>No</button>
-                </div>
-            </Model>
+                    <button className="closeButton" onClick={()=>setDeletePopup(false)}>X</button>
+                    <h3 className="descText">Do you want to delete the user?</h3>
+                    <button className="eventButton">Yes</button>
+                    {/* yes button:
+                            refresh the list, but stay at same place
+                            Jonathan: find & delete the user
+                    */}
+                    <button className="eventButton" onClick={()=>setDeletePopup(false)}>No</button>
+                </Model>
         </div>
     )
 }

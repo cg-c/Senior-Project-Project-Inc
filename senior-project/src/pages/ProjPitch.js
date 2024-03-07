@@ -1,4 +1,3 @@
-import Header from "../components/Header";
 import ProjCard from "../components/StuProjCard";
 import AddProj from "../components/AddProj";
 import Model from 'react-modal';
@@ -15,7 +14,8 @@ export default function ProjPitch() {
 
     const fetchMorePitch = () => {
         {/* MAKE API CALLS 
-        https://www.youtube.com/watch?v=31icbDtaO-k
+        https://youtu.be/NZKUirTtxcg 
+        https://www.youtube.com/watch?v=31icbinDtaO-k
         */}
     }
 
@@ -41,11 +41,17 @@ export default function ProjPitch() {
             >
                 {numPitch.map((item, index) => {
                     return <button className="clickDes" onClick={()=>setDes(true)}><ProjCard /></button>   
+                    {/*
+                        Jonathan: load in all the student projects 
+                    */}
                 })}
 
                 <Model isOpen={des}>
                     <button className="closeButton" onClick={()=>setDes(false)}>X</button>
                     <Description />
+                    {/*
+                        Jonathan: load in the descriptions of projects using Description template
+                    */}
                 </Model>
 
             </InfiniteScroll>
