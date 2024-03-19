@@ -1,11 +1,12 @@
-import React from 'react';
-import '../App.css';
-import HeroSection from '../components/HeroSection';
+import Header from "../components/Header";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
     return (
         <>
-            <HeroSection />
+            <Header />
+            <Navbar />
+            <h2>Home Page</h2>
         </>
     )
 }
