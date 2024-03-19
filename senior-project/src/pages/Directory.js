@@ -9,7 +9,7 @@ export default function Directory() {
     const [ numPeople, setNumPeople ] = useState(Array.from({length : 10}));
 
     return (
-        <body>
+        <body className="signedIn">
             <div className="page-title">
                 <div >Directory</div>
             </div>
