@@ -20,7 +20,7 @@ export default function ProjPitch() {
     }
 
     return (
-        <body>
+        <body className="signedIn">
             <div className="page-title">
                 <div className="text-wrapper">Project Pitch</div>
             </div>

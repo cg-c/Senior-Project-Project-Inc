@@ -9,7 +9,7 @@ export default function MyTeam() {
     const [ leavePopUp, setLeavePopup ] = useState(false);
 
     return (
-        <body>
+        <body className="signedIn">
             <div className="page-title">
                 <div className="text-wrapper">My Team</div>
                 {/* Should it be the name of the team? */}

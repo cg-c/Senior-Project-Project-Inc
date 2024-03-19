@@ -16,7 +16,7 @@ export default function AdvProj() {
 
 
     return (
-        <body>
+        <body className="signedIn">
             <div className="page-title">
                 <div>Posted by Advisor</div>
             </div>
