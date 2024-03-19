@@ -8,7 +8,7 @@ export default function People() {
     const [ deletePopUp, setDeletePopup ] = useState(false);
 
     return (
-        <div>
+        <div className="signedIn">
             <div className="flex-title listPeople">
                 <div className="pplCar1">Name</div>
                 <div className="pplCar2">UFID</div>
