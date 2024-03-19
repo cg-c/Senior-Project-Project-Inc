@@ -9,6 +9,9 @@ import { Fragment } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/20/solid'
 
+//images
+import UFlogo from '../images/UF-logo.png';
+
 const types = ['Student', 'Advisor']
 /*global google*/
 
@@ -98,10 +101,9 @@ function Navbar() {
     <>
       <nav className='navbar'>
         <div className='navbar-container'>
-          <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            UF
-            <i class='fab fa-typo3' />
-          </Link>
+          <img className='navbar-logo' src={UFlogo} width="200" height="150" />
+          
+        
           <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
           </div>
@@ -160,7 +162,7 @@ function Navbar() {
             }
             
             {user &&
-            <div className='nav-item pt-4 pl-4' id="signInDiv"></div>
+            <div className='nav-item pt-5 pl-4' id="signInDiv"></div>
             }
           </ul>
 

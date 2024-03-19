@@ -1,7 +1,9 @@
 import React from 'react';
 import './Footer.css';
-import { Button } from './Button';
 import { Link } from 'react-router-dom';
+
+//images
+import UFlogo_small from '../images/UF-logo-small.png';
 
 function Footer() {
   return (
@@ -33,8 +35,7 @@ function Footer() {
         <div class='social-media-wrap'>
           <div class='footer-logo'>
             <Link to='/' className='social-logo'>
-              UF
-              <i class='fab fa-typo3' />
+              <img src={UFlogo_small} />
             </Link>
           </div>
           <small class='website-rights'>UF © 2024</small>
