@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import FAQ from './pages/FAQ';
@@ -16,6 +17,19 @@ import Footer from './components/Footer';
 /*global google*/
 
 function App() {
+  const [backendData, setBackendData] = useState([{}])
+
+  useEffect(() => {
+    fetch("/data").then(
+      response => response.json()
+    ).then(
+      data => {
+        setBackendData(data)
+      }
+    )
+  }, [])
+
+
   return (
     <div>
       <BrowserRouter>
@@ -40,6 +54,14 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
+
+      {(typeof backendData.rows === 'undefined') ? (
+        <p>Loading...</p>
+      ): (
+        backendData.rows.map((user, i) => (
+          <p key={i}>{user}</p>
+        ))
+      )}
     </div>
   );
 }
