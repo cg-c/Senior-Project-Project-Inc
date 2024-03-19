@@ -21,14 +21,14 @@ export default function ProjPitch() {
 
     return (
         <body className="signedIn">
-            <div className="page-title">
-                <div className="text-wrapper">Project Pitch</div>
-            </div>
             <button className="add" onClick={()=>setPopup(true)}>+</button>
             <Model isOpen={popup}>
                 <button className="closeButton" onClick={()=>setPopup(false)}>X</button>
                 <AddProj />
             </Model>
+            <div className="page-title">
+                <div className="text-wrapper">Project Pitch</div>
+            </div>
             <h2 className="flex-title">
                 <div className="pitch-title1">Topic</div>
                 <div className="pitch-title2">Slots</div>

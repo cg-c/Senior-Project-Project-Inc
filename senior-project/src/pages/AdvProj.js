@@ -17,14 +17,14 @@ export default function AdvProj() {
 
     return (
         <body className="signedIn">
-            <div className="page-title">
-                <div>Posted by Advisor</div>
-            </div>
             <button className="add" onClick={()=>setPopup(true)}>+</button>
             <Model isOpen={popup}>
                 <button className="closeButton" onClick={()=>setPopup(false)}>X</button>
                 <AddProj />
             </Model>
+            <div className="page-title">
+                <div>Posted by Advisor</div>
+            </div>
             <h2 className="flex-title">
                 <div className="adv1-title">Project</div>
                 <div className="adv2-title">Slots</div>
