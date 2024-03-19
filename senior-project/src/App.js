@@ -10,7 +10,11 @@ import AdvProj from './pages/AdvProj';
 import MyTeam from './pages/MyTeam';
 import AdvStudents from './pages/AdvStudents';
 import Grades from './pages/Grades';
+import Directory from './pages/Directory';
 
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+/*global google*/
 
 function App() {
   const [backendData, setBackendData] = useState([{}])
@@ -29,23 +33,26 @@ function App() {
   return (
     <div>
       <BrowserRouter>
+        <Navbar />
         <Routes>
-          /* Info Pages */
+          {/* Info Pages */}
           <Route index element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/FAQ" element={<FAQ />} />
 
-          /* Need to be logged in */
+          {/* Need to be logged in */}
           <Route path="/projectpitch" element={<ProjPitch />} />
           <Route path="/advisorsprojects" element={<AdvProj />} />
           <Route path="/myteam" element={<MyTeam />} />
           <Route path="/students" element={<AdvStudents />} />
           <Route path="/grades" element={<Grades />} />
+          <Route path="/directory" element={<Directory />} />
 
-          /* Error Page */
+          {/* Error Page */}
           <Route path="*" element={<NoPage />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
 
       {(typeof backendData.rows === 'undefined') ? (
