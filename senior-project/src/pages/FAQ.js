@@ -14,7 +14,7 @@ export default function FAQ() {
                 <ChevronUpIcon
                   className={`${
                     open ? 'rotate-180 transform' : ''
-                  } h-5 w-5 text-blue-500`}
+                  } h-5 w-5 text-orange-500`}
                 />
               </Disclosure.Button>
               <Disclosure.Panel className="px-4 pb-2 pt-4 text-lg text-gray-500">
@@ -32,7 +32,7 @@ export default function FAQ() {
                 <ChevronUpIcon
                   className={`${
                     open ? 'rotate-180 transform' : ''
-                  } h-5 w-5 text-blue-500`}
+                  } h-5 w-5 text-orange-500`}
                 />
               </Disclosure.Button>
               <Disclosure.Panel className="px-4 pb-2 pt-4 text-lg text-gray-500">
@@ -51,7 +51,7 @@ export default function FAQ() {
                 <ChevronUpIcon
                   className={`${
                     open ? 'rotate-180 transform' : ''
-                  } h-5 w-5 text-blue-500`}
+                  } h-5 w-5 text-orange-500`}
                 />
               </Disclosure.Button>
               <Disclosure.Panel className="px-4 pb-2 pt-4 text-lg text-gray-500">
@@ -69,7 +69,7 @@ export default function FAQ() {
                 <ChevronUpIcon
                   className={`${
                     open ? 'rotate-180 transform' : ''
-                  } h-5 w-5 text-blue-500`}
+                  } h-5 w-5 text-orange-500`}
                 />
               </Disclosure.Button>
               <Disclosure.Panel className="px-4 pb-2 pt-4 text-lg text-gray-500">
@@ -87,7 +87,7 @@ export default function FAQ() {
                 <ChevronUpIcon
                   className={`${
                     open ? 'rotate-180 transform' : ''
-                  } h-5 w-5 text-blue-500`}
+                  } h-5 w-5 text-orange-500`}
                 />
               </Disclosure.Button>
               <Disclosure.Panel className="px-4 pb-2 pt-4 text-lg text-gray-500">
@@ -105,7 +105,7 @@ export default function FAQ() {
                 <ChevronUpIcon
                   className={`${
                     open ? 'rotate-180 transform' : ''
-                  } h-5 w-5 text-blue-500`}
+                  } h-5 w-5 text-orange-500`}
                 />
               </Disclosure.Button>
               <Disclosure.Panel className="px-4 pb-2 pt-4 text-lg text-gray-500">
@@ -123,7 +123,7 @@ export default function FAQ() {
                 <ChevronUpIcon
                   className={`${
                     open ? 'rotate-180 transform' : ''
-                  } h-5 w-5 text-blue-500`}
+                  } h-5 w-5 text-orange-500`}
                 />
               </Disclosure.Button>
               <Disclosure.Panel className="px-4 pb-2 pt-4 text-lg text-gray-500">
@@ -141,7 +141,7 @@ export default function FAQ() {
                 <ChevronUpIcon
                   className={`${
                     open ? 'rotate-180 transform' : ''
-                  } h-5 w-5 text-blue-500`}
+                  } h-5 w-5 text-orange-500`}
                 />
               </Disclosure.Button>
               <Disclosure.Panel className="px-4 pb-2 pt-4 text-lg text-gray-500">
@@ -160,7 +160,7 @@ export default function FAQ() {
                 <ChevronUpIcon
                   className={`${
                     open ? 'rotate-180 transform' : ''
-                  } h-5 w-5 text-blue-500`}
+                  } h-5 w-5 text-orange-500`}
                 />
               </Disclosure.Button>
               <Disclosure.Panel className="px-4 pb-2 pt-4 text-lg text-gray-500">
@@ -178,7 +178,7 @@ export default function FAQ() {
                 <ChevronUpIcon
                   className={`${
                     open ? 'rotate-180 transform' : ''
-                  } h-5 w-5 text-blue-500`}
+                  } h-5 w-5 text-orange-500`}
                 />
               </Disclosure.Button>
               <Disclosure.Panel className="px-4 pb-2 pt-4 text-lg text-gray-500">

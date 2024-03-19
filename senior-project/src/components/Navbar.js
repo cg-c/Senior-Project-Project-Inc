@@ -128,11 +128,35 @@ function Navbar() {
             {Object.keys(user).length !== 0 && selected === types[0] &&
             <li className='nav-item'>
               <Link
-                to='/'
+                to='/advisorsprojects'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Student
+                Projects
+              </Link>
+            </li>
+            }
+
+            {Object.keys(user).length !== 0 && selected === types[0] &&
+            <li className='nav-item'>
+              <Link
+                to='/projectpitch'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Pitch
+              </Link>
+            </li>
+            }
+
+            {Object.keys(user).length !== 0 && selected === types[0] &&
+            <li className='nav-item'>
+              <Link
+                to='/myteam'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                My Team
               </Link>
             </li>
             }
@@ -140,11 +164,35 @@ function Navbar() {
             {Object.keys(user).length !== 0 && selected === types[1] &&
             <li className='nav-item'>
               <Link
-                to='/'
+                to='/students'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Advisor
+                Students
+              </Link>
+            </li>
+            }
+
+            {Object.keys(user).length !== 0 && selected === types[1] &&
+            <li className='nav-item'>
+              <Link
+                to='/grades'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Grades
+              </Link>
+            </li>
+            }
+
+            {Object.keys(user).length !== 0 && selected === types[1] &&
+            <li className='nav-item'>
+              <Link
+                to='/directory'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Directory
               </Link>
             </li>
             }
