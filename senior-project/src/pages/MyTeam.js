@@ -30,15 +30,15 @@ export default function MyTeam() {
             <Members />
             <button className="leaveButton" onClick={()=> setLeavePopup(true)}>Leave Team</button>
             <Model isOpen={leavePopUp}>
-                    <button className="closeButton" onClick={()=>setLeavePopup(false)}>X</button>
-                    <h3 className="descText">Do you want to leave the team?</h3>
-                    <button className="eventButton">Yes</button>
-                        {/* yes button:
-                            redirect and refresh the page
-                            Jonathan: delete user from the team
-                        */}
-                    <button className="eventButton" onClick={()=>setLeavePopup(false)}>No</button>
-                </Model>
+                <button className="closeButton" onClick={()=>setLeavePopup(false)}>X</button>
+                <h3 className="descText">Do you want to leave the team?</h3>
+                <button className="eventButton">Yes</button>
+                    {/* yes button:
+                        redirect and refresh the page
+                        Jonathan: delete user from the team
+                    */}
+                <button className="eventButton" onClick={()=>setLeavePopup(false)}>No</button>
+            </Model>
         </body>
     );
 }
