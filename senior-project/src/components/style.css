@@ -1,6 +1,7 @@
 body .signedIn {
     background-color: rgba(7, 16, 49, 1);
     color:#ffffff;
+    padding-bottom: 3%;
 }
 
 
@@ -12,12 +13,11 @@ body .signedIn {
     font-size: 40px;
     font-weight: 400;
     text-align: center;
-    left: 0;
     letter-spacing: 0;
     line-height: normal;
     padding-top: 2%;
+    padding-bottom: 1.5%;
     white-space: nowrap;
-    margin-left: 5px;
 }
 
 .flex-title {
@@ -25,14 +25,13 @@ body .signedIn {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    text-align: center;
+    text-align: left;
     align-content: space-between;
     justify-self: center;
-    left: 0;
-    top: 0;
     padding-top: 10px;
     font-family: "Inter-Regular", Helvetica;
     font-size: 22px;
+    margin-left: 8%;
 }
 
 /* Will have to do page math thing to size it correctly*/
@@ -42,9 +41,9 @@ body .signedIn {
     align-content: space-between;
     background-color: rgba(42, 42, 64, 1);
     border-radius: 20px;
-    height: 180px;
+    height: 160px;
     position: relative;
-    width: 1440px;
+    width: 1300px;
     color: #ffffff;
     font-family: "Inter-Medium", Helvetica;
     font-size: 26px;
@@ -89,6 +88,7 @@ body .signedIn {
     align-items: center;
     padding: 10px;
     margin: 10px;
+    margin-bottom: 1px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -277,17 +277,18 @@ select {
     background-color: rgba(34, 136, 76, 1);
     color: #f5f6f7;
     border: none;
-    font-size: 60px;
+    font-size: 55px;
     font-family: "Inter-Regular", Helvetica;
     border-radius: 10px;
-    float: right;
+    position: absolute;
+    right: 0;
     height: 74px;
-    position:static;
     width: 74px;
     text-align: center;
     align-content: center;
     margin-top: 15px;
-    margin-right: 5px;
+    margin-right: 20px;
+    
 }
 
 .joinButton {
@@ -349,7 +350,10 @@ select {
     height: 60px;
     width: 207px;
     margin: 3%;
-    float: right;
+    right: 0;
+    display: inline-block;
+    margin-left: 80%;
+
 }
 
 
@@ -359,3 +363,23 @@ select {
     color: black;
 }
 
+
+
+/* OTHER */
+.emptyRect {
+    background-color: rgba(217, 217, 217, 1);
+    height: 25px;
+    left: 555px;
+    top: 59px;
+    width: 25px;
+    margin: 2px;
+}
+
+.filledRect {
+    background-color: rgba(34, 136, 76, 1);
+    height: 25px;
+    left: 555px;
+    top: 59px;
+    width: 25px;
+    margin: 2px;
+}

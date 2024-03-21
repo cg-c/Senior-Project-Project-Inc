@@ -27,7 +27,7 @@ export default function ProjPitch() {
                 <AddProj />
             </Model>
             <div className="page-title">
-                <div className="text-wrapper">Project Pitch</div>
+                <div >Project Pitch</div>
             </div>
             <h2 className="flex-title">
                 <div className="pitch-title1">Topic</div>
