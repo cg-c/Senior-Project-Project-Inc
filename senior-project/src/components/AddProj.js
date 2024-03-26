@@ -119,17 +119,18 @@ export default function AddProj() {
         <div className="form">
             <form onSubmit={handleSubmit}>
                 <div className="addCar1">
-                    <label className="addFormReq">Project Name: 
+                    <label className="addFormReq">Project Name:<br />
                         <input type="text" id="projName" />
                     </label>
                 </div>
                 <div className="addCar2">
-                    <h4 className="addFormReq">Select Programming Languages: </h4>
+                    <h4 className="addFormReq">Select Programming Languages:<br /></h4>
                     <MultiSelect value={selectedLang} options={options} onChange={setSelectedLang} hasSelectAll={false} id="languages" />
                 </div>
                 <div className="addCar3">
-                    <h4 className="addFormReq">Select Application Type:</h4>
+                    <h4 className="addFormReq">Select Application Type:<br /></h4>
                     <select name="type" id="appType">
+                        <option value="" selected disabled hidden>Select...</option>
                         <option value="Mobile">Mobile App</option>
                         <option value="Website">Website</option>
                         <option value="Robotics">Robotics</option>
@@ -144,12 +145,12 @@ export default function AddProj() {
                     </select>
                 </div>
                 <div className="addCar4">
-                    <label className="addFormReq">Description: 
+                    <label className="addFormReq">Description:<br /> 
                         <textarea name="description" id="desc" />
                     </label>
                 </div>
                 <div className="addCar5">
-                    <label className="addFormReq">Contact:
+                    <label className="addFormReq">Contact:<br />
                         <input type="text" id="contact" />
                     </label>
                 </div>
