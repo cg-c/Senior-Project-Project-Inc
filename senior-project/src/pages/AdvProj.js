@@ -5,7 +5,7 @@ import React from "react";
 import Model from "react-modal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Description from "../components/Description";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../components/style.css"
 
 export default function AdvProj() {
@@ -13,7 +13,21 @@ export default function AdvProj() {
     const [ popup, setPopup ] = useState(false);
     const [ numPitch, setNumPitch ] = useState(Array.from({length : 10}));
     const [ des, setDes ] = useState(false);
-
+    const [projects, setData] = useState([]);
+      
+        useEffect(() => {
+          fetchData();
+        }, []);
+      
+        const fetchData = async () => {
+          try {
+            const response = await fetch('/student/projects');
+            const jsonData = await response.json();
+            setData(jsonData);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
 
     return (
         <body className="signedIn">
@@ -48,12 +62,19 @@ export default function AdvProj() {
             <InfiniteScroll dataLength={numPitch.length}
                 loader={<p>Loading...</p>}
             >
-                {numPitch.map((item, index) => {
-                    return <button className="clickDes" onClick={()=>setDes(true)}><ProjCard /></button>
-                    {/*
-                        Jonathan: load in all advisor projects 
-                    */}
-                })}
+                {projects.map(item => (
+                <button className="clickDes" onClick={()=>setDes(true)}>
+
+                <  div className="flex-container projCard">
+                  <div className="stuCard1" key={item}>{item.NAME}</div>
+                  <div className="stuCar2">slot img</div>
+                  {/* Use map/array to push the rect divs --> display */}
+                  <div className="stuCar3">Type</div>
+                  <div className="stuCar4">Languages</div>
+                </div>
+                </button>   
+                ))}
+         
                 <Model isOpen={des} style={{
                 overlay: {
                   position: 'fixed',
@@ -69,6 +90,7 @@ export default function AdvProj() {
                   overflowY: 'auto',
                   position: 'relative'
                 }}} >
+                  
                     <button className="closeButton" onClick={()=>setDes(false)}>X</button>
                     <Description />
                     {/*

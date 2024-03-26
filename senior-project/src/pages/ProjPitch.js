@@ -4,13 +4,28 @@ import Model from 'react-modal';
 import InfiniteScroll from "react-infinite-scroll-component";
 import "../components/style.css"
 import Description from "../components/Description";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ProjPitch() {
 
     const [ popup, setPopup ] = useState(false);
     const [ numPitch, setNumPitch ] = useState(Array.from({length : 10}));
     const [ des, setDes ] = useState(false);
+    const [projects, setData] = useState([]);
+      
+        useEffect(() => {
+          fetchData();
+        }, []);
+      
+        const fetchData = async () => {
+          try {
+            const response = await fetch('/student/projects');
+            const jsonData = await response.json();
+            setData(jsonData);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
 
     const fetchMorePitch = () => {
         {/* MAKE API CALLS 
@@ -50,15 +65,11 @@ export default function ProjPitch() {
                 <div className="pitch-title4">Language</div>
             </h2>
             <hr />
-            <InfiniteScroll dataLength={numPitch.length}
+            <InfiniteScroll dataLength={projects.length}
                 loader={<p>Loading...</p>}
             >
-                {numPitch.map((item, index) => {
-                    return <button className="clickDes" onClick={()=>setDes(true)}><ProjCard /></button>   
-                    {/*
-                        Jonathan: load in all the student projects 
-                    */}
-                })}
+                
+                
 
                 <Model isOpen={des} style={{
                 overlay: {
