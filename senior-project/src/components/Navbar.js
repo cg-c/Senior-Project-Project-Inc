@@ -11,6 +11,8 @@ import { CheckIcon } from '@heroicons/react/20/solid'
 
 //images
 import UFlogo from '../images/UF-logo.png';
+import MenuIcon from '../images/Hamburger_icon.png';
+import CloseIcon from '../images/Close_icon.png';
 
 const types = ['Student', 'Advisor']
 /*global google*/
@@ -39,6 +41,7 @@ function Navbar() {
   }
 
   function handleCallbackResponse(response) {
+    closeMobileMenu();
     console.log("Encoded JWT ID Token: " + response.credential);
     var userObj = jwtDecode(response.credential);
     console.log(userObj);
@@ -105,7 +108,7 @@ function Navbar() {
           
         
           <div className='menu-icon' onClick={handleClick}>
-            <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+            <img src={click ? CloseIcon : MenuIcon}  width="40" height="40"/>
           </div>
 
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
