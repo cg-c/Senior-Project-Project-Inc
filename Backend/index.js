@@ -20,11 +20,12 @@ const data = [
   { id: 3, name: "Item 3" },
 ];
 
-// Endpoint to fetch data
+// test to fetch data
 app.get("/api/data", (req, res) => {
   res.json(data);
 });
 
+//test
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
@@ -33,6 +34,58 @@ app.get("/api", (req, res) => {
   res.json({ rows: ["stuff", "more stuff"] });
   console.log("sent");
 });
+
+app.get("/student/projects", (req, res) => {
+  async function fun() {
+    let con;
+
+    try {
+      con = await oracledb.getConnection(dbConfig);
+      const data = await con.execute("SELECT * FROM project");
+
+      console.log(data.rows);
+      con.close();
+      return data.rows;
+    } catch (err) {
+      console.error(err);
+      return error;
+    }
+  }
+  fun()
+    .then((dbRes) => {
+      res.send(dbRes);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+app.get("/advisor/projects", (req, res) => {
+  async function fun() {
+    let con;
+
+    try {
+      con = await oracledb.getConnection(dbConfig);
+      const data = await con.execute("SELECT * FROM project");
+
+      console.log(data.rows);
+      con.close();
+      return data.rows;
+    } catch (err) {
+      console.error(err);
+      return error;
+    }
+  }
+  fun()
+    .then((dbRes) => {
+      res.send(dbRes);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+
 
 app.get("/data", (req, res) => {
   async function fun() {

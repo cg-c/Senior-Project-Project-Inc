@@ -27,7 +27,8 @@ CREATE TABLE project (
 
 CREATE TABLE language (
     name varchar(50),
-    pID int);
+    pID int NOT NULL
+    );
     
 CREATE TABLE type (
     name varchar(50),
