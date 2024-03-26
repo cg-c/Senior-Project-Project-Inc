@@ -29,9 +29,24 @@ export default function MyTeam() {
             <Members />
             <Members />
             <button className="leaveButton" onClick={()=> setLeavePopup(true)}>Leave Team</button>
-            <Model isOpen={leavePopUp}>
+            <Model isOpen={leavePopUp} style={{
+                overlay: {
+                  position: 'fixed',
+                  zIndex: 1020,
+                  background: 'rgba(255, 255, 255, 0.75)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                },
+                content: {
+                  background: 'white',
+                  width: '60rem',
+                  overflowY: 'auto',
+                  position: 'relative'
+                }}} >
                 <button className="closeButton" onClick={()=>setLeavePopup(false)}>X</button>
-                <h3 className="descText">Do you want to leave the team?</h3>
+                <h3 className="descText leaveText">Do you want to leave the team?</h3>
+                <br></br>
                 <button className="eventButton">Yes</button>
                     {/* yes button:
                         redirect and refresh the page

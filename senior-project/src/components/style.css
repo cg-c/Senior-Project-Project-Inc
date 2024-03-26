@@ -201,6 +201,10 @@ body .signedIn {
     color: black;
 }
 
+.leaveText {
+    font-size: 30px;
+}
+
 .clickDes {
     align-self: center;
     float: inherit;
@@ -387,4 +391,14 @@ select option[value=""] {
     top: 59px;
     width: 25px;
     margin: 2px;
+}
+
+.downArrow {
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 25px solid rgba(217, 217, 217, 1);
+    margin-right: 5vw;
+    float: right;
 }

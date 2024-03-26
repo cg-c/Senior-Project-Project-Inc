@@ -96,7 +96,8 @@ const options = [
     { label: "VHDL", value: "VHDL" },
     { label: "Verilog", value: "Verilog" },
     { label: "VRML", value: "VRML" },
-    { label: "XML", value: "XML" }
+    { label: "XML", value: "XML" },
+    { label: "Other", value: "Other" }
 ]
 
 export default function AddProj() {
@@ -135,7 +136,7 @@ export default function AddProj() {
                         <option value="Website">Website</option>
                         <option value="Robotics">Robotics</option>
                         <option value="Game">Game</option>
-                        <option value="Bioinfomatics">Bioinfomatics</option>
+                        <option value="Bioinfomatics/Health">Bioinfomatics/Health</option>
                         <option value="AI/ML">AI/ML</option>
                         <option value="Extension">Extension</option>  
                         <option value="Webscrapper">Webscrapper</option>
