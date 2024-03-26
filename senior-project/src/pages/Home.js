@@ -13,7 +13,11 @@ export default function Home() {
                 <p>2. Watch the introductory video (Click "Watch Intro" above) </p>
                 <p>3. Sign in with your gatorlink account </p>
                 <p>4. Establish your team, teams must be 2-5 people </p>
-                <p>5. Get an advisor, any UF faculty can be your advisor </p>
+                <div className="px-5 py-1">
+                    <p>a) use the project page to join an advisor suggested project</p>
+                    <p>b) use the pitch page to create your own project and allow other students to join</p>
+                </div>
+                <p>5. If you chose option b, join an advisor with your team (any UF faculty can be your advisor) </p>
                 <p>6. Wait patiently for the course to be added to your schedule </p>
             </div>
         </>

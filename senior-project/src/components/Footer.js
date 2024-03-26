@@ -11,23 +11,24 @@ function Footer() {
       <div class='footer-links'>
         <div className='footer-link-wrapper'>
           <div class='footer-link-items'>
-            <h2>About Us</h2>
-            <Link to='/'>Intro</Link>
-            <Link to='/'>FAQ</Link>
+            <h2 className="text-lg">Contact Us</h2>
+            <a>University of Florida</a>
+            <a>Gainesville, FL 32611</a>
+            <a>352-392-3261</a>
           </div>
           <div class='footer-link-items'>
-            <h2>Contact Us</h2>
-            <Link to='/'>Contact</Link>
-            <Link to='/'>Support</Link>
+            <h2 className="text-lg">Tools</h2>
+            <a href='https://one.ufl.edu/' target="_blank">ONE.UF</a>
+            <a href='https://my.ufl.edu/ps/signon.html' target="_blank">MyUFL</a>
+            <a href='https://elearning.ufl.edu/' target="_blank">eLearning</a>
+            <a href='https://ufalert.ufl.edu/' target="_blank">UF Alerts</a>
           </div>
-        </div>
-        <div className='footer-link-wrapper'>
           <div class='footer-link-items'>
-            <h2>Social Media</h2>
-            <Link to='/'>Instagram</Link>
-            <Link to='/'>Facebook</Link>
-            <Link to='/'>Youtube</Link>
-            <Link to='/'>Twitter</Link>
+            <h2 className="text-lg">Social Media</h2>
+            <a href='https://www.facebook.com/uflorida/' target="_blank">Facebook</a>
+            <a href='https://www.instagram.com/uflorida/' target="_blank">Instagram</a>
+            <a href='https://twitter.com/UF/' target="_blank">Twitter</a>
+            <a href='https://www.youtube.com/user/universityofflorida/' target="_blank">Youtube</a>
           </div>
         </div>
       </div>

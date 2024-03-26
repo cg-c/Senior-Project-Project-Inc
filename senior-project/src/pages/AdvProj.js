@@ -32,7 +32,21 @@ export default function AdvProj() {
     return (
         <body className="signedIn">
             <button className="add" onClick={()=>setPopup(true)}>+</button>
-            <Model isOpen={popup}>
+            <Model isOpen={popup} style={{
+                overlay: {
+                  position: 'fixed',
+                  zIndex: 1020,
+                  background: 'rgba(255, 255, 255, 0.75)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                },
+                content: {
+                  background: 'white',
+                  width: '60rem',
+                  overflowY: 'auto',
+                  position: 'relative'
+                }}} >
                 <button className="closeButton" onClick={()=>setPopup(false)}>X</button>
                 <AddProj />
             </Model>
@@ -60,7 +74,23 @@ export default function AdvProj() {
                 </div>
                 </button>   
                 ))}
-                <Model isOpen={des}>
+         
+                <Model isOpen={des} style={{
+                overlay: {
+                  position: 'fixed',
+                  zIndex: 1020,
+                  background: 'rgba(255, 255, 255, 0.75)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                },
+                content: {
+                  background: 'white',
+                  width: '60rem',
+                  overflowY: 'auto',
+                  position: 'relative'
+                }}} >
+                  
                     <button className="closeButton" onClick={()=>setDes(false)}>X</button>
                     <Description />
                     {/*
