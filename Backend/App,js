@@ -1,0 +1,96 @@
+import React, { useEffect, useState } from "react";
+
+function App() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch('/data');
+      const jsonData = await response.json();
+      setData(jsonData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+
+  const [formData, setFormData] = useState({
+    NAME: '',
+    PID: '',
+    // Add more fields if needed
+  });
+
+  const handleChange = event => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value
+    });
+  };
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+    try {
+      const response = await fetch('/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      if (response.ok) {
+        console.log('Data sent successfully');
+        // Clear form data after successful submission
+        setFormData({
+          NAME: '',
+          PID: '',
+          // Reset other fields if needed
+        });
+      } else {
+        console.error('Failed to send data');
+      }
+    } catch (error) {
+      console.error('Error sending data:', error);
+    }
+  };
+
+  return (
+    <div className="App">
+      <h1>Data from Express Backend</h1>
+      <ul>
+        {data.map(item => (
+          <li key={item.PID}>{item.NAME} {item.PID}</li>
+        ))}
+      </ul>
+      <h1>Send Data to Express Backend</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name:
+          <input
+            type="text"
+            name="NAME"
+            value={formData.name}
+            onChange={handleChange}
+          />
+        </label>
+        <br></br>
+        <label>
+          ID:
+          <input
+            type="text"
+            name="PID"
+            value={formData.ID}
+            onChange={handleChange}
+          />
+        </label>
+        {/* Add more input fields if needed */}
+        <button type="submit">Send Data</button>
+      </form>
+    </div>
+  );
+}
+
+export default App;
