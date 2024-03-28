@@ -27,6 +27,23 @@ export default function ProjPitch() {
           }
         };
 
+        const getTypes = async event => {
+            event.preventDefault();
+            // try {
+            //   const response = await fetch('/send', {
+            //     method: 'POST',
+            //     headers: {
+            //       'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(projects.PID)
+            //   });
+            //   if (!response.ok) {
+            //     console.error('Failed to send data');
+            //   }
+            // } catch (error) {
+            //   console.error('Error sending data:', error);
+            // }
+          };
     const fetchMorePitch = () => {
         {/* MAKE API CALLS 
         https://youtu.be/NZKUirTtxcg 
@@ -54,7 +71,18 @@ export default function ProjPitch() {
             <InfiniteScroll dataLength={projects.length}
                 loader={<p>Loading...</p>}
             >
-                
+                {projects.map(item => (
+                <button className="clickDes" onClick={()=>setDes(true)}>
+
+                <  div className="flex-container projCard">
+                  <div className="stuCard1" key={item}>{item.NAME}</div>
+                  <div className="stuCar2">slot img</div>
+                  {/* Use map/array to push the rect divs --> display */}
+                  <div className="stuCar3">Type</div>
+                  <div className="stuCar4">Languages</div>
+                </div>
+                </button>   
+                ))}
                 
 
                 <Model isOpen={des}>

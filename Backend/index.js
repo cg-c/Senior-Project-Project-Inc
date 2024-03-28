@@ -85,8 +85,6 @@ app.get("/advisor/projects", (req, res) => {
     });
 });
 
-
-
 app.get("/data", (req, res) => {
   async function fun() {
     let con;
@@ -171,6 +169,50 @@ app.post("/send", (req, res) => {
       const binds = {
         pid: PID,
         name: NAME,
+      };
+
+      // Execute the SQL statement
+      const result = await con.execute(sql, binds, { autoCommit: true });
+
+      console.log("Data inserted successfully:", result);
+      con.close();
+    } catch (err) {
+      console.error(err);
+      return error;
+    }
+  }
+  fun()
+    .then((dbRes) => {
+      res.send(dbRes);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+app.post("/student/create", (req, res) => {
+  async function fun() {
+    let con;
+
+    //console.log(res);
+    console.log(req.body);
+
+    try {
+      con = await oracledb.getConnection(dbConfig);
+
+      const sql = `INSERT INTO student (ufID, email, name, role, teamID, pid) VALUES (:ufID, :email, :name, :role, :teamID, :pid)`;
+
+      const { UFID, EMAIL, NAME, ROLE, TEAMID, PID } = req.body;
+      console.log("Data:", { NAME, PID });
+
+      // Bind parameters for the SQL statement
+      const binds = {
+        pid: PID,
+        name: NAME,
+        ufID: UFID,
+        email: EMAIL,
+        role: ROLE,
+        teamID: TEAMID,
       };
 
       // Execute the SQL statement
