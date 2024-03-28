@@ -110,32 +110,45 @@ app.get("/data", (req, res) => {
     });
 });
 
-app.get("/count", (req, res) => {
+
+app.get("/check/has", (req, res) => {
   async function fun() {
     let con;
 
     try {
-      con = await oracledb.getConnection({
-        user: "admin",
-        password: "CapeTownRox28!",
-        connectString:
-          "(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.us-ashburn-1.oraclecloud.com))(connect_data=(service_name=g919c578ac880c3_j1r684plpz959lmg_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))",
-      });
+      con = await oracledb.getConnection(dbConfig);
 
-      const sql = `INSERT INTO language (name, pid) VALUES (:name, :pid)`;
+      console.log(req);
+
+      const { UFID, EMAIL, NAME, ROLE, TEAMID, PID } = req.body;
 
       // Bind parameters for the SQL statement
       const binds = {
-        pid: 20,
-        name: "C#",
+        ufID: UFID,
+        email: EMAIL,
+        studentName: NAME,
+        role: ROLE,
+        teamID: TEAMID,
+        pid: PID
       };
 
-      // Execute the SQL statement
-      const result = await con.execute(sql, binds, { autoCommit: true });
+      console.log(binds);
 
-      console.log("Data inserted successfully:", result);
+
+      // Bind parameters for the SQL statement
+
+
+      const sql =   `SELECT COUNT(1)
+                    FROM student
+                    WHERE email = ${EMAIL}`;
+
+      // Execute the SQL statement
+      const data = await con.execute(sql, { autoCommit: true });
+
+      console.log("Data received successfully:", result);
       con.close();
-      return data;
+      console.log(data.rows)
+      return data.rows;
     } catch (err) {
       console.error(err);
       return error;
@@ -190,6 +203,8 @@ app.post("/send", (req, res) => {
     });
 });
 
+
+
 app.post("/student/create", (req, res) => {
   async function fun() {
     let con;
@@ -200,20 +215,21 @@ app.post("/student/create", (req, res) => {
     try {
       con = await oracledb.getConnection(dbConfig);
 
-      const sql = `INSERT INTO student (ufID, email, name, role, teamID, pid) VALUES (:ufID, :email, :name, :role, :teamID, :pid)`;
+      const sql = `INSERT INTO student (ufID, email, studentName, role, teamID, pid) VALUES (:ufID, :email, :studentName, :role, :teamID, :pid)`;
 
       const { UFID, EMAIL, NAME, ROLE, TEAMID, PID } = req.body;
-      console.log("Data:", { NAME, PID });
 
       // Bind parameters for the SQL statement
       const binds = {
-        pid: PID,
-        name: NAME,
         ufID: UFID,
         email: EMAIL,
+        studentName: NAME,
         role: ROLE,
         teamID: TEAMID,
+        pid: PID
       };
+
+      console.log(binds);
 
       // Execute the SQL statement
       const result = await con.execute(sql, binds, { autoCommit: true });

@@ -17,6 +17,7 @@ import CloseIcon from '../images/Close_icon.png';
 const types = ['Student', 'Advisor', 'Admin']
 /*global google*/
 
+
 function Navbar() {
   //login stuff
   const [ user, setUser ] = useState({});
@@ -26,8 +27,66 @@ function Navbar() {
   let [selected, setSelected] = useState(types[0])
   let [error, setError] = useState(false);
 
+  const [SignInData, SetSignIN] = useState({
+        PID: '',
+        NAME: '',
+        UFID: 100,
+        EMAIL: '',
+        ROLE: '',
+        TEAMID: '',
+    // Add more fields if needed
+  });
+
+  //Send Sign in to backend
+  const SubmitSignIn = async event => {
+    try {
+      const response = await fetch('/student/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(SignInData)
+      });
+      if (response.ok) {
+        console.log('Data sent successfully');
+        // Clear form data after successful submission
+      } else {
+        console.error('Failed to send data');
+      }
+    } catch (error) {
+      console.error('Error sending data:', error);
+    }
+  };
+
+  const CheckExists = async event => {
+    try {
+      const response = await fetch('/check/has', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(SignInData)
+      });
+      if (response.ok) {
+        console.log('Data sent successfully');
+        const jsonData = await response.json();
+        } else {
+        console.error('Failed to send data');
+      }
+    } catch (error) {
+      console.error('Error sending data:', error);
+    }
+  };
+
   function closeModal() {
     setIsOpen(false);
+
+    //TODO: ADD UFID
+    SignInData.EMAIL = user.email;
+    localStorage.setItem("email", user.email);
+
+    CheckExists();
+    //SubmitSignIn();
     //add account type to database - Jonathan
   }
   function openModal() {
@@ -51,6 +110,7 @@ function Navbar() {
       //check for first time sign in - Jonathan
       setUser(userObj);
       document.getElementById("signInDiv").hidden = true;
+
       openModal(); //opens first time account creation popup
     } else {
       console.log("User's email is not a gatorlink");
