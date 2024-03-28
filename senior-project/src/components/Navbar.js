@@ -14,7 +14,7 @@ import UFlogo from '../images/UF-logo.png';
 import MenuIcon from '../images/Hamburger_icon.png';
 import CloseIcon from '../images/Close_icon.png';
 
-const types = ['Student', 'Advisor']
+const types = ['Student', 'Advisor', 'Admin']
 /*global google*/
 
 function Navbar() {
@@ -191,6 +191,18 @@ function Navbar() {
             {Object.keys(user).length !== 0 && selected === types[1] &&
             <li className='nav-item'>
               <Link
+                to='/projectpitch'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Pitch
+              </Link>
+            </li>
+            }
+
+            {Object.keys(user).length !== 0 && selected === types[2] &&
+            <li className='nav-item'>
+              <Link
                 to='/directory'
                 className='nav-links'
                 onClick={closeMobileMenu}
@@ -213,7 +225,7 @@ function Navbar() {
             }
             
             {user &&
-            <div className='nav-item pt-5 pl-4' id="signInDiv"></div>
+            <div className='nav-item pt-5 pl-4 pb-4' id="signInDiv"></div>
             }
           </ul>
 
@@ -263,7 +275,7 @@ function Navbar() {
                               <RadioGroup value={selected} onChange={setSelected}>
                               
                               <div className="space-y-2">
-                                  {types.map((type) => (
+                                  {types.slice(0,2).map((type) => (
                                   <RadioGroup.Option
                                       key={type}
                                       value={type}
