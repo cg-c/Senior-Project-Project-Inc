@@ -382,6 +382,18 @@ function Navbar() {
                       </div>
                   </div>
 
+                  <Dialog.Title
+                        as="h3"
+                        className="text-lg font-medium leading-6 text-gray-900"
+                    >
+                        UFID
+                    </Dialog.Title>
+                    <div className="mt-2">
+                      <label>
+                        <input className="border-2 border-black outline-none" name="ufid" />
+                      </label>
+                    </div>
+
                   <div className="mt-4">
                       <button
                       type="button"
