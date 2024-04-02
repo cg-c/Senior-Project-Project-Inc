@@ -9,12 +9,17 @@ import AdvProj from './pages/AdvProj';
 import MyTeam from './pages/MyTeam';
 import AdvStudents from './pages/AdvStudents';
 import Grades from './pages/Grades';
+import Directory from './pages/Directory';
 
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+/*global google*/
 
 function App() {
   return (
     <div>
       <BrowserRouter>
+        <Navbar />
         <Routes>
           {/* Info Pages */}
           <Route index element={<Home />} />
@@ -28,10 +33,12 @@ function App() {
           <Route path="/myteam" element={<MyTeam />} />
           <Route path="/students" element={<AdvStudents />} />
           <Route path="/grades" element={<Grades />} />
+          <Route path="/directory" element={<Directory />} />
 
           {/* Error Page */}
           <Route path="*" element={<NoPage />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

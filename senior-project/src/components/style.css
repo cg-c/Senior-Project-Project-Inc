@@ -1,0 +1,404 @@
+body .signedIn {
+    background-color: rgba(7, 16, 49, 1);
+    color:#ffffff;
+    padding-bottom: 3%;
+}
+
+
+/* TITLES & FLEX*/
+
+.page-title {
+    color: #f5f6f7;
+    font-family: "Inter-Regular", Helvetica;
+    font-size: 40px;
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+    padding-top: 2%;
+    padding-bottom: 1.5%;
+    white-space: nowrap;
+}
+
+.flex-title {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: left;
+    align-content: space-between;
+    justify-self: center;
+    padding-top: 10px;
+    font-family: "Inter-Regular", Helvetica;
+    font-size: 22px;
+    margin-left: 8%;
+}
+
+/* Will have to do page math thing to size it correctly*/
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    background-color: rgba(42, 42, 64, 1);
+    border-radius: 20px;
+    height: 160px;
+    position: relative;
+    width: 87vw;
+    color: #ffffff;
+    font-family: "Inter-Medium", Helvetica;
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+.listPeople {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    justify-self: center;
+    align-items: center;
+    text-align: center;
+    width: 1120px;
+    color: #ffffff;
+    font-family: "Inter-Medium", Helvetica;
+    font-size: 30px;
+    font-weight: 500;
+    left: 20px;
+    letter-spacing: 0;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.memFlex {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    justify-self: center;
+    text-align: center;
+    align-items: center;
+    color: #ffffff;
+    font-family: "Inter-Medium", Helvetica;
+    font-size: 30px;
+    font-weight: 500;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.projCard {
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    margin-bottom: 1px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.projCard:hover {
+    background-color: #374D76;
+}
+
+
+/* FLEX FOR PAGE SUBHEADINGS*/
+.adv1-title {
+    flex: 2;
+}
+
+.adv2-title {
+    flex: 2;
+}
+
+.adv3-title {
+    flex: 1;
+}
+
+.pitch-title1 {
+    flex: 2;
+}
+
+.pitch-title2 {
+    flex: 2;
+}
+
+.pitch-title3 {
+    flex: 1;
+}
+
+.pitch-title4 {
+    flex: 1;
+}
+
+.dir-title1, .dir-title2, .dir-title3, .dir-title4, .dir-title5 {
+    flex: 1;
+}
+
+.team-title1, .team-title2, .team-title3 {
+    flex: 1;
+}
+
+
+/* FLEX FOR COMPONENT SUBHEADINGS */
+.stuCar1 {
+    flex: 2;
+}
+
+.stuCar2 {
+    flex: 2;
+}
+
+.stuCar3 {
+    flex: 1;
+}
+
+.stuCar4 {
+    flex: 1;
+}
+
+.advCar1 {
+    flex: 1;
+}
+
+.advCar2 {
+    flex: 2;
+}
+
+.advCar3 {
+    flex: 1;
+}
+
+.pplCar1, .pplCar2, .pplCar3, .pplCar4, .pplCar5 {
+    flex: 1;
+}
+
+.memCar1, .memCar2, .memCar3 {
+    flex: 1;
+}
+
+.addCar1, .addCar2, .addCar3, .addCar4, .addCar5  {
+    flex: 1;
+    margin: 2%;
+}
+
+
+
+/* POPUPS*/
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    color: black;
+}
+
+.desc {
+    background-color: #f5f6f7;
+}
+
+.descHeader {
+    color: black;
+}
+
+.descText {
+    color: black;
+}
+
+.leaveText {
+    font-size: 30px;
+}
+
+.clickDes {
+    align-self: center;
+    float: inherit;
+    background: none;
+    border: none;
+    display: flex;
+    margin: auto;
+}
+
+.addFormReq {
+    color: black;
+    font-family: "Inter-Regular", Helvetica;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 1%;
+}
+
+textarea {
+    padding: 10px;
+    width: 89%;
+    height: 200px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    resize: vertical;
+    resize  : none;
+    overflow: auto;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input[type=text] {
+    width: 90%;
+    padding: 10px;
+    height: 45px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+select {
+    width: 90%;
+    height: 45px;
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    background-color: white;
+    color: black;
+}
+
+select:invalid,
+select option[value=""] {
+    color: #aaa;
+}
+
+.rmsc {
+    --rmsc-main: black !important;
+    --rmsc-hover: #f1f3f5;
+    --rmsc-selected: #e2e6ea;
+    --rmsc-border: #aaa !important;
+    --rmsc-gray: #aaa;
+    --rmsc-bg: #fff;
+    --rmsc-p: 10px; /* Spacing */
+    --rmsc-radius: 4px !important; /* Radius */
+    --rmsc-h: 45px !important; /* Height */
+    width: 90%;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+
+
+
+/* BUTTONS */
+
+.add {
+    background-color: rgba(34, 136, 76, 1);
+    color: #f5f6f7;
+    border: none;
+    font-size: 55px;
+    font-family: "Inter-Regular", Helvetica;
+    border-radius: 10px;
+    position: absolute;
+    right: 0;
+    height: 74px;
+    width: 74px;
+    text-align: center;
+    align-content: center;
+    margin-top: 15px;
+    margin-right: 20px;
+    
+}
+
+.joinButton {
+    background-color: rgba(34, 136, 76, 1);
+    color: #f5f6f7;
+    border: none;
+    font-size: 30px;
+    font-family: "Inter-Regular", Helvetica;
+    border-radius: 10px;
+    float: right;
+    height: 60px;
+    width: 207px;
+}
+
+.closeButton {
+    background-color: rgba(228, 130, 73, 1);
+    color: black;
+    border: none;
+    font-size: 30px;
+    border-radius: 15px;
+    height: 60px;
+    position: relative;
+    width: 60px;
+    height: 54px;
+    float: right;
+    /* left: 3px;
+    position: absolute;
+    top: 3px;
+    width: 54px; */
+}
+
+.deleteButton {
+    background-color: transparent;
+    color: rgba(34, 136, 76, 1);
+    border: none;
+    font-size: 30px;
+    font-family: "Inter-Regular", Helvetica;
+}
+
+.eventButton {
+    background-color: rgba(34, 136, 76, 1);
+    color: #f5f6f7;
+    border: none;
+    font-size: 30px;
+    font-family: "Inter-Regular", Helvetica;
+    border-radius: 10px;
+    height: 60px;
+    width: 207px;
+    margin: 2%;
+}
+
+.leaveButton {
+    background-color: rgba(34, 136, 76, 1);
+    color: #f5f6f7;
+    border: none;
+    font-size: 30px;
+    font-family: "Inter-Regular", Helvetica;
+    border-radius: 10px;
+    height: 60px;
+    width: 207px;
+    margin: 3%;
+    right: 0;
+    display: inline-block;
+    margin-left: 80%;
+
+}
+
+
+/* TEXT */
+
+.multiselect {
+    color: black;
+}
+
+
+
+/* OTHER */
+.emptyRect {
+    background-color: rgba(217, 217, 217, 1);
+    height: 25px;
+    left: 555px;
+    top: 59px;
+    width: 25px;
+    margin: 2px;
+}
+
+.filledRect {
+    background-color: rgba(34, 136, 76, 1);
+    height: 25px;
+    left: 555px;
+    top: 59px;
+    width: 25px;
+    margin: 2px;
+}
+
+.downArrow {
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 25px solid rgba(217, 217, 217, 1);
+    margin-right: 5vw;
+    float: right;
+}
