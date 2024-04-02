@@ -121,7 +121,7 @@ export default function AddProj() {
             <form onSubmit={handleSubmit}>
                 <div className="addCar1">
                     <label className="addFormReq">Project Name:<br />
-                        <input type="text" id="projName" />
+                        <input type="text" id="projName" required />
                     </label>
                 </div>
                 <div className="addCar2">

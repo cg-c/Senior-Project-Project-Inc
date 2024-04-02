@@ -350,7 +350,7 @@ select option[value=""] {
 }
 
 .leaveButton {
-    background-color: rgba(34, 136, 76, 1);
+    background-color: #ad0707;
     color: #f5f6f7;
     border: none;
     font-size: 30px;
@@ -365,11 +365,20 @@ select option[value=""] {
 
 }
 
+.yesButton {
+    background-color: #ad0707;
+}
+
 
 /* TEXT */
 
 .multiselect {
     color: black;
+}
+
+.teamWarn {
+    margin-top: 5vh;
+    margin-bottom: 50vh;
 }
 
 
