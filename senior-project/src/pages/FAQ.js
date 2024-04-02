@@ -3,7 +3,7 @@ import { ChevronUpIcon } from '@heroicons/react/20/solid'
 
 export default function FAQ() {
     return (
-    <div className="w-full px-4 pt-8">
+    <div className="w-full px-4 py-8">
         <h2 className="text-4xl text-center font-bold"> FAQs </h2>
       <div className="mx-auto w-full max-w-lg rounded-2xl bg-white p-2">
         <Disclosure>
