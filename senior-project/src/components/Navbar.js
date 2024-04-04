@@ -14,7 +14,7 @@ import UFlogo from '../images/UF-logo.png';
 import MenuIcon from '../images/Hamburger_icon.png';
 import CloseIcon from '../images/Close_icon.png';
 
-const types = ['Student', 'Advisor', 'Admin']
+const types = ['Student', 'Advisor', 'Admin', 'Default']
 /*global google*/
 
 
@@ -24,8 +24,11 @@ function Navbar() {
 
   //popups
   let [isOpen, setIsOpen] = useState(false);
-  let [selected, setSelected] = useState(types[0])
+  let [selected, setSelected] = useState(types[0]);
   let [error, setError] = useState(false);
+
+  //permissions
+  let [account, setAccount] = useState(types[3]);
 
   const [SignInData, SetSignIN] = useState({
         PID: '',
@@ -80,6 +83,7 @@ function Navbar() {
 
   function closeModal() {
     setIsOpen(false);
+    setAccount(selected);
 
     //TODO: ADD UFID
     SignInData.EMAIL = user.email;
@@ -189,7 +193,7 @@ function Navbar() {
               </Link>
             </li>
 
-            {Object.keys(user).length !== 0 && selected === types[0] &&
+            {Object.keys(user).length !== 0 && account === types[0] &&
             <li className='nav-item'>
               <Link
                 to='/advisorsprojects'
@@ -201,7 +205,7 @@ function Navbar() {
             </li>
             }
 
-            {Object.keys(user).length !== 0 && selected === types[0] &&
+            {Object.keys(user).length !== 0 && account === types[0] &&
             <li className='nav-item'>
               <Link
                 to='/projectpitch'
@@ -213,7 +217,7 @@ function Navbar() {
             </li>
             }
 
-            {Object.keys(user).length !== 0 && selected === types[0] &&
+            {Object.keys(user).length !== 0 && account === types[0] &&
             <li className='nav-item'>
               <Link
                 to='/myteam'
@@ -225,7 +229,7 @@ function Navbar() {
             </li>
             }
 
-            {Object.keys(user).length !== 0 && selected === types[1] &&
+            {Object.keys(user).length !== 0 && account === types[1] &&
             <li className='nav-item'>
               <Link
                 to='/advisorsprojects'
@@ -237,7 +241,7 @@ function Navbar() {
             </li>
             }
 
-            {Object.keys(user).length !== 0 && selected === types[1] &&
+            {Object.keys(user).length !== 0 && account === types[1] &&
             <li className='nav-item'>
               <Link
                 to='/myteam'
@@ -249,7 +253,7 @@ function Navbar() {
             </li>
             }
 
-            {Object.keys(user).length !== 0 && selected === types[1] &&
+            {Object.keys(user).length !== 0 && account === types[1] &&
             <li className='nav-item'>
               <Link
                 to='/grades'
@@ -261,7 +265,7 @@ function Navbar() {
             </li>
             }
 
-            {Object.keys(user).length !== 0 && selected === types[2] &&
+            {Object.keys(user).length !== 0 && account === types[2] &&
             <li className='nav-item'>
               <Link
                 to='/directory'
@@ -297,7 +301,7 @@ function Navbar() {
 
 
       <Transition appear show={isOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-10" onClose={closeModal}>
+          <Dialog as="div" className="relative z-10" onClose={function() {}}>
             <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
