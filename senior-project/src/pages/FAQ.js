@@ -189,6 +189,8 @@ export default function FAQ() {
           )}
         </Disclosure>
       </div>
+      <hr class="my-2 border-gray-200 sm:mx-auto lg:my-4" />
+      <span class="block text-md text-black sm:text-center">Last Modified: 4/4/2024</span>
     </div>
   )
 }

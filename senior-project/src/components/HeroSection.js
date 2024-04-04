@@ -1,6 +1,5 @@
 import React from 'react';
 import '../App.css';
-//import { Button } from './Button';
 import './HeroSection.css';
 
 //to put a video as the background, use the following line
@@ -13,7 +12,7 @@ function HeroSection() {
 
       <div className='py-8'>
         <a href="https://mediasite.video.ufl.edu/Mediasite/Play/8ebcb534f140433296041170863ba8631d" target="_blank">
-        <button className='rounded-md bg-black/40 px-2 py-2 text-md text-white hover:bg-black/60'> WATCH INTRO</button>
+        <button className='rounded-md bg-white border-white px-2 py-2 text-md font-bold text-black hover:bg-black/60 hover:text-white'> WATCH INTRO</button>
         </a>      
       </div>
     </div>
