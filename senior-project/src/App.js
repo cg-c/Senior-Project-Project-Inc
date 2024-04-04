@@ -5,9 +5,10 @@ import FAQ from './pages/FAQ';
 import NoPage from './pages/NoPage';
 
 import ProjPitch from './pages/ProjPitch';
-import AdvProj from './pages/AdvProj';
+import AdvProjStu from './pages/AdvProjStu';
+import AdvProjAdv from './pages/AdvProjAdv';
 import MyTeam from './pages/MyTeam';
-import AdvStudents from './pages/AdvStudents';
+import AdvTeam from './pages/AdvTeams';
 import Grades from './pages/Grades';
 import Directory from './pages/Directory';
 
@@ -29,9 +30,10 @@ function App() {
 
           {/* Need to be logged in */}
           <Route path="/projectpitch" element={<ProjPitch />} />
-          <Route path="/advisorsprojects" element={<AdvProj />} />
+          <Route path="/advisorsprojects" element={<AdvProjStu />} />
+          <Route path="/addadvisorsprojects" element={<AdvProjAdv />} />
           <Route path="/myteam" element={<MyTeam />} />
-          <Route path="/students" element={<AdvStudents />} />
+          <Route path ="/mystudents" element={<AdvTeam />} />
           <Route path="/grades" element={<Grades />} />
           <Route path="/directory" element={<Directory />} />
 

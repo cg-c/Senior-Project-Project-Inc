@@ -1,12 +1,14 @@
-import ProjCard from "../components/StuProjCard";
-import AddProj from "../components/AddProj";
-import Model from 'react-modal';
+import Header from "../components/Header";
+import ProjCard from "../components/AdvProjCard";
+import AddProjAdv from "../components/AddProjAdv";
+import React from "react";
+import Model from "react-modal";
 import InfiniteScroll from "react-infinite-scroll-component";
-import "../components/style.css"
 import Description from "../components/Description";
 import { useState, useEffect } from "react";
+import "../components/style.css"
 
-export default function ProjPitch() {
+export default function AdvProjAdv() {
 
     const [ popup, setPopup ] = useState(false);
     const [ numPitch, setNumPitch ] = useState(Array.from({length : 10}));
@@ -26,30 +28,6 @@ export default function ProjPitch() {
             console.error('Error fetching data:', error);
           }
         };
-
-        const getTypes = async event => {
-            event.preventDefault();
-            // try {
-            //   const response = await fetch('/send', {
-            //     method: 'POST',
-            //     headers: {
-            //       'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify(projects.PID)
-            //   });
-            //   if (!response.ok) {
-            //     console.error('Failed to send data');
-            //   }
-            // } catch (error) {
-            //   console.error('Error sending data:', error);
-            // }
-          };
-    const fetchMorePitch = () => {
-        {/* MAKE API CALLS 
-        https://youtu.be/NZKUirTtxcg 
-        https://www.youtube.com/watch?v=31icbinDtaO-k
-        */}
-    }
 
     return (
         <body className="signedIn">
@@ -72,35 +50,34 @@ export default function ProjPitch() {
                   position: 'relative'
                 }}} >
                 <button className="closeButton" onClick={()=>setPopup(false)}>X</button>
-                <AddProj />
+                <AddProjAdv />
             </Model>
             <div className="page-title">
-                <div >Project Pitch</div>
+                <div>Posted by Advisor</div>
             </div>
             <h2 className="flex-title">
-                <div className="pitch-title1">Topic</div>
-                <div className="pitch-title2">Slots</div>
-                <div className="pitch-title3">Type</div>
-                <div className="pitch-title4">Language</div>
+                <div className="adv1-title">Project</div>
+                <div className="adv2-title">Slots</div>
+                <div className="adv3-title">Description</div>
             </h2>
             <hr />
-            <InfiniteScroll dataLength={projects.length}
+            <InfiniteScroll dataLength={numPitch.length}
                 loader={<p>Loading...</p>}
             >
                 {projects.map(item => (
                 <button className="clickDes" onClick={()=>setDes(true)}>
 
-                  <div className="flex-container projCard">
-                  <div className="stuCar1" key={item}>{item.NAME}</div>
-                  <div className="stuCar2">slot img</div>
+                
+
+                <div className="flex-container projCard">
+                  <div className="advCar1" key={item}>{item.NAME}</div>
+                  <div className="advCar2">slot img</div>
                   {/* Use map/array to push the rect divs --> display */}
-                  <div className="stuCar3">Type</div>
-                  <div className="stuCar4">Languages</div>
+                  <div className="advCar3"><div className="downArrow" /></div>
                 </div>
                 </button>   
                 ))}
-                
-
+         
                 <Model isOpen={des} style={{
                 overlay: {
                   position: 'fixed',
@@ -114,17 +91,19 @@ export default function ProjPitch() {
                   top: "0",
                   background: 'white',
                   width: '70vw',
+                  height: '80vh',
                   overflowY: 'auto',
                   position: 'relative'
                 }}} >
+                  
                     <button className="closeButton" onClick={()=>setDes(false)}>X</button>
                     <Description />
                     {/*
-                        Jonathan: load in the descriptions of projects using Description template
+                        Jonathan: load in description of selected project 
                     */}
                 </Model>
-
             </InfiniteScroll>
+            
         </body>
             
     )

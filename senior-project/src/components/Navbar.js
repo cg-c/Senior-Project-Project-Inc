@@ -232,7 +232,7 @@ function Navbar() {
             {Object.keys(user).length !== 0 && account === types[1] &&
             <li className='nav-item'>
               <Link
-                to='/advisorsprojects'
+                to='/addadvisorsprojects'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
@@ -244,7 +244,7 @@ function Navbar() {
             {Object.keys(user).length !== 0 && account === types[1] &&
             <li className='nav-item'>
               <Link
-                to='/myteam'
+                to='/mystudents'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
