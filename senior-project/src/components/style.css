@@ -25,13 +25,11 @@ body .signedIn {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    text-align: left;
     align-content: space-between;
     justify-self: center;
     padding-top: 10px;
     font-family: "Inter-Regular", Helvetica;
     font-size: 22px;
-    margin-left: 8%;
 }
 
 /* Will have to do page math thing to size it correctly*/
@@ -91,6 +89,8 @@ body .signedIn {
     margin-bottom: 1px;
     margin-left: auto;
     margin-right: auto;
+    font-size: 1.4rem;
+    text-align: left;
 }
 
 .projCard:hover {
@@ -101,6 +101,7 @@ body .signedIn {
 /* FLEX FOR PAGE SUBHEADINGS*/
 .adv1-title {
     flex: 2;
+    margin-left: 7%;
 }
 
 .adv2-title {
@@ -113,6 +114,7 @@ body .signedIn {
 
 .pitch-title1 {
     flex: 2;
+    margin-left: 7%;
 }
 
 .pitch-title2 {
@@ -154,7 +156,7 @@ body .signedIn {
 }
 
 .advCar1 {
-    flex: 1;
+    flex: 2;
 }
 
 .advCar2 {
@@ -173,7 +175,7 @@ body .signedIn {
     flex: 1;
 }
 
-.addCar1, .addCar2, .addCar3, .addCar4, .addCar5  {
+.addCar1, .addCar2, .addCar3, .addCar4, .addCar5, .addCar6  {
     flex: 1;
     margin: 2%;
 }
@@ -235,7 +237,7 @@ textarea {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-input[type=text] {
+input[type=text], input[type=number] {
     width: 90%;
     padding: 10px;
     height: 45px;
@@ -381,6 +383,11 @@ select option[value=""] {
     margin-bottom: 50vh;
 }
 
+.center {
+    text-align: center;
+    align-items: center;
+}
+
 
 
 /* OTHER */
@@ -405,9 +412,9 @@ select option[value=""] {
 .downArrow {
     width: 0; 
     height: 0; 
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-top: 25px solid rgba(217, 217, 217, 1);
+    border-left: 22px solid transparent;
+    border-right: 22px solid transparent;
+    border-top: 29px solid rgba(217, 217, 217, 1);
     margin-right: 5vw;
     float: right;
 }

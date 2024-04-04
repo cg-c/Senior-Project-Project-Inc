@@ -46,12 +46,11 @@ export default function AdvProjStu() {
                 {projects.map(item => (
                 <button className="clickDes" onClick={()=>setDes(true)}>
 
-                <  div className="flex-container projCard">
-                  <div className="stuCard1" key={item}>{item.NAME}</div>
-                  <div className="stuCar2">slot img</div>
+                <div className="flex-container projCard">
+                  <div className="advCar1" key={item}>{item.NAME}</div>
+                  <div className="advCar2">slot img</div>
                   {/* Use map/array to push the rect divs --> display */}
-                  <div className="stuCar3">Type</div>
-                  <div className="stuCar4">Languages</div>
+                  <div className="advCar3"><div className="downArrow" /></div>
                 </div>
                 </button>   
                 ))}
@@ -67,7 +66,7 @@ export default function AdvProjStu() {
                 },
                 content: {
                   background: 'white',
-                  width: '60rem',
+                  width: '70vw',
                   overflowY: 'auto',
                   position: 'relative'
                 }}} >

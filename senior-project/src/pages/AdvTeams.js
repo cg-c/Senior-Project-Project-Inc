@@ -1,10 +1,10 @@
-import Members from "../components/Members";
+import StuMembers from "../components/StuMembers";
 import Model from "react-modal";
 import { useState } from "react";
 import "../components/style.css";
 
 
-export default function MyTeam() {
+export default function AdvTeam() {
 
     const [ leavePopUp, setLeavePopup ] = useState(false);
 
@@ -26,17 +26,18 @@ export default function MyTeam() {
 
                     <h2 className="flex-title center">
                         <div className="team-title1">Name</div>
-                        <div className="team-title2">Contact</div>
+                        <div className="team-title2">Team</div>
+                        <div className="team-title3">Contact</div>
                     </h2>
                     <hr />
                     {/*
                         Jonathan: load all members & advisors 
                     */}
-                    <Members />
-                    <Members />
-                    <Members />
-                    <Members />
-                    <Members />
+                    <StuMembers />
+                    <StuMembers />
+                    <StuMembers />
+                    <StuMembers />
+                    <StuMembers />
                     <button className="leaveButton" onClick={()=> setLeavePopup(true)}>Leave Team</button>
                     <Model isOpen={leavePopUp} style={{
                         overlay: {

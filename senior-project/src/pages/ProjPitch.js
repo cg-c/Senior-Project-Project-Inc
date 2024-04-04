@@ -64,8 +64,10 @@ export default function ProjPitch() {
                   justifyContent: 'center'
                 },
                 content: {
+                  top: "0",
                   background: 'white',
-                  width: '60rem',
+                  width: '70vw',
+                  height: '80vh',
                   overflowY: 'auto',
                   position: 'relative'
                 }}} >
@@ -88,8 +90,8 @@ export default function ProjPitch() {
                 {projects.map(item => (
                 <button className="clickDes" onClick={()=>setDes(true)}>
 
-                <  div className="flex-container projCard">
-                  <div className="stuCard1" key={item}>{item.NAME}</div>
+                  <div className="flex-container projCard">
+                  <div className="stuCar1" key={item}>{item.NAME}</div>
                   <div className="stuCar2">slot img</div>
                   {/* Use map/array to push the rect divs --> display */}
                   <div className="stuCar3">Type</div>
@@ -109,8 +111,9 @@ export default function ProjPitch() {
                   justifyContent: 'center'
                 },
                 content: {
+                  top: "0",
                   background: 'white',
-                  width: '70rem',
+                  width: '70vw',
                   overflowY: 'auto',
                   position: 'relative'
                 }}} >

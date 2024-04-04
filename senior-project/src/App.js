@@ -8,6 +8,7 @@ import ProjPitch from './pages/ProjPitch';
 import AdvProjStu from './pages/AdvProjStu';
 import AdvProjAdv from './pages/AdvProjAdv';
 import MyTeam from './pages/MyTeam';
+import AdvTeam from './pages/AdvTeams';
 import Grades from './pages/Grades';
 import Directory from './pages/Directory';
 
@@ -32,6 +33,7 @@ function App() {
           <Route path="/advisorsprojects" element={<AdvProjStu />} />
           <Route path="/addadvisorsprojects" element={<AdvProjAdv />} />
           <Route path="/myteam" element={<MyTeam />} />
+          <Route path ="/mystudents" element={<AdvTeam />} />
           <Route path="/grades" element={<Grades />} />
           <Route path="/directory" element={<Directory />} />
 

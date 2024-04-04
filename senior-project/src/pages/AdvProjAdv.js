@@ -1,6 +1,6 @@
 import Header from "../components/Header";
 import ProjCard from "../components/AdvProjCard";
-import AddProj from "../components/AddProj";
+import AddProjAdv from "../components/AddProjAdv";
 import React from "react";
 import Model from "react-modal";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -42,13 +42,15 @@ export default function AdvProjAdv() {
                   justifyContent: 'center'
                 },
                 content: {
+                  top: "0",
                   background: 'white',
-                  width: '60rem',
+                  width: '70vw',
+                  height: '80vh',
                   overflowY: 'auto',
                   position: 'relative'
                 }}} >
                 <button className="closeButton" onClick={()=>setPopup(false)}>X</button>
-                <AddProj />
+                <AddProjAdv />
             </Model>
             <div className="page-title">
                 <div>Posted by Advisor</div>
@@ -65,12 +67,13 @@ export default function AdvProjAdv() {
                 {projects.map(item => (
                 <button className="clickDes" onClick={()=>setDes(true)}>
 
-                <  div className="flex-container projCard">
-                  <div className="stuCard1" key={item}>{item.NAME}</div>
-                  <div className="stuCar2">slot img</div>
+                
+
+                <div className="flex-container projCard">
+                  <div className="advCar1" key={item}>{item.NAME}</div>
+                  <div className="advCar2">slot img</div>
                   {/* Use map/array to push the rect divs --> display */}
-                  <div className="stuCar3">Type</div>
-                  <div className="stuCar4">Languages</div>
+                  <div className="advCar3"><div className="downArrow" /></div>
                 </div>
                 </button>   
                 ))}
@@ -85,8 +88,10 @@ export default function AdvProjAdv() {
                   justifyContent: 'center'
                 },
                 content: {
+                  top: "0",
                   background: 'white',
-                  width: '60rem',
+                  width: '70vw',
+                  height: '80vh',
                   overflowY: 'auto',
                   position: 'relative'
                 }}} >
