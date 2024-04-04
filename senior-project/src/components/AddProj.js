@@ -139,7 +139,7 @@ export default function AddProj() {
                         <option value="Bioinfomatics/Health">Bioinfomatics/Health</option>
                         <option value="AI/ML">AI/ML</option>
                         <option value="Extension">Extension</option>  
-                        <option value="Webscrapper">Webscrapper</option>
+                        <option value="Webscraper">Webscrapper</option>
                         <option value="Data Analysis">Data Analysis</option>
                         <option value="NLP">Natural Language Processing</option>
                         <option value="Other">Other</option>                        

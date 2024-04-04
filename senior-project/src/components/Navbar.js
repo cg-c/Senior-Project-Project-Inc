@@ -228,7 +228,7 @@ function Navbar() {
             {Object.keys(user).length !== 0 && selected === types[1] &&
             <li className='nav-item'>
               <Link
-                to='/advisorsprojects'
+                to='/addadvisorsprojects'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >

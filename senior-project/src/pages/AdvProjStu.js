@@ -8,7 +8,7 @@ import Description from "../components/Description";
 import { useState, useEffect } from "react";
 import "../components/style.css"
 
-export default function AdvProj() {
+export default function AdvProjStu() {
 
     const [ popup, setPopup ] = useState(false);
     const [ numPitch, setNumPitch ] = useState(Array.from({length : 10}));
@@ -31,25 +31,6 @@ export default function AdvProj() {
 
     return (
         <body className="signedIn">
-            <button className="add" onClick={()=>setPopup(true)}>+</button>
-            <Model isOpen={popup} style={{
-                overlay: {
-                  position: 'fixed',
-                  zIndex: 1020,
-                  background: 'rgba(255, 255, 255, 0.75)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                },
-                content: {
-                  background: 'white',
-                  width: '60rem',
-                  overflowY: 'auto',
-                  position: 'relative'
-                }}} >
-                <button className="closeButton" onClick={()=>setPopup(false)}>X</button>
-                <AddProj />
-            </Model>
             <div className="page-title">
                 <div>Posted by Advisor</div>
             </div>
