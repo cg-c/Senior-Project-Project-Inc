@@ -26,41 +26,58 @@ oracledb.initOracleClient(clientOpts);
 const dbConfig = {
   user: "admin",
   password: "CapeTownRox28!",
-  connectString:
-    "(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.us-ashburn-1.oraclecloud.com))(connect_data=(service_name=g919c578ac880c3_j1r684plpz959lmg_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))",
   connectString: "j1r684plpz959lmg_high",
 };
 
+
+// #region tests
 const data = [
   { id: 1, name: "Item 1" },
   { id: 2, name: "Item 2" },
   { id: 3, name: "Item 3" },
 ];
 
-// test to fetch data
+// test to send data in JSON
 app.get("/api/data", (req, res) => {
   res.json(data);
 });
 
-//test
+//test to send data
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
+//test to send data oracle style 
 app.get("/api", (req, res) => {
   res.json({ rows: ["stuff", "more stuff"] });
   console.log("sent");
 });
 
+// #endregion
+
+
+//gets all student projects
 app.get("/student/projects", (req, res) => {
   async function fun() {
     let con;
 
     try {
       con = await oracledb.getConnection(dbConfig);
-      const data = await con.execute("SELECT * FROM project");
+      const data = await con.execute(`SELECT project.NAME , PID ,
+                                      CID ,
+                                      CAPACITY ,
+                                      FILLED ,
+                                      DESCINPUT ,
+                                      PASS,
+                                      CURSOR(SELECT name
+                                      FROM type
+                                      where project.PID = type.PID) as type,
+                                      CURSOR(SELECT name
+                                      FROM language
+                                      where project.PID = language.PID) as language
+                                      FROM project`);
 
-      console.log(data.rows);
+      console.dir(data.rows, {depth: null});
       con.close();
       return data.rows;
     } catch (err) {
@@ -77,6 +94,7 @@ app.get("/student/projects", (req, res) => {
     });
 });
 
+//get all advisor projects
 app.get("/advisor/projects", (req, res) => {
   async function fun() {
     let con;
@@ -102,6 +120,8 @@ app.get("/advisor/projects", (req, res) => {
     });
 });
 
+
+//get all languages
 app.get("/data", (req, res) => {
   async function fun() {
     let con;
@@ -128,6 +148,8 @@ app.get("/data", (req, res) => {
 });
 
 
+
+//check if student exists already 
 app.get("/check/has", (req, res) => {
   async function fun() {
     let con;
@@ -137,15 +159,13 @@ app.get("/check/has", (req, res) => {
 
       console.log(req);
 
-      const { UFID, EMAIL, NAME, ROLE, TEAMID, PID } = req.body;
+      const { UFID, EMAIL, NAME, PID } = req.body;
 
       // Bind parameters for the SQL statement
       const binds = {
         ufID: UFID,
         email: EMAIL,
         studentName: NAME,
-        role: ROLE,
-        teamID: TEAMID,
         pid: PID
       };
 
@@ -156,7 +176,7 @@ app.get("/check/has", (req, res) => {
 
 
       const sql =   `SELECT COUNT(1)
-                    FROM student
+                    FROM student, advisor
                     WHERE email = ${EMAIL}`;
 
       // Execute the SQL statement
@@ -180,6 +200,8 @@ app.get("/check/has", (req, res) => {
     });
 });
 
+
+//test add to database
 app.post("/send", (req, res) => {
   async function fun() {
     let con;
@@ -221,7 +243,7 @@ app.post("/send", (req, res) => {
 });
 
 
-
+//create student
 app.post("/student/create", (req, res) => {
   async function fun() {
     let con;
@@ -232,17 +254,15 @@ app.post("/student/create", (req, res) => {
     try {
       con = await oracledb.getConnection(dbConfig);
 
-      const sql = `INSERT INTO student (ufID, email, studentName, role, teamID, pid) VALUES (:ufID, :email, :studentName, :role, :teamID, :pid)`;
+      const sql = `INSERT INTO student (ufID, email, studentName, pid) VALUES (:ufID, :email, :studentName, :pid)`;
 
-      const { UFID, EMAIL, NAME, ROLE, TEAMID, PID } = req.body;
+      const { UFID, EMAIL, NAME, PID } = req.body;
 
       // Bind parameters for the SQL statement
       const binds = {
         ufID: UFID,
         email: EMAIL,
         studentName: NAME,
-        role: ROLE,
-        teamID: TEAMID,
         pid: PID
       };
 
@@ -266,6 +286,57 @@ app.post("/student/create", (req, res) => {
       res.send(err);
     });
 });
+
+// create student project
+app.post("/student/create/project", (req, res) => {
+  async function fun() {
+    let con;
+
+    //console.log(res);
+    console.log(req.body);
+
+    try {
+      con = await oracledb.getConnection(dbConfig);
+
+      const sql = `insert into project(NAME , PID , CID , CAPACITY , FILLED , DESCINPUT , PASS) 
+                    values(:name, :pid , :cid , :capacity , :filled , :descinput , :pass);`;
+
+      const { NAME , CID , CAPACITY , FILLED , DESCINPUT , PASS } = req.body;
+
+      // Bind parameters for the SQL statement
+      const binds = {
+        name: NAME, 
+        pid: 'pIDSEQ.nextVal' , 
+        cid: CID , 
+        capacity: CAPACITY , 
+        filled: FILLED , 
+        descinput: DESCINPUT , 
+        pass: PASS
+      };
+
+      console.log(binds);
+
+      // Execute the SQL statement
+      const result = await con.execute(sql, binds, { autoCommit: true });
+
+      
+
+      console.log("Data inserted successfully:", result);
+      con.close();
+    } catch (err) {
+      console.error(err);
+      return error;
+    }
+  }
+  fun()
+    .then((dbRes) => {
+      res.send(dbRes);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 
 app.listen(PORT, () => {
   console.log(`listen to port ${PORT}`);
