@@ -8,7 +8,7 @@ import Description from "../components/Description";
 import { useState, useEffect } from "react";
 import "../components/style.css"
 
-export default function AdvProj() {
+export default function AdvProjStu() {
 
     const [ popup, setPopup ] = useState(false);
     const [ numPitch, setNumPitch ] = useState(Array.from({length : 10}));
@@ -31,25 +31,6 @@ export default function AdvProj() {
 
     return (
         <body className="signedIn">
-            <button className="add" onClick={()=>setPopup(true)}>+</button>
-            <Model isOpen={popup} style={{
-                overlay: {
-                  position: 'fixed',
-                  zIndex: 1020,
-                  background: 'rgba(255, 255, 255, 0.75)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                },
-                content: {
-                  background: 'white',
-                  width: '60rem',
-                  overflowY: 'auto',
-                  position: 'relative'
-                }}} >
-                <button className="closeButton" onClick={()=>setPopup(false)}>X</button>
-                <AddProj />
-            </Model>
             <div className="page-title">
                 <div>Posted by Advisor</div>
             </div>
@@ -65,12 +46,11 @@ export default function AdvProj() {
                 {projects.map(item => (
                 <button className="clickDes" onClick={()=>setDes(true)}>
 
-                <  div className="flex-container projCard">
-                  <div className="stuCard1" key={item}>{item.NAME}</div>
-                  <div className="stuCar2">slot img</div>
+                <div className="flex-container projCard">
+                  <div className="advCar1" key={item}>{item.NAME}</div>
+                  <div className="advCar2">slot img</div>
                   {/* Use map/array to push the rect divs --> display */}
-                  <div className="stuCar3">Type</div>
-                  <div className="stuCar4">Languages</div>
+                  <div className="advCar3"><div className="downArrow" /></div>
                 </div>
                 </button>   
                 ))}
@@ -86,7 +66,7 @@ export default function AdvProj() {
                 },
                 content: {
                   background: 'white',
-                  width: '60rem',
+                  width: '70vw',
                   overflowY: 'auto',
                   position: 'relative'
                 }}} >

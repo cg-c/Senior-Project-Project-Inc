@@ -1,43 +1,12 @@
-import Members from "../components/Members";
+import StuMembers from "../components/StuMembers";
 import Model from "react-modal";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "../components/style.css";
 
 
-export default function MyTeam() {
+export default function AdvTeam() {
 
     const [ leavePopUp, setLeavePopup ] = useState(false);
-    const [team, setTeam] = useState([]);
-
-    const iD = {
-        pID: 14
-    }
-
-    useEffect(() => {
-        SubmitSignIn();
-      }, []);
-    
-      const SubmitSignIn = async event => {
-        try {
-          const response = await fetch('/team', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(iD)
-          });
-          if (response.ok) {
-            console.log('Data sent successfully');
-            const jsonData = await response.json();
-            setTeam(jsonData);
-            // Clear form data after successful submission
-          } else {
-            console.error('Failed to send data');
-          }
-        } catch (error) {
-          console.error('Error sending data:', error);
-        }
-      };
 
     const checkedInTeam = () => {
 
@@ -57,18 +26,18 @@ export default function MyTeam() {
 
                     <h2 className="flex-title center">
                         <div className="team-title1">Name</div>
-                        <div className="team-title2">Contact</div>
+                        <div className="team-title2">Team</div>
+                        <div className="team-title3">Contact</div>
                     </h2>
                     <hr />
-
-                        {team.map(item => (
-                                <div className="memFlex">
-                                    <div className="memCar1" key = {item.EMAIL}>{item.STUDENTNAME}</div>
-                                    <div className="memCar2">Role</div>
-                                    <div className="memCar3" key = {item.EMAIL}>{item.EMAIL}</div>
-                                </div>   
-                        ))}
-       
+                    {/*
+                        Jonathan: load all members & advisors 
+                    */}
+                    <StuMembers />
+                    <StuMembers />
+                    <StuMembers />
+                    <StuMembers />
+                    <StuMembers />
                     <button className="leaveButton" onClick={()=> setLeavePopup(true)}>Leave Team</button>
                     <Model isOpen={leavePopUp} style={{
                         overlay: {

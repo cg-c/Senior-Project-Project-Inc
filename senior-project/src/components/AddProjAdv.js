@@ -100,7 +100,7 @@ const options = [
     { label: "Other", value: "Other" }
 ]
 
-export default function AddProj() {
+export default function AddProjAdv() {
 
     const [selectedLang, setSelectedLang] = useState([]);
 
@@ -120,7 +120,7 @@ export default function AddProj() {
         <div className="form">
             <form onSubmit={handleSubmit}>
                 <div className="addCar1">
-                    <label className="addFormReq">Project Name:<br />
+                    <label className="addFormReq">Post Title:<br />
                         <input type="text" id="projName" required />
                     </label>
                 </div>
@@ -132,28 +132,29 @@ export default function AddProj() {
                     <h4 className="addFormReq">Select Application Type:<br /></h4>
                     <select name="type" id="appType">
                         <option value="" selected disabled hidden>Select...</option>
-                        <option value="Mobile">Mobile App</option>
-                        <option value="Website">Website</option>
-                        <option value="Robotics">Robotics</option>
-                        <option value="Game">Game</option>
-                        <option value="Bioinfomatics/Health">Bioinfomatics/Health</option>
+                        <option value="Advising">Advising</option>
                         <option value="AI/ML">AI/ML</option>
-                        <option value="Extension">Extension</option>  
-                        <option value="Webscraper">Webscrapper</option>
+                        <option value="Bioinfomatics/Health">Bioinfomatics/Health</option>
                         <option value="Data Analysis">Data Analysis</option>
+                        <option value="Extension">Extension</option>  
+                        <option value="Game">Game</option>
+                        <option value="Mobile">Mobile App</option>
                         <option value="NLP">Natural Language Processing</option>
+                        <option value="Robotics">Robotics</option>
+                        <option value="Webscraper">Webscrapper</option>
+                        <option value="Website">Website</option>
                         <option value="Other">Other</option>                        
                     </select>
                 </div>
                 <div className="addCar4">
-                    <label for="quantity" className="addFormReq">Max Number of Members:<br />
-                        <input type="number" id="quantity" min="2" max="5" required />
+                    <label for="quantity" className="addFormReq">Max Number of Members/Teams:<br />
+                        <input type="number" id="quantity" min="1" max="5" required />
                     </label>
                 </div>
                 <div className="addCar5">
                     <label className="addFormReq">Description:<br /> 
                         <textarea name="description" id="desc" 
-                        placeholder="Short description of project...can include links, potential languages, looking for people..." />
+                        placeholder="Write about the project or state that you are open to advising..." />
                     </label>
                 </div>
                 <div className="addCar6">
