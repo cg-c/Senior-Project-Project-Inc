@@ -4,6 +4,7 @@ insert into student values(22222222, 'c@ufl.edu', 'jim jam', 12);
 insert into student values(33333333, 'd@ufl.edu', 'Jon Doe', 13);
 insert into student values(44444444, 'e@ufl.edu', 'Jane Doe', 14);
 insert into student values(55555555, 'f@ufl.edu', 'Slim Jim', null);
+insert into student values(66666666, 'g@ufl.edu', 'Slim Jim', 14);
 
     
 insert into advisor values('Sanethia Thomas', aIDSeq.nextval, 's@ufl.edu', 11);

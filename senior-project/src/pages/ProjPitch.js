@@ -27,23 +27,6 @@ export default function ProjPitch() {
           }
         };
 
-        const getTypes = async event => {
-            event.preventDefault();
-            // try {
-            //   const response = await fetch('/send', {
-            //     method: 'POST',
-            //     headers: {
-            //       'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify(projects.PID)
-            //   });
-            //   if (!response.ok) {
-            //     console.error('Failed to send data');
-            //   }
-            // } catch (error) {
-            //   console.error('Error sending data:', error);
-            // }
-          };
     const fetchMorePitch = () => {
         {/* MAKE API CALLS 
         https://youtu.be/NZKUirTtxcg 
@@ -90,9 +73,9 @@ export default function ProjPitch() {
                 {projects.map(item => (
                 <button className="clickDes" onClick={()=>setDes(true)}>
 
-                  <div className="flex-container projCard">
-                  <div className="stuCar1" key={item}>{item.NAME}</div>
-                  <div className="stuCar2">slot img</div>
+                <  div className="flex-container projCard">
+                  <div className="stuCard1" key={item}>{item.NAME}</div>
+                  <div className="stuCar2">{item.FILLED}/{item.CAPACITY}</div>
                   {/* Use map/array to push the rect divs --> display */}
                   <div className="stuCar3">{item.TYPE.map(type => (
                     <p>{type.NAME}</p>

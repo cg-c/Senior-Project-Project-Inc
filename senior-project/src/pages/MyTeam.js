@@ -1,12 +1,43 @@
 import Members from "../components/Members";
 import Model from "react-modal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../components/style.css";
 
 
 export default function MyTeam() {
 
     const [ leavePopUp, setLeavePopup ] = useState(false);
+    const [team, setTeam] = useState([]);
+
+    const iD = {
+        pID: 14
+    }
+
+    useEffect(() => {
+        SubmitSignIn();
+      }, []);
+    
+      const SubmitSignIn = async event => {
+        try {
+          const response = await fetch('/team', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(iD)
+          });
+          if (response.ok) {
+            console.log('Data sent successfully');
+            const jsonData = await response.json();
+            setTeam(jsonData);
+            // Clear form data after successful submission
+          } else {
+            console.error('Failed to send data');
+          }
+        } catch (error) {
+          console.error('Error sending data:', error);
+        }
+      };
 
     const checkedInTeam = () => {
 
@@ -29,14 +60,15 @@ export default function MyTeam() {
                         <div className="team-title2">Contact</div>
                     </h2>
                     <hr />
-                    {/*
-                        Jonathan: load all members & advisors 
-                    */}
-                    <Members />
-                    <Members />
-                    <Members />
-                    <Members />
-                    <Members />
+
+                        {team.map(item => (
+                                <div className="memFlex">
+                                    <div className="memCar1" key = {item.EMAIL}>{item.STUDENTNAME}</div>
+                                    <div className="memCar2">Role</div>
+                                    <div className="memCar3" key = {item.EMAIL}>{item.EMAIL}</div>
+                                </div>   
+                        ))}
+       
                     <button className="leaveButton" onClick={()=> setLeavePopup(true)}>Leave Team</button>
                     <Model isOpen={leavePopUp} style={{
                         overlay: {
