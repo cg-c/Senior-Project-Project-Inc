@@ -7,7 +7,7 @@ import "../components/style.css";
 export default function MyTeam() {
 
     const [ leavePopUp, setLeavePopup ] = useState(false);
-    const [team, setTeam] = useState({});
+    const [team, setTeam] = useState([]);
 
     const iD = {
         pID: 14
@@ -57,7 +57,7 @@ export default function MyTeam() {
                         <div className="memCar2">Role</div>
                         <div className="memCar3" key = {item.EMAIL}>{item.EMAIL}</div>
                     </div>   
-                ))}
+            ))}
        
             <button className="leaveButton" onClick={()=> setLeavePopup(true)}>Leave Team</button>
             <Model isOpen={leavePopUp} style={{
