@@ -62,7 +62,11 @@ app.get("/student/projects", (req, res) => {
     let con;
 
     try {
+
+      //connects to database
       con = await oracledb.getConnection(dbConfig);
+
+      // execute sql statment
       const data = await con.execute(`SELECT project.NAME , PID ,
                                       CID ,
                                       CAPACITY ,
@@ -77,8 +81,11 @@ app.get("/student/projects", (req, res) => {
                                       where project.PID = language.PID) as language
                                       FROM project`);
 
-      console.dir(data.rows, {depth: null});
+      // log data to console for debugging
+      console.dir(data.rows, {depth: null}); 
       con.close();
+
+      //send data to front end
       return data.rows;
     } catch (err) {
       console.error(err);
@@ -120,7 +127,6 @@ app.get("/advisor/projects", (req, res) => {
     });
 });
 
-
 //get all languages
 app.get("/data", (req, res) => {
   async function fun() {
@@ -147,48 +153,38 @@ app.get("/data", (req, res) => {
     });
 });
 
-
-
 //check if student exists already 
-app.get("/check/has", (req, res) => {
+app.post("/check/has", (req, res) => {
   async function fun() {
     let con;
+
+    console.log("check has");
+    console.log(req.body);
+
+          const {email} = req.body;
+
 
     try {
       con = await oracledb.getConnection(dbConfig);
 
-      console.log(req);
 
-      const { UFID, EMAIL, NAME, PID } = req.body;
-
-      // Bind parameters for the SQL statement
-      const binds = {
-        ufID: UFID,
-        email: EMAIL,
-        studentName: NAME,
-        pid: PID
-      };
-
-      console.log(binds);
-
-
-      // Bind parameters for the SQL statement
-
-
-      const sql =   `SELECT COUNT(1)
-                    FROM student, advisor
-                    WHERE email = ${EMAIL}`;
+      const sql =     `SELECT *
+                      FROM student s
+                      FULL OUTER JOIN advisor a
+                      ON s.email = a.email
+                      Where a.email = \'${email}\' OR s.email = \'${email}\'`;
 
       // Execute the SQL statement
-      const data = await con.execute(sql, { autoCommit: true });
+      const data = await con.execute(sql);
 
-      console.log("Data received successfully:", result);
+      console.log("Data received successfully:", data.rows);
       con.close();
       console.log(data.rows)
+      console.log(data.rows.length)
       return data.rows;
     } catch (err) {
       console.error(err);
-      return error;
+      return err;
     }
   }
   fun()
@@ -256,7 +252,7 @@ app.post("/student/create", (req, res) => {
 
       const sql = `INSERT INTO student (ufID, email, studentName, pid) VALUES (:ufID, :email, :studentName, :pid)`;
 
-      const { UFID, EMAIL, NAME, PID } = req.body;
+      const { PID, NAME, UFID, EMAIL } = req.body;
 
       // Bind parameters for the SQL statement
       const binds = {
@@ -275,7 +271,7 @@ app.post("/student/create", (req, res) => {
       con.close();
     } catch (err) {
       console.error(err);
-      return error;
+      return err;
     }
   }
   fun()
@@ -325,6 +321,41 @@ app.post("/student/create/project", (req, res) => {
       con.close();
     } catch (err) {
       console.error(err);
+      return err;
+    }
+  }
+  fun()
+    .then((dbRes) => {
+      res.send(dbRes);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+//adds students to project
+app.post("/student/join/project", (req, res) => {
+  async function fun() {
+    let con;
+    console.log(req.body);
+
+    const {email, pID} = req.body;
+
+    try {
+      con = await oracledb.getConnection(dbConfig);
+
+      const sql = `UPDATE student
+                    SET pID = ${pID}
+                    where email = '${email}'`;
+
+      const data = await con.execute(sql);
+
+
+      console.dir(data.rows, {depth: null});
+      con.close();
+      return data.rows;
+    } catch (err) {
+      console.error(err);
       return error;
     }
   }
@@ -337,22 +368,58 @@ app.post("/student/create/project", (req, res) => {
     });
 });
 
+//gets students team
 app.post("/team", (req, res) => {
   async function fun() {
     let con;
     console.log(req.body);
 
-    const {pID} = req.body;
+    const {email} = req.body;
 
     try {
       con = await oracledb.getConnection(dbConfig);
-      const data = await con.execute(`SELECT studentName, email
-                                      FROM student
-                                      WHERE pID = ${pID}`);
+
+      const sql = `SELECT b.studentName, b.email
+                    FROM student a, student b
+                    WHERE a.email = '${email}'
+                    AND a.pID = b.pID`;
+
+      const data = await con.execute(sql);
+
 
       console.dir(data.rows, {depth: null});
       con.close();
       return data.rows;
+    } catch (err) {
+      console.error(err);
+      return error;
+    }
+  }
+  fun()
+    .then((dbRes) => {
+      res.send(dbRes);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+// leave team
+app.post("/team/leave", (req, res) => {
+  async function fun() {
+    let con;
+    console.log(req.body);
+
+    const {email} = req.body;
+
+    try {
+      con = await oracledb.getConnection(dbConfig);
+      const data = await con.execute(`UPDATE student
+                                      SET pID = null
+                                      WHERE email = ${email}`);
+
+      console.dir(data.rows, {depth: null});
+      con.close();
     } catch (err) {
       console.error(err);
       return error;

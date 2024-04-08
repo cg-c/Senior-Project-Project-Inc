@@ -14,17 +14,21 @@ export default function MyTeam() {
     }
 
     useEffect(() => {
-        SubmitSignIn();
+        getTeam();
       }, []);
     
-      const SubmitSignIn = async event => {
+      const getTeam = async event => {
+        const emailJSON = {
+            email: localStorage.getItem("email")
+        }
+
         try {
           const response = await fetch('/team', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(iD)
+            body: JSON.stringify(emailJSON)
           });
           if (response.ok) {
             console.log('Data sent successfully');
@@ -39,9 +43,33 @@ export default function MyTeam() {
         }
       };
 
+      const leaveTeam = async event => {
+        const emailJSON = {
+            email: localStorage.getItem("email")
+        }
+        try {
+          const response = await fetch('/check/has', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(emailJSON)
+          });
+          if (response.ok) {
+            console.log('Data sent successfully');
+            // Clear form data after successful submission
+          } else {
+            console.error('Failed to send data');
+          }
+        } catch (error) {
+          console.error('Error sending data:', error);
+        }
+      };
+
     const checkedInTeam = () => {
 
         {/* Make sure ppl are on a team --> Code, save as true or false */}
+        // get pID
 
     }
 
@@ -64,7 +92,6 @@ export default function MyTeam() {
                         {team.map(item => (
                                 <div className="memFlex">
                                     <div className="memCar1" key = {item.EMAIL}>{item.STUDENTNAME}</div>
-                                    <div className="memCar2">Role</div>
                                     <div className="memCar3" key = {item.EMAIL}>{item.EMAIL}</div>
                                 </div>   
                         ))}

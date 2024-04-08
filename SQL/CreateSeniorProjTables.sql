@@ -44,7 +44,7 @@ CREATE SEQUENCE pIDSeq
     INCREMENT BY 1
     CACHE 1000;
     
-CREATE TRIGGER addProj
+CREATE OR REPLACE TRIGGER addProj
 AFTER INSERT ON project
 FOR EACH ROW
 BEGIN
@@ -53,3 +53,20 @@ BEGIN
     WHERE student.UFID = :NEW.cID;
 END;
 /
+
+CREATE OR REPLACE TRIGGER addCount
+AFTER UPDATE ON student
+FOR EACH ROW
+BEGIN
+    IF :NEW.pID IS NOT NULL THEN
+        UPDATE project
+        SET filled = filled + 1
+        WHERE :NEW.pID = project.pID;
+    ELSE
+        UPDATE project
+        SET filled = filled - 1
+        WHERE :NEW.pID = project.pID;
+    END IF;
+END;
+/
+
