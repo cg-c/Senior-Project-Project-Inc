@@ -337,6 +337,36 @@ app.post("/student/create/project", (req, res) => {
     });
 });
 
+app.post("/team", (req, res) => {
+  async function fun() {
+    let con;
+    console.log(req.body);
+
+    const {pID} = req.body;
+
+    try {
+      con = await oracledb.getConnection(dbConfig);
+      const data = await con.execute(`SELECT studentName, email
+                                      FROM student
+                                      WHERE pID = ${pID}`);
+
+      console.dir(data.rows, {depth: null});
+      con.close();
+      return data.rows;
+    } catch (err) {
+      console.error(err);
+      return error;
+    }
+  }
+  fun()
+    .then((dbRes) => {
+      res.send(dbRes);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 
 app.listen(PORT, () => {
   console.log(`listen to port ${PORT}`);
