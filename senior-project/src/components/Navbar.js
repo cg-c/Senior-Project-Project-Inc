@@ -29,14 +29,13 @@ function Navbar() {
 
   //permissions
   let [account, setAccount] = useState(types[3]);
+  const [exists, setExists] = useState([]);
 
   const [SignInData, SetSignIN] = useState({
-        PID: '',
+        PID: null,
         NAME: '',
-        UFID: 100,
+        UFID: 87654321,
         EMAIL: '',
-        ROLE: '',
-        TEAMID: '',
     // Add more fields if needed
   });
 
@@ -61,19 +60,27 @@ function Navbar() {
     }
   };
 
-  const CheckExists = async event => {
+  const doesExist = async event => {
+    const emailJSON = {
+      email: localStorage.getItem("email")
+    }
+
+
     try {
       const response = await fetch('/check/has', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(SignInData)
+        body: JSON.stringify(emailJSON)
       });
       if (response.ok) {
         console.log('Data sent successfully');
         const jsonData = await response.json();
-        } else {
+        console.log(jsonData);
+        setExists(jsonData); //TODO: change later
+        // Clear form data after successful submission
+      } else {
         console.error('Failed to send data');
       }
     } catch (error) {
@@ -81,16 +88,16 @@ function Navbar() {
     }
   };
 
+
   function closeModal() {
     setIsOpen(false);
     setAccount(selected);
 
+
     //TODO: ADD UFID
     SignInData.EMAIL = user.email;
-    localStorage.setItem("email", user.email);
-
-    CheckExists();
-    //SubmitSignIn();
+    SignInData.NAME = user.given_name + " " + user.family_name;
+    SubmitSignIn();
     //add account type to database - Jonathan
   }
   function openModal() {
@@ -113,8 +120,11 @@ function Navbar() {
     if (userObj.email && userObj.email.includes("@ufl.edu")) {
       //check for first time sign in - Jonathan
       setUser(userObj);
+      localStorage.setItem("email", userObj.email);
+
       document.getElementById("signInDiv").hidden = true;
 
+      doesExist();
       openModal(); //opens first time account creation popup
     } else {
       console.log("User's email is not a gatorlink");
@@ -125,6 +135,7 @@ function Navbar() {
 
   function handleSignOut(event) {
     setUser({});
+    localStorage.removeItem("email");
     document.getElementById("signInDiv").hidden = false;
   }
 
