@@ -1,7 +1,5 @@
 DROP TABLE student;
-    
-DROP TABLE team;
-    
+        
 DROP TABLE advisor;
     
 DROP TABLE project;
@@ -9,3 +7,9 @@ DROP TABLE project;
 DROP TABLE language;
     
 DROP TABLE type;
+
+DROP SEQUENCE aIDSeq;
+
+DROP SEQUENCE pIDSeq;
+
+DROP TRIGGER addProj;

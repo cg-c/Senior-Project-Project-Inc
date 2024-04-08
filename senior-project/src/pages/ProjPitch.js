@@ -94,8 +94,12 @@ export default function ProjPitch() {
                   <div className="stuCar1" key={item}>{item.NAME}</div>
                   <div className="stuCar2">slot img</div>
                   {/* Use map/array to push the rect divs --> display */}
-                  <div className="stuCar3">Type</div>
-                  <div className="stuCar4">Languages</div>
+                  <div className="stuCar3">{item.TYPE.map(type => (
+                    <p>{type.NAME}</p>
+                  ))}</div>
+                  <div className="stuCar4">{item.LANGUAGE.map(lang => (
+                    <p>{lang.NAME}</p>
+                  ))}</div>
                 </div>
                 </button>   
                 ))}

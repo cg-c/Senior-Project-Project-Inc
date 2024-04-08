@@ -2,16 +2,9 @@ CREATE TABLE student (
     UFID int PRIMARY KEY,
     email varchar(100) UNIQUE,
     studentName varchar(100),
-    role varchar(50),
-    teamID int,
     pID int
     );
     
-CREATE TABLE team (
-    teamName varchar(255),
-    teamID int PRIMARY KEY,
-    complete int
-    );
     
 CREATE TABLE advisor (
     name varchar(100),
@@ -25,7 +18,6 @@ CREATE TABLE project (
     cID int,
     capacity int DEFAULT 5,
     filled int DEFAULT 0,
-    type varchar(255),
     descInput varchar(1000),
     pass varchar(100)
     );
@@ -40,8 +32,24 @@ CREATE TABLE type (
     pID int
 );
 
-CREATE SEQUENCE stuID
+CREATE SEQUENCE aIDSeq
     MINVALUE 1
     START WITH 1
     INCREMENT BY 1
-    CACHE 1;
+    CACHE 1000;
+    
+CREATE SEQUENCE pIDSeq
+    MINVALUE 1
+    START WITH 1
+    INCREMENT BY 1
+    CACHE 1000;
+    
+CREATE TRIGGER addProj
+AFTER INSERT ON project
+FOR EACH ROW
+BEGIN
+    UPDATE student
+    SET student.pID = :NEW.pID
+    WHERE student.UFID = :NEW.cID;
+END;
+/
