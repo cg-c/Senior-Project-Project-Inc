@@ -9,8 +9,12 @@ CREATE TABLE student (
 CREATE TABLE advisor (
     name varchar(100),
     aID int PRIMARY KEY,
-    email varchar(100) UNIQUE,
-    pID int);
+    email varchar(100) UNIQUE);
+    
+CREATE TABLE aProjects (
+    aID int,
+    pID int
+);
     
 CREATE TABLE project (
     name varchar(255),
@@ -19,7 +23,8 @@ CREATE TABLE project (
     capacity int DEFAULT 5,
     filled int DEFAULT 0,
     descInput varchar(1000),
-    pass varchar(100)
+    pass varchar(100),
+    contact varchar(100)
     );
 
 CREATE TABLE language (

@@ -14,6 +14,7 @@ export default function ProjPitch() {
     const [ numPitch, setNumPitch ] = useState(Array.from({length : 10}));
     const [ des, setDes ] = useState(false);
     const [projects, setData] = useState([]);
+
     const [ displayDes, setDisplayDes ] = useState([]);
     const [ displayConact, setDisplacyContact ] = useState([]);
       
