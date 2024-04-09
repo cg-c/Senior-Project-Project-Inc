@@ -29,6 +29,23 @@ export default function AdvProjStu() {
           }
         };
 
+        function displaySlots(taken, cap) {
+          const slots = []
+          for (let i = 0; i < taken; i++) {
+            slots.push(<li className="noBullets"><div className="filledRect rectCar1" /></li>)
+          }
+    
+          for (let i = 0; i < cap - taken; i++) {
+            slots.push(<li className="noBullets"><div className="emptyRect rectCar1" /></li>)
+          }
+          
+          return (
+            <div className="rectFlex">
+              {slots}
+            </div>
+          );
+        }
+
     return (
         <body className="signedIn">
             <div className="page-title">
@@ -48,7 +65,7 @@ export default function AdvProjStu() {
 
                 <div className="flex-container projCard">
                   <div className="advCar1" key={item}>{item.NAME}</div>
-                  <div className="advCar2">slot img</div>
+                  <div className="advCar2" key={item}>{displaySlots(item.FILLED, item.CAPACITY)}</div>
                   {/* Use map/array to push the rect divs --> display */}
                   <div className="advCar3"><div className="downArrow" /></div>
                 </div>

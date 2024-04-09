@@ -1,21 +1,93 @@
 import StuMembers from "../components/StuMembers";
 import Model from "react-modal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../components/style.css";
 
 
 export default function AdvTeam() {
 
     const [ leavePopUp, setLeavePopup ] = useState(false);
+    const [team, setTeam] = useState([]);
+    const [ inTeam, setInTeam ] = useState(false);
 
-    const checkedInTeam = () => {
+    const iD = {
+        pID: 14
+    }
 
-        {/* Make sure ppl are on a team --> Code, save as true or false */}
+    useEffect(() => {
+        getTeam();
+      }, []);
+    
+      const getTeam = async event => {
+        const emailJSON = {
+            email: localStorage.getItem("email")
+        }
 
+        try {
+          const response = await fetch('/team', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(emailJSON)
+          });
+          if (response.ok) {
+            console.log('Data sent successfully');
+            const jsonData = await response.json();
+            setTeam(jsonData);
+            // Clear form data after successful submission
+          } else {
+            console.error('Failed to send data');
+          }
+        } catch (error) {
+          console.error('Error sending data:', error);
+        }
+      };
+
+      const leaveTeam = async event => {
+        const emailJSON = {
+            email: localStorage.getItem("email")
+        }
+        try {
+          const response = await fetch('/team/leave', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(emailJSON)
+          });
+          if (response.ok) {
+            console.log('Data sent successfully');
+            // Clear form data after successful submission
+          } else {
+            console.error('Failed to send data');
+          }
+        } catch (error) {
+          console.error('Error sending data:', error);
+        }
+      };
+
+    function checkedInTeam() {
+
+        if(team.length > 1 || team.pID != null) {
+          // does have team
+          console.log("has team");
+          setInTeam(true);
+        }
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        {/* 
+            Submit:
+                close popup & refresh page?
+                finalize team --> do we visually show this?
+    
+        */}
     }
 
 
-    if (checkedInTeam) {
+    if (inTeam) {
             return (
                 <body className="signedIn">
                     <div className="page-title">
@@ -38,7 +110,7 @@ export default function AdvTeam() {
                     <StuMembers />
                     <StuMembers />
                     <StuMembers />
-                    <button className="leaveButton" onClick={()=> setLeavePopup(true)}>Leave Team</button>
+                    <button className="leaveButton" onClick={()=> setLeavePopup(true)}>Finalize Team</button>
                     <Model isOpen={leavePopUp} style={{
                         overlay: {
                         position: 'fixed',
@@ -55,14 +127,19 @@ export default function AdvTeam() {
                         position: 'relative'
                         }}} >
                         <button className="closeButton" onClick={()=>setLeavePopup(false)}>X</button>
-                        <h3 className="descText leaveText">Do you want to leave the team?</h3>
-                        <br></br>
-                        <button className="eventButton yesButton">Yes</button>
-                            {/* yes button:
-                                redirect and refresh the page
-                                Jonathan: delete user from the team
-                            */}
-                        <button className="eventButton" onClick={()=>setLeavePopup(false)}>No</button>
+                        <h3 className="formTitle">Finalize Your Team</h3>
+                        <hr />
+                        <div className="space" />
+                        <form>
+                            <h4 className="addFormReq">Which team do you want to finalize:<br /></h4>
+                            <select name="teamSelect" id="teamSelect">
+                                <option value="" selected disabled hidden>Select...</option>
+                                <option></option>
+                                {/* PULL OPTIONS FROM DATABASE*/}
+                            </select>
+                            <div className="space" />
+                            <input type="submit" className="eventButton" onSubmit={()=>handleSubmit()} />
+                        </form>
                     </Model>
                 </body>
             );

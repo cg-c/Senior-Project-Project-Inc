@@ -4,7 +4,9 @@ import Model from 'react-modal';
 import InfiniteScroll from "react-infinite-scroll-component";
 import "../components/style.css"
 import Description from "../components/Description";
+import JoinButton from "../components/JoinButton";
 import { useState, useEffect } from "react";
+import CloseButton from "../components/CloseButton";
 
 export default function ProjPitch() {
 
@@ -12,6 +14,8 @@ export default function ProjPitch() {
     const [ numPitch, setNumPitch ] = useState(Array.from({length : 10}));
     const [ des, setDes ] = useState(false);
     const [projects, setData] = useState([]);
+    const [ displayDes, setDisplayDes ] = useState([]);
+    const [ displayConact, setDisplacyContact ] = useState([]);
       
         useEffect(() => {
           fetchData();
@@ -37,15 +41,11 @@ export default function ProjPitch() {
     function displaySlots(taken, cap) {
       const slots = []
       for (let i = 0; i < taken; i++) {
-        slots.push(<li className="rectCar1">
-          <div className="filledRect" />
-          </li> )
+        slots.push(<li className="noBullets"><div className="filledRect rectCar1" /></li>)
       }
 
       for (let i = 0; i < cap - taken; i++) {
-        slots.push(<li className="rectCar1">
-          <div className="emptyRect" />
-          </li> )
+        slots.push(<li className="noBullets"><div className="emptyRect rectCar1" /></li>)
       }
       
       return (
@@ -53,6 +53,12 @@ export default function ProjPitch() {
           {slots}
         </div>
       );
+    }
+
+    function DispayDes(description, contact) {
+      setDisplayDes(description);
+      setDisplacyContact(contact);
+      setDes(true);
     }
 
     return (
@@ -83,7 +89,7 @@ export default function ProjPitch() {
             </div>
             <h2 className="flex-title">
                 <div className="pitch-title1">Topic</div>
-                <div className="pitch-title2">Slots</div>
+                <div className="pitch-title2">Availability</div>
                 <div className="pitch-title3">Type</div>
                 <div className="pitch-title4">Language</div>
             </h2>
@@ -92,12 +98,10 @@ export default function ProjPitch() {
                 loader={<p>Loading...</p>}
             >
                 {projects.map(item => (
-                <button className="clickDes" onClick={()=>setDes(true)}>
-
-                <  div className="flex-container projCard">
+                <button className="clickDes" onClick={()=>DispayDes(item.DESCINPUT, item.CONTACT)}>
+                <div className="flex-container projCard">
                   <div className="stuCar1" key={item}>{item.NAME}</div>
                   <div className="stuCar2" key={item}>{displaySlots(item.FILLED, item.CAPACITY)}</div>
-                  {/* Use map/array to push the rect divs --> display */}
                   <div className="stuCar3">{item.TYPE.map(type => (
                     <p>{type.NAME}</p>
                   ))}</div>
@@ -125,8 +129,16 @@ export default function ProjPitch() {
                   overflowY: 'auto',
                   position: 'relative'
                 }}} >
-                    <button className="closeButton" onClick={()=>setDes(false)}>X</button>
-                    <Description />
+                  <button className="closeButton" onClick={()=>setDes(false)}>X</button>
+                  <div className="desc">
+                    <h2 className="descHeader">Description</h2>
+                    <hr />
+                    <p className="descText">{displayDes}</p>
+                    <h2 className="descHeader">Contact</h2>
+                    <hr />
+                    <p className="descText">{displayConact}</p>
+                    <JoinButton />
+                  </div>
                     {/*
                         Jonathan: load in the descriptions of projects using Description template
                     */}
