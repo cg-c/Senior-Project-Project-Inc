@@ -110,9 +110,10 @@ function Navbar() {
 
     let id = inputValue;
     if (id.length == 8 && /^\d*$/.test(id)){
-      hideText();
-      setIsOpen(false);
-      setAccount(selected);
+      hideText(); //ufid error text
+      setIsOpen(false); //closes modal
+      setAccount(selected); //sets user account
+      localStorage.setItem('account', selected);
 
 
       //TODO: ADD ACCOUNT TYPE
@@ -122,7 +123,7 @@ function Navbar() {
       SubmitSignIn();
     }
     else{
-      openText();
+      openText(); //ufid error text
     }
     
   }
@@ -142,28 +143,7 @@ function Navbar() {
     setShowText(false);
   }
 
-  function handleCallbackResponse(response) {
-    closeMobileMenu();
-    console.log("Encoded JWT ID Token: " + response.credential);
-    var userObj = jwtDecode(response.credential);
-    console.log(userObj);
 
-    //checking if user has gatorlink
-    if (userObj.email && userObj.email.includes("@ufl.edu")) {
-      //check for first time sign in - Jonathan
-      setUser(userObj);
-      localStorage.setItem("email", userObj.email);
-
-      document.getElementById("signInDiv").hidden = true;
-
-      doesExist();
-      openModal(); //opens first time account creation popup
-    } else {
-      console.log("User's email is not a gatorlink");
-      openError(); //opens invalid sign-in popup
-    }
-    
-  }
 
   function handleSignOut(event) {
     setUser({});
@@ -188,6 +168,7 @@ function Navbar() {
 
   useEffect(() => {
     //login stuff
+    /*
     google.accounts.id.initialize({
         client_id: "429389368839-m58qo46gt4olevpripa856uvrlnl8arb.apps.googleusercontent.com",
         callback: handleCallbackResponse,
@@ -200,6 +181,78 @@ function Navbar() {
     );
 
     google.accounts.id.prompt();
+    */
+
+    function handleLogin(response) {
+      closeMobileMenu();
+      console.log("Encoded JWT ID Token: " + response.credential);
+      var userObj = jwtDecode(response.credential);
+      console.log(userObj);
+  
+      //checking if user has gatorlink
+      if (userObj.email && userObj.email.includes("@ufl.edu")) {
+        //check for first time sign in - Jonathan
+  
+        setUser(userObj);
+        localStorage.setItem("email", userObj.email);
+  
+        document.getElementById("signInDiv").hidden = true;
+  
+        doesExist();
+        openModal(); //opens first time account creation popup
+      } else {
+        console.log("User's email is not a gatorlink");
+        openError(); //opens invalid sign-in popup
+      }
+      
+    }
+
+    const handleCallbackResponse = (response) => {
+      const { credential } = response;
+      if (credential) {
+        // User is authenticated, you can save the credential or do further actions
+        localStorage.setItem('googleCredential', JSON.stringify(credential));
+        handleLogin(response);
+        // Redirect or do further actions
+      } else {
+        // User failed to authenticate, handle accordingly
+      }
+    };
+
+    const loadGoogleSignIn = () => {
+      google.accounts.id.initialize({
+        client_id: "429389368839-m58qo46gt4olevpripa856uvrlnl8arb.apps.googleusercontent.com",
+        callback: handleCallbackResponse,
+        auto_select: true
+      });
+
+      google.accounts.id.prompt();
+    };
+
+    const cachedCredential = localStorage.getItem('googleCredential');
+    const cachedAccount = localStorage.getItem('account');
+    console.log("cached account: ", cachedAccount);
+    if (cachedCredential) {
+      // If there's a cached credential, try to authenticate silently
+      google.accounts.id.initialize({
+        client_id: "429389368839-m58qo46gt4olevpripa856uvrlnl8arb.apps.googleusercontent.com",
+        callback: handleCallbackResponse,
+        auto_select: true,
+        prompt: "none"
+      });
+      setAccount(cachedAccount);
+      setUser(cachedCredential);
+      document.getElementById("signInDiv").hidden = true;
+
+    } else {
+      // If no cached credential, load Google Sign-In normally
+      loadGoogleSignIn();
+    }
+
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      { theme: "outline", size: "large" }
+    );
 
     //menu stuff
     showButton();
