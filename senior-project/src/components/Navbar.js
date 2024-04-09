@@ -26,6 +26,8 @@ function Navbar() {
   let [isOpen, setIsOpen] = useState(false);
   let [selected, setSelected] = useState(types[0]);
   let [error, setError] = useState(false);
+  let [showText, setShowText] = useState(false);
+  let [inputValue, setInputValue] = useState('');
 
   //permissions
   let [account, setAccount] = useState(types[3]);
@@ -100,17 +102,29 @@ function Navbar() {
     }
   };
 
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+  };
 
   function closeModal() {
-    setIsOpen(false);
-    setAccount(selected);
+
+    let id = inputValue;
+    if (id.length == 8 && /^\d*$/.test(id)){
+      hideText();
+      setIsOpen(false);
+      setAccount(selected);
 
 
-    //TODO: ADD UFID
-    SignInData.EMAIL = user.email;
-    SignInData.NAME = user.given_name + " " + user.family_name;
-    SubmitSignIn();
-    //add account type to database - Jonathan
+      //TODO: ADD ACCOUNT TYPE
+      SignInData.EMAIL = user.email;
+      SignInData.NAME = user.given_name + " " + user.family_name;
+      SignInData.UFID = id;
+      SubmitSignIn();
+    }
+    else{
+      openText();
+    }
+    
   }
   function openModal() {
     setIsOpen(true);
@@ -120,6 +134,12 @@ function Navbar() {
   }
   function openError() {
     setError(true);
+  }
+  function openText() {
+    setShowText(true);
+  }
+  function hideText(){
+    setShowText(false);
   }
 
   function handleCallbackResponse(response) {
@@ -418,8 +438,9 @@ function Navbar() {
                     </Dialog.Title>
                     <div className="mt-2">
                       <label>
-                        <input className="border-2 border-black outline-none" name="ufid" />
+                        <input className="border-2 border-black outline-none" name="ufid" maxLength="8" value={inputValue} onChange={handleChange}/>
                       </label>
+                      {showText && <p className="text-red-700">*Please input a valid UFID</p>}
                     </div>
 
                   <div className="mt-4">
