@@ -60,12 +60,24 @@ function Navbar() {
     }
   };
 
+
+  const advisorOrStud = () => {
+    if(exists.length == 0) {
+      // set first time sign in
+    }
+    else if(exists.EMAIL == null) {
+      // set admin
+    }
+    else {
+      // set student
+    }
+  };
+
+
   const doesExist = async event => {
     const emailJSON = {
       email: localStorage.getItem("email")
     }
-
-
     try {
       const response = await fetch('/check/has', {
         method: 'POST',
