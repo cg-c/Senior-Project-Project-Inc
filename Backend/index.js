@@ -349,14 +349,14 @@ app.post("/student/join/project", (req, res) => {
                     where email = '${email}'`;
 
       const data = await con.execute(sql);
-
+      con.commit();
 
       console.dir(data.rows, {depth: null});
       con.close();
       return data.rows;
     } catch (err) {
       console.error(err);
-      return error;
+      return err;
     }
   }
   fun()
@@ -414,15 +414,20 @@ app.post("/team/leave", (req, res) => {
 
     try {
       con = await oracledb.getConnection(dbConfig);
-      const data = await con.execute(`UPDATE student
-                                      SET pID = null
-                                      WHERE email = ${email}`);
 
+      const sql = `UPDATE student
+                    SET pID = null
+                    WHERE email = '${email}'`;
+
+      const data = await con.execute(sql);
+      con.commit();
+
+      console.log(data);
       console.dir(data.rows, {depth: null});
       con.close();
     } catch (err) {
       console.error(err);
-      return error;
+      return err;
     }
   }
   fun()

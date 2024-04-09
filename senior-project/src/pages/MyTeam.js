@@ -48,7 +48,7 @@ export default function MyTeam() {
             email: localStorage.getItem("email")
         }
         try {
-          const response = await fetch('/check/has', {
+          const response = await fetch('/team/leave', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -68,7 +68,16 @@ export default function MyTeam() {
 
     const checkedInTeam = () => {
 
-        {/* Make sure ppl are on a team --> Code, save as true or false */}
+        if(team.length > 1 || team.pID != null) {
+          // does have team
+          console.log("has team");
+          return true;
+        }
+        else {
+          console.log("no team");
+          return false;
+          // doesnt have team
+        }
         // get pID
 
     }
@@ -115,7 +124,7 @@ export default function MyTeam() {
                         <button className="closeButton" onClick={()=>setLeavePopup(false)}>X</button>
                         <h3 className="descText leaveText">Do you want to leave the team?</h3>
                         <br></br>
-                        <button className="eventButton yesButton">Yes</button>
+                        <button className="eventButton yesButton" onClick={leaveTeam}>Yes</button>
                             {/* yes button:
                                 redirect and refresh the page
                                 Jonathan: delete user from the team
