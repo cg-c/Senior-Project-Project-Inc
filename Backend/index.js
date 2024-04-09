@@ -89,7 +89,7 @@ app.get("/student/projects", (req, res) => {
       return data.rows;
     } catch (err) {
       console.error(err);
-      return error;
+      return err;
     }
   }
   fun()
@@ -115,7 +115,7 @@ app.get("/advisor/projects", (req, res) => {
       return data.rows;
     } catch (err) {
       console.error(err);
-      return error;
+      return err;
     }
   }
   fun()
@@ -141,7 +141,7 @@ app.get("/data", (req, res) => {
       return data.rows;
     } catch (err) {
       console.error(err);
-      return error;
+      return err;
     }
   }
   fun()
@@ -226,7 +226,7 @@ app.post("/send", (req, res) => {
       con.close();
     } catch (err) {
       console.error(err);
-      return error;
+      return err;
     }
   }
   fun()
@@ -283,6 +283,49 @@ app.post("/student/create", (req, res) => {
     });
 });
 
+//create advisor
+app.post("/advisor/create", (req, res) => {
+  async function fun() {
+    let con;
+
+    //console.log(res);
+    console.log(req.body);
+
+    try {
+      con = await oracledb.getConnection(dbConfig);
+
+      const sql = `INSERT INTO advisor (name, aID, email) VALUES (:name, :aID, :email)`;
+
+      const { PID, NAME, UFID, EMAIL } = req.body;
+
+      // Bind parameters for the SQL statement
+      const binds = {
+        email: EMAIL,
+        name: NAME,
+        aID: 'aIDSeq.nextVal',
+      };
+
+      console.log(binds);
+
+      // Execute the SQL statement
+      const result = await con.execute(sql, binds, { autoCommit: true });
+
+      console.log("Data inserted successfully:", result);
+      con.close();
+    } catch (err) {
+      console.error(err);
+      return err;
+    }
+  }
+  fun()
+    .then((dbRes) => {
+      res.send(dbRes);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 // create student project
 app.post("/student/create/project", (req, res) => {
   async function fun() {
@@ -294,29 +337,43 @@ app.post("/student/create/project", (req, res) => {
     try {
       con = await oracledb.getConnection(dbConfig);
 
-      const sql = `insert into project(NAME , PID , CID , CAPACITY , FILLED , DESCINPUT , PASS) 
-                    values(:name, :pid , :cid , :capacity , :filled , :descinput , :pass);`;
+      const {NAME, CAPACITY, DESCINPUT, PASS, EMAIL, LANG} = req.body;
 
-      const { NAME , CID , CAPACITY , FILLED , DESCINPUT , PASS } = req.body;
+      const sql = `insert into project(NAME , PID , CID , CAPACITY , FILLED , DESCINPUT , PASS) 
+                    values(:name, :pid , :cid , :capacity , :filled , :descinput , :pass)RETURNING aID INTO outPID`;
+
+      const creatorSQL = `SELECT UFID
+                          FROM student
+                          WHERE email = '${EMAIL}'`;
+
+
+      //const getUFID = await con.execute(sql);
 
       // Bind parameters for the SQL statement
       const binds = {
         name: NAME, 
         pid: 'pIDSEQ.nextVal' , 
-        cid: CID , 
+        cid: getUFID.rows.UFID , 
         capacity: CAPACITY , 
-        filled: FILLED , 
+        filled: 0, 
         descinput: DESCINPUT , 
-        pass: PASS
+        pass: PASS,
+        outPID: { type: oracledb.NUMBER, dir: oracledb.BIND_OUT }
       };
 
-      console.log(binds);
+      //console.log(binds);
 
       // Execute the SQL statement
-      const result = await con.execute(sql, binds, { autoCommit: true });
+      //const result = await con.execute(sql, binds, { autoCommit: true });
+      async function submitLang(item) {
+        const langSQL = `INSERT INTO language (name, pid) VALUES (${outPID}, ${item.value})`;
+        const getUFID = await con.execute(sql);
+      }
+
+      LANG.map(item)
 
       
-
+      con.execute();
       console.log("Data inserted successfully:", result);
       con.close();
     } catch (err) {
@@ -392,7 +449,7 @@ app.post("/team", (req, res) => {
       return data.rows;
     } catch (err) {
       console.error(err);
-      return error;
+      return err;
     }
   }
   fun()

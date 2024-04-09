@@ -12,6 +12,7 @@ export default function ProjPitch() {
     const [ numPitch, setNumPitch ] = useState(Array.from({length : 10}));
     const [ des, setDes ] = useState(false);
     const [projects, setData] = useState([]);
+    
       
         useEffect(() => {
           fetchData();

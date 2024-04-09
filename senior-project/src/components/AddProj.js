@@ -103,10 +103,38 @@ const options = [
 export default function AddProj() {
 
     const [selectedLang, setSelectedLang] = useState([]);
+    const [newProj, setNewProj] = useState({
+        NAME: null,
+        CAPACITY: null, 
+        DESCINPUT: null, 
+        PASS: null, 
+        EMAIL: null,
+        TYPE: null,
+        LANGUAGES: null
+    });
 
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async event => {
         event.preventDefault();
+        newProj.LANGUAGES = selectedLang;
+
+        try {
+            const response = await fetch('/student/create/project', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(newProj)
+            });
+            if (response.ok) {
+              console.log('Data sent successfully');
+              // Clear form data after successful submission
+            } else {
+              console.error('Failed to send data');
+            }
+          } catch (error) {
+            console.error('Error sending data:', error);
+          }
         {/* 
             Submit:
                 close popup & refresh page --> display proj?
@@ -114,7 +142,6 @@ export default function AddProj() {
     
         */}
     }
-
 
     return (
         <div className="form">

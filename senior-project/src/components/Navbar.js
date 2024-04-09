@@ -62,13 +62,34 @@ function Navbar() {
     }
   };
 
+  //Send advisor Sign in to backend
+  const submitAdvisorSignIn = async event => {
+    try {
+      const response = await fetch('/advisor/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(SignInData)
+      });
+      if (response.ok) {
+        console.log('Data sent successfully');
+        // Clear form data after successful submission
+      } else {
+        console.error('Failed to send data');
+      }
+    } catch (error) {
+      console.error('Error sending data:', error);
+    }
+  };
+
 
   const advisorOrStud = () => {
     if(exists.length == 0) {
       // set first time sign in
     }
     else if(exists.EMAIL == null) {
-      // set admin
+      // set advisor
     }
     else {
       // set student
@@ -93,6 +114,7 @@ function Navbar() {
         const jsonData = await response.json();
         console.log(jsonData);
         setExists(jsonData); //TODO: change later
+        advisorOrStud();
         // Clear form data after successful submission
       } else {
         console.error('Failed to send data');
