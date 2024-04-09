@@ -97,6 +97,13 @@ body .signedIn {
     background-color: #374D76;
 }
 
+.rectFlex {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    align-items: center;
+}
+
 
 /* FLEX FOR PAGE SUBHEADINGS*/
 .adv1-title {
@@ -178,6 +185,10 @@ body .signedIn {
 .addCar1, .addCar2, .addCar3, .addCar4, .addCar5, .addCar6  {
     flex: 1;
     margin: 2%;
+}
+
+.rectCar1 {
+    flex: 1;
 }
 
 
@@ -394,7 +405,7 @@ select option[value=""] {
 .emptyRect {
     background-color: rgba(217, 217, 217, 1);
     height: 25px;
-    left: 555px;
+    left: 1vh;
     top: 59px;
     width: 25px;
     margin: 2px;
@@ -403,7 +414,7 @@ select option[value=""] {
 .filledRect {
     background-color: rgba(34, 136, 76, 1);
     height: 25px;
-    left: 555px;
+    left: 1vh;
     top: 59px;
     width: 25px;
     margin: 2px;

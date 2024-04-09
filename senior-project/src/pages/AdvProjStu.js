@@ -36,7 +36,7 @@ export default function AdvProjStu() {
             </div>
             <h2 className="flex-title">
                 <div className="adv1-title">Project</div>
-                <div className="adv2-title">Slots</div>
+                <div className="adv2-title">Availability</div>
                 <div className="adv3-title">Description</div>
             </h2>
             <hr />

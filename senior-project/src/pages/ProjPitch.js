@@ -34,6 +34,27 @@ export default function ProjPitch() {
         */}
     }
 
+    function displaySlots(taken, cap) {
+      const slots = []
+      for (let i = 0; i < taken; i++) {
+        slots.push(<li className="rectCar1">
+          <div className="filledRect" />
+          </li> )
+      }
+
+      for (let i = 0; i < cap - taken; i++) {
+        slots.push(<li className="rectCar1">
+          <div className="emptyRect" />
+          </li> )
+      }
+      
+      return (
+        <div className="rectFlex">
+          {slots}
+        </div>
+      );
+    }
+
     return (
         <body className="signedIn">
             <button className="add" onClick={()=>setPopup(true)}>+</button>
@@ -74,8 +95,8 @@ export default function ProjPitch() {
                 <button className="clickDes" onClick={()=>setDes(true)}>
 
                 <  div className="flex-container projCard">
-                  <div className="stuCard1" key={item}>{item.NAME}</div>
-                  <div className="stuCar2">{item.FILLED}/{item.CAPACITY}</div>
+                  <div className="stuCar1" key={item}>{item.NAME}</div>
+                  <div className="stuCar2" key={item}>{displaySlots(item.FILLED, item.CAPACITY)}</div>
                   {/* Use map/array to push the rect divs --> display */}
                   <div className="stuCar3">{item.TYPE.map(type => (
                     <p>{type.NAME}</p>

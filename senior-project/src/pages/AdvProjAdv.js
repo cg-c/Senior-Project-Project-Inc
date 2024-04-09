@@ -57,7 +57,7 @@ export default function AdvProjAdv() {
             </div>
             <h2 className="flex-title">
                 <div className="adv1-title">Project</div>
-                <div className="adv2-title">Slots</div>
+                <div className="adv2-title">Availability</div>
                 <div className="adv3-title">Description</div>
             </h2>
             <hr />
@@ -66,8 +66,6 @@ export default function AdvProjAdv() {
             >
                 {projects.map(item => (
                 <button className="clickDes" onClick={()=>setDes(true)}>
-
-                
 
                 <div className="flex-container projCard">
                   <div className="advCar1" key={item}>{item.NAME}</div>
