@@ -100,9 +100,26 @@ const options = [
     { label: "Other", value: "Other" }
 ]
 
+const appType = [
+    {label: "AI/ML", value: "AI/ML"},
+    {label: "Bioinfomatics/Health", value: "Bioinfomatics/Health"},
+    {label: "Data Analysis", value: "Data Analysis"},
+    {label: "Extension", value: "Extension"},
+    {label: "Game", value: "Game"},
+    {label: "Hardware", value: "Hardware"},
+    {label: "Mobile App", value: "Mobile"},
+    {label: "Natural Language Processing", value: "NLP"},
+    {label: "Robotics", value: "Robotics"},
+    {label: "Webscraper", value: "Webscraper"},
+    {label: "Website", value: "Website"},
+    {label: "Other", value: "Other"},
+]
+
+
 export default function AddProj() {
 
-    const [selectedLang, setSelectedLang] = useState([]);
+    const [ selectedLang, setSelectedLang ] = useState([]);
+    const [ selectedAppType, setSelectedAppType ] = useState([])
     const [newProj, setNewProj] = useState({
         NAME: null,
         CAPACITY: null, 
@@ -117,6 +134,7 @@ export default function AddProj() {
     const handleSubmit = async event => {
         event.preventDefault();
         newProj.LANGUAGES = selectedLang;
+        newProj.TYPE = selectedAppType;
 
         try {
             const response = await fetch('/student/create/project', {
@@ -150,7 +168,7 @@ export default function AddProj() {
             <form onSubmit={handleSubmit}>
                 <div className="addCar1">
                     <label className="addFormReq">Project Name:<br />
-                        <input type="text" id="projName" required />
+                        <input type="text" id="projName" value={newProj.NAME} required />
                     </label>
                 </div>
                 <div className="addCar2">
@@ -159,35 +177,22 @@ export default function AddProj() {
                 </div>
                 <div className="addCar3">
                     <h4 className="addFormReq">Select Application Type:<br /></h4>
-                    <select name="type" id="appType">
-                        <option value="" selected disabled hidden>Select...</option>
-                        <option value="Mobile">Mobile App</option>
-                        <option value="Website">Website</option>
-                        <option value="Robotics">Robotics</option>
-                        <option value="Game">Game</option>
-                        <option value="Bioinfomatics/Health">Bioinfomatics/Health</option>
-                        <option value="AI/ML">AI/ML</option>
-                        <option value="Extension">Extension</option>  
-                        <option value="Webscraper">Webscrapper</option>
-                        <option value="Data Analysis">Data Analysis</option>
-                        <option value="NLP">Natural Language Processing</option>
-                        <option value="Other">Other</option>                        
-                    </select>
+                    <MultiSelect value={selectedAppType} options={appType} onChange={setSelectedAppType} hasSelectAll={false} id="type" />
                 </div>
                 <div className="addCar4">
                     <label for="quantity" className="addFormReq">Max Number of Members:<br />
-                        <input type="number" id="quantity" min="2" max="5" required />
+                        <input type="number" id="quantity" min="2" max="5" value={newProj.CAPACITY} required />
                     </label>
                 </div>
                 <div className="addCar5">
                     <label className="addFormReq">Description:<br /> 
-                        <textarea name="description" id="desc" 
+                        <textarea name="description" id="desc" value={newProj.DESCINPUT}
                         placeholder="Short description of project...can include links, potential languages, looking for people..." />
                     </label>
                 </div>
                 <div className="addCar6">
                     <label className="addFormReq">Contact:<br />
-                        <input type="text" id="contact" />
+                        <input type="text" id="contact" value={newProj.EMAIL} />
                     </label>
                 </div>
                 <input type="submit" className="eventButton" onSubmit={()=>handleSubmit()} />
