@@ -119,7 +119,11 @@ const appType = [
 export default function AddProj() {
 
     const [ selectedLang, setSelectedLang ] = useState([]);
-    const [ selectedAppType, setSelectedAppType ] = useState([])
+    const [ selectedAppType, setSelectedAppType ] = useState([]);
+    const [ selectedName, setSlectedName ] = useState([]);
+    const [ selectedCap, setSelectedCap ] = useState([]);
+    const [ selectedDes, setSelectedDes ] = useState([]);
+    const [ selectedEmail, setSelectedEmail ] =useState([]);
     const [newProj, setNewProj] = useState({
         NAME: null,
         CAPACITY: null, 
@@ -135,6 +139,10 @@ export default function AddProj() {
         event.preventDefault();
         newProj.LANGUAGES = selectedLang;
         newProj.TYPE = selectedAppType;
+        newProj.NAME = selectedName;
+        newProj.CAPACITY = selectedCap;
+        newProj.DESCINPUT = selectedDes;
+        newProj.EMAIL = selectedEmail;
 
         try {
             const response = await fetch('/student/create/project', {
@@ -168,7 +176,7 @@ export default function AddProj() {
             <form onSubmit={handleSubmit}>
                 <div className="addCar1">
                     <label className="addFormReq">Project Name:<br />
-                        <input type="text" id="projName" value={newProj.NAME} required />
+                        <input type="text" id="projName" value={selectedName} onChange={(e) => setSlectedName(e.target.value)} required />
                     </label>
                 </div>
                 <div className="addCar2">
@@ -181,18 +189,18 @@ export default function AddProj() {
                 </div>
                 <div className="addCar4">
                     <label for="quantity" className="addFormReq">Max Number of Members:<br />
-                        <input type="number" id="quantity" min="2" max="5" value={newProj.CAPACITY} required />
+                        <input type="number" id="quantity" min="2" max="5" value={selectedCap} onChange={(e) => setSelectedCap(e.target.value)} required />
                     </label>
                 </div>
                 <div className="addCar5">
                     <label className="addFormReq">Description:<br /> 
-                        <textarea name="description" id="desc" value={newProj.DESCINPUT}
+                        <textarea name="description" id="desc" value={selectedDes} onChange={(e) => setSelectedDes(e.target.value)}
                         placeholder="Short description of project...can include links, potential languages, looking for people..." />
                     </label>
                 </div>
                 <div className="addCar6">
                     <label className="addFormReq">Contact:<br />
-                        <input type="text" id="contact" value={newProj.EMAIL} />
+                        <input type="text" id="contact" value={selectedEmail} onChange={(e) => setSelectedEmail(e.target.value)} />
                     </label>
                 </div>
                 <input type="submit" className="eventButton" onSubmit={()=>handleSubmit()} />
