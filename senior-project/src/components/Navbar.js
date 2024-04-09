@@ -26,6 +26,8 @@ function Navbar() {
   let [isOpen, setIsOpen] = useState(false);
   let [selected, setSelected] = useState(types[0]);
   let [error, setError] = useState(false);
+  let [showText, setShowText] = useState(false);
+  let [inputValue, setInputValue] = useState('');
 
   //permissions
   let [account, setAccount] = useState(types[3]);
@@ -100,17 +102,30 @@ function Navbar() {
     }
   };
 
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+  };
 
   function closeModal() {
-    setIsOpen(false);
-    setAccount(selected);
+
+    let id = inputValue;
+    if (id.length == 8 && /^\d*$/.test(id)){
+      hideText(); //ufid error text
+      setIsOpen(false); //closes modal
+      setAccount(selected); //sets user account
+      localStorage.setItem('account', selected);
 
 
-    //TODO: ADD UFID
-    SignInData.EMAIL = user.email;
-    SignInData.NAME = user.given_name + " " + user.family_name;
-    SubmitSignIn();
-    //add account type to database - Jonathan
+      //TODO: ADD ACCOUNT TYPE
+      SignInData.EMAIL = user.email;
+      SignInData.NAME = user.given_name + " " + user.family_name;
+      SignInData.UFID = id;
+      SubmitSignIn();
+    }
+    else{
+      openText(); //ufid error text
+    }
+    
   }
   function openModal() {
     setIsOpen(true);
@@ -121,29 +136,14 @@ function Navbar() {
   function openError() {
     setError(true);
   }
-
-  function handleCallbackResponse(response) {
-    closeMobileMenu();
-    console.log("Encoded JWT ID Token: " + response.credential);
-    var userObj = jwtDecode(response.credential);
-    console.log(userObj);
-
-    //checking if user has gatorlink
-    if (userObj.email && userObj.email.includes("@ufl.edu")) {
-      //check for first time sign in - Jonathan
-      setUser(userObj);
-      localStorage.setItem("email", userObj.email);
-
-      document.getElementById("signInDiv").hidden = true;
-
-      doesExist();
-      openModal(); //opens first time account creation popup
-    } else {
-      console.log("User's email is not a gatorlink");
-      openError(); //opens invalid sign-in popup
-    }
-    
+  function openText() {
+    setShowText(true);
   }
+  function hideText(){
+    setShowText(false);
+  }
+
+
 
   function handleSignOut(event) {
     setUser({});
@@ -168,6 +168,7 @@ function Navbar() {
 
   useEffect(() => {
     //login stuff
+    /*
     google.accounts.id.initialize({
         client_id: "429389368839-m58qo46gt4olevpripa856uvrlnl8arb.apps.googleusercontent.com",
         callback: handleCallbackResponse,
@@ -180,6 +181,78 @@ function Navbar() {
     );
 
     google.accounts.id.prompt();
+    */
+
+    function handleLogin(response) {
+      closeMobileMenu();
+      console.log("Encoded JWT ID Token: " + response.credential);
+      var userObj = jwtDecode(response.credential);
+      console.log(userObj);
+  
+      //checking if user has gatorlink
+      if (userObj.email && userObj.email.includes("@ufl.edu")) {
+        //check for first time sign in - Jonathan
+  
+        setUser(userObj);
+        localStorage.setItem("email", userObj.email);
+  
+        document.getElementById("signInDiv").hidden = true;
+  
+        doesExist();
+        openModal(); //opens first time account creation popup
+      } else {
+        console.log("User's email is not a gatorlink");
+        openError(); //opens invalid sign-in popup
+      }
+      
+    }
+
+    const handleCallbackResponse = (response) => {
+      const { credential } = response;
+      if (credential) {
+        // User is authenticated, you can save the credential or do further actions
+        localStorage.setItem('googleCredential', JSON.stringify(credential));
+        handleLogin(response);
+        // Redirect or do further actions
+      } else {
+        // User failed to authenticate, handle accordingly
+      }
+    };
+
+    const loadGoogleSignIn = () => {
+      google.accounts.id.initialize({
+        client_id: "429389368839-m58qo46gt4olevpripa856uvrlnl8arb.apps.googleusercontent.com",
+        callback: handleCallbackResponse,
+        auto_select: true
+      });
+
+      google.accounts.id.prompt();
+    };
+
+    const cachedCredential = localStorage.getItem('googleCredential');
+    const cachedAccount = localStorage.getItem('account');
+    console.log("cached account: ", cachedAccount);
+    if (cachedCredential) {
+      // If there's a cached credential, try to authenticate silently
+      google.accounts.id.initialize({
+        client_id: "429389368839-m58qo46gt4olevpripa856uvrlnl8arb.apps.googleusercontent.com",
+        callback: handleCallbackResponse,
+        auto_select: true,
+        prompt: "none"
+      });
+      setAccount(cachedAccount);
+      setUser(cachedCredential);
+      document.getElementById("signInDiv").hidden = true;
+
+    } else {
+      // If no cached credential, load Google Sign-In normally
+      loadGoogleSignIn();
+    }
+
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      { theme: "outline", size: "large" }
+    );
 
     //menu stuff
     showButton();
@@ -418,8 +491,9 @@ function Navbar() {
                     </Dialog.Title>
                     <div className="mt-2">
                       <label>
-                        <input className="border-2 border-black outline-none" name="ufid" />
+                        <input className="border-2 border-black outline-none" name="ufid" maxLength="8" value={inputValue} onChange={handleChange}/>
                       </label>
+                      {showText && <p className="text-red-700">*Please input a valid UFID</p>}
                     </div>
 
                   <div className="mt-4">
