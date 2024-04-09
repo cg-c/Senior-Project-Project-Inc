@@ -1,6 +1,7 @@
 import Members from "../components/Members";
 import Model from "react-modal";
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 import "../components/style.css";
 
 
@@ -8,6 +9,8 @@ export default function MyTeam() {
 
     const [ leavePopUp, setLeavePopup ] = useState(false);
     const [team, setTeam] = useState([]);
+    const [ inTeam, setInTeam ] = useState(false);
+    const navigate = useNavigate();
 
     const iD = {
         pID: 14
@@ -63,27 +66,24 @@ export default function MyTeam() {
           }
         } catch (error) {
           console.error('Error sending data:', error);
-        }
+      }
+
+      setLeavePopup(false)
+      navigate(0);
+      
       };
 
-    const checkedInTeam = () => {
+    function checkedInTeam() {
 
         if(team.length > 1 || team.pID != null) {
           // does have team
           console.log("has team");
-          return true;
+          setInTeam(true);
         }
-        else {
-          console.log("no team");
-          return false;
-          // doesnt have team
-        }
-        // get pID
-
     }
 
 
-    if (checkedInTeam) {
+    if (inTeam) {
             return (
                 <body className="signedIn">
                     <div className="page-title">
@@ -138,7 +138,7 @@ export default function MyTeam() {
             return (
                 <body className="signedIn">
                     <div className="page-title">
-                        <div className="text-wrapper teamWarn">Please Join a Team</div>
+                        <div className="text-wrapper teamWarn">Please Join A Team</div>
                     </div>
                 </body>
             );

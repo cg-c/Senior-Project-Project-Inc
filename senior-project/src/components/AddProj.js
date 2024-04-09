@@ -118,6 +118,8 @@ export default function AddProj() {
 
     return (
         <div className="form">
+            <h1 className="formTitle">Pitch Your Project</h1>
+            <hr />
             <form onSubmit={handleSubmit}>
                 <div className="addCar1">
                     <label className="addFormReq">Project Name:<br />

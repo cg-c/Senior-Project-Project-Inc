@@ -44,7 +44,6 @@ body .signedIn {
     width: 87vw;
     color: #ffffff;
     font-family: "Inter-Medium", Helvetica;
-    font-size: 26px;
     font-weight: 500;
     letter-spacing: 0;
 }
@@ -97,6 +96,17 @@ body .signedIn {
     background-color: #374D76;
 }
 
+.rectFlex {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+}
+
+.formTitle {
+    text-align: center;
+    font-size: 30px;
+}
+
 
 /* FLEX FOR PAGE SUBHEADINGS*/
 .adv1-title {
@@ -140,7 +150,7 @@ body .signedIn {
 
 /* FLEX FOR COMPONENT SUBHEADINGS */
 .stuCar1 {
-    flex: 2;
+    flex: 3;
 }
 
 .stuCar2 {
@@ -148,11 +158,14 @@ body .signedIn {
 }
 
 .stuCar3 {
-    flex: 1;
+    flex: 2;
+    text-align: right;
 }
 
 .stuCar4 {
-    flex: 1;
+    flex: 2;
+    text-align: right;
+    margin-right: 1%;
 }
 
 .advCar1 {
@@ -160,11 +173,11 @@ body .signedIn {
 }
 
 .advCar2 {
-    flex: 2;
+    flex: 1;
 }
 
 .advCar3 {
-    flex: 1;
+    flex: 2;
 }
 
 .pplCar1, .pplCar2, .pplCar3, .pplCar4, .pplCar5 {
@@ -178,6 +191,10 @@ body .signedIn {
 .addCar1, .addCar2, .addCar3, .addCar4, .addCar5, .addCar6  {
     flex: 1;
     margin: 2%;
+}
+
+.rectCar1 {
+    flex: 1;
 }
 
 
@@ -196,11 +213,16 @@ body .signedIn {
 }
 
 .descHeader {
+    font-size: 32px;
+    font-weight: 500;
+    margin-top: 3%;
     color: black;
 }
 
 .descText {
-    color: black;
+    color: rgb(59, 59, 59);
+    font-size: 18px;
+    margin-bottom: 1%;
 }
 
 .leaveText {
@@ -221,7 +243,8 @@ body .signedIn {
     font-family: "Inter-Regular", Helvetica;
     font-size: 20px;
     font-weight: 400;
-    margin: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 textarea {
@@ -388,24 +411,33 @@ select option[value=""] {
     align-items: center;
 }
 
+.noBullets {
+    list-style-type: none;
+}
+
+.space {
+    margin: 3%;
+}
+
+
 
 
 /* OTHER */
 .emptyRect {
     background-color: rgba(217, 217, 217, 1);
-    height: 25px;
+    height: 30px;
     left: 555px;
     top: 59px;
-    width: 25px;
+    width: 30px;
     margin: 2px;
 }
 
 .filledRect {
     background-color: rgba(34, 136, 76, 1);
-    height: 25px;
+    height: 30px;
     left: 555px;
     top: 59px;
-    width: 25px;
+    width: 30px;
     margin: 2px;
 }
 
