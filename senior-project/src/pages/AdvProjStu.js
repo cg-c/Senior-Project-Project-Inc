@@ -21,7 +21,7 @@ export default function AdvProjStu() {
       
         const fetchData = async () => {
           try {
-            const response = await fetch('/student/projects');
+            const response = await fetch('/advisor/projects');
             const jsonData = await response.json();
             setData(jsonData);
           } catch (error) {

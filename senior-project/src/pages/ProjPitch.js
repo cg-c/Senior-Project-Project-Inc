@@ -22,7 +22,7 @@ export default function ProjPitch() {
           fetchData();
         }, []);
       
-        const fetchData = async () => {
+        const fetchData = async (event) => {
           try {
             const response = await fetch('/student/projects');
             const jsonData = await response.json();

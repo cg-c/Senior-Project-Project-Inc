@@ -1,6 +1,8 @@
 DROP TABLE student;
         
 DROP TABLE advisor;
+
+DROP TABLE aProjects;
     
 DROP TABLE project;
 
@@ -13,3 +15,6 @@ DROP SEQUENCE aIDSeq;
 DROP SEQUENCE pIDSeq;
 
 DROP TRIGGER addProj;
+
+DROP TRIGGER addCOUNT;
+
