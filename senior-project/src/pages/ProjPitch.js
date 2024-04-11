@@ -158,6 +158,7 @@ export default function ProjPitch() {
                   top: "0",
                   background: 'white',
                   width: '70vw',
+                  maxHeight: '80vh',
                   overflowY: 'auto',
                   position: 'relative'
                 }}} >

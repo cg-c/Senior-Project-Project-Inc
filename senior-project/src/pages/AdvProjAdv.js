@@ -5,6 +5,7 @@ import React from "react";
 import Model from "react-modal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Description from "../components/Description";
+import JoinButton from "../components/JoinButton";
 import { useState, useEffect } from "react";
 import "../components/style.css"
 
@@ -14,6 +15,8 @@ export default function AdvProjAdv() {
     const [ numPitch, setNumPitch ] = useState(Array.from({length : 10}));
     const [ des, setDes ] = useState(false);
     const [projects, setData] = useState([]);
+    const [ displayDes, setDisplayDes ] = useState([]);
+    const [ displayConact, setDisplacyContact ] = useState([]);
       
         useEffect(() => {
           fetchData();
@@ -44,7 +47,13 @@ export default function AdvProjAdv() {
               {slots}
             </div>
           );
-        }
+      }
+
+      function DispayDes(description, contact) {
+        setDisplayDes(description);
+        setDisplacyContact(contact);
+        setDes(true);
+      }
 
     return (
         <body className="signedIn">
@@ -82,8 +91,7 @@ export default function AdvProjAdv() {
                 loader={<p>Loading...</p>}
             >
                 {projects.map(item => (
-                <button className="clickDes" onClick={()=>setDes(true)}>
-
+                <button className="clickDes" onClick={()=>DispayDes(item.DESCINPUT, item.CONTACT)}>
                 <div className="flex-container projCard">
                   <div className="advCar1" key={item}>{item.NAME}</div>
                   <div className="advCar2" key={item}>{displaySlots(item.FILLED, item.CAPACITY)}</div>
@@ -106,13 +114,20 @@ export default function AdvProjAdv() {
                   top: "0",
                   background: 'white',
                   width: '70vw',
-                  height: '80vh',
+                  maxHeight: '80vh',
                   overflowY: 'auto',
                   position: 'relative'
                 }}} >
-                  
-                    <button className="closeButton" onClick={()=>setDes(false)}>X</button>
-                    <Description />
+                  <button className="closeButton" onClick={()=>setDes(false)}>X</button>
+                  <div className="desc">
+                    <h2 className="descHeader">Description</h2>
+                    <hr />
+                    <p className="descText">{displayDes}</p>
+                    <h2 className="descHeader">Contact</h2>
+                    <hr />
+                    <p className="descText">{displayConact}</p>
+                    <JoinButton />
+                  </div>
                     {/*
                         Jonathan: load in description of selected project 
                     */}
