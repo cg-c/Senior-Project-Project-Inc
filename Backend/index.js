@@ -83,7 +83,7 @@ app.get("/student/projects", (req, res) => {
                                       LEFT JOIN student s
                                       ON p.cID = s.UFID
                                       WHERE p.cID = s.UFID
-                                      AND capacity != filled
+                                      AND capacity > filled
                                       AND final = 0`);
 
       // log data to console for debugging
@@ -131,7 +131,7 @@ app.get("/advisor/projects", (req, res) => {
                                       LEFT JOIN aProjects a
                                       ON p.pID = a.pID
                                       WHERE p.pID = a.pID
-                                      AND capacity != filled
+                                      AND capacity > filled
                                       AND final = 0`);
 
       console.log(data.rows);
@@ -507,7 +507,6 @@ app.post("/student/join/project", (req, res) => {
 
       console.dir(data.rows, {depth: null});
       con.close();
-      return data.rows;
     } catch (err) {
       console.error(err);
       return err;
@@ -578,6 +577,45 @@ app.post("/advisor/team", (req, res) => {
                     AND p.pID = ap.pID 
                     AND ap.pID = b.pID
                     ORDER BY p.name`;
+
+      const data = await con.execute(sql);
+
+
+      console.dir(data.rows, {depth: null});
+      con.close();
+      return data.rows;
+    } catch (err) {
+      console.error(err);
+      return err;
+    }
+  }
+  fun()
+    .then((dbRes) => {
+      res.send(dbRes);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+// advisor's projects
+app.post("/advisor/team/projects", (req, res) => {
+  async function fun() {
+    let con;
+    console.log(req.body);
+    console.log("advisor people");
+
+
+    const {email} = req.body;
+
+    try {
+      con = await oracledb.getConnection(dbConfig);
+
+      const sql = `SELECT p.name as NAME ,p.pID as PID
+                    FROM advisor a, aProjects ap, project p
+                    WHERE a.aID = ap.aID
+                    AND ap.pID = p.pID
+                    AND a.email = '${email}'`;
 
       const data = await con.execute(sql);
 

@@ -17,6 +17,11 @@ export default function ProjPitch() {
 
     const [ displayDes, setDisplayDes ] = useState([]);
     const [ displayConact, setDisplacyContact ] = useState([]);
+    const [ displayPID, setDisplayPID ] = useState(0);
+    const [join, setJoin] = useState({
+      email: null,
+      pID: null
+    })
       
         useEffect(() => {
           fetchData();
@@ -29,6 +34,31 @@ export default function ProjPitch() {
             setData(jsonData);
           } catch (error) {
             console.error('Error fetching data:', error);
+          }
+        };
+
+        const joinTeam = async event => {
+          join.email = localStorage.getItem("email");
+          //join.email = 'masterbear123@ufl.edu';
+
+          join.pID = displayPID;
+
+          try {
+            const response = await fetch('/student/join/project', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(join)
+            });
+            if (response.ok) {
+              console.log('Data sent successfully');
+              // Clear form data after successful submission
+            } else {
+              console.error('Failed to send data');
+            }
+          } catch (error) {
+            console.error('Error sending data:', error);
           }
         };
 
@@ -56,9 +86,10 @@ export default function ProjPitch() {
       );
     }
 
-    function DispayDes(description, contact) {
+    function DispayDes(description, contact, pID) {
       setDisplayDes(description);
       setDisplacyContact(contact);
+      setDisplayPID(pID);
       setDes(true);
     }
 
@@ -99,7 +130,7 @@ export default function ProjPitch() {
                 loader={<p>Loading...</p>}
             >
                 {projects.map(item => (
-                <button className="clickDes" onClick={()=>DispayDes(item.DESCINPUT, item.CONTACT)}>
+                <button className="clickDes" onClick={()=>DispayDes(item.DESCINPUT, item.CONTACT, item.PID)}>
                 <div className="flex-container projCard">
                   <div className="stuCar1" key={item}>{item.NAME}</div>
                   <div className="stuCar2" key={item}>{displaySlots(item.FILLED, item.CAPACITY)}</div>
@@ -138,7 +169,7 @@ export default function ProjPitch() {
                     <h2 className="descHeader">Contact</h2>
                     <hr />
                     <p className="descText">{displayConact}</p>
-                    <JoinButton />
+                    <button className="joinButton" onClick={()=>joinTeam()}>Join</button>
                   </div>
                     {/*
                         Jonathan: load in the descriptions of projects using Description template

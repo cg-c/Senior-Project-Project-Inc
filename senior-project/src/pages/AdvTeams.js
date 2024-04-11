@@ -8,22 +8,24 @@ export default function AdvTeam() {
 
     const [ leavePopUp, setLeavePopup ] = useState(false);
     const [team, setTeam] = useState([]);
-    const [ inTeam, setInTeam ] = useState(false);
+    const [projects, setProjects] = useState([]);
+    const [ inTeam, setInTeam ] = useState(true);
+    const [finalizedID, setID] = useState({
+      pID: null
+    });
 
-    const iD = {
-        pID: 14
-    }
+
 
     useEffect(() => {
         getTeam();
+        getProjects();
       }, []);
     
       const getTeam = async event => {
         const emailJSON = {
             email: localStorage.getItem("email")
-            // email: 'john@ufl.edu'
+            //email: 'john@ufl.edu'
         }
-
 
         try {
           const response = await fetch('/advisor/team', {
@@ -47,12 +49,14 @@ export default function AdvTeam() {
         }
       };
 
-      const leaveTeam = async event => {
+      const getProjects = async event => {
         const emailJSON = {
-            email: localStorage.getItem("email")
+            //email: localStorage.getItem("email")
+            email: 'john@ufl.edu'
         }
+
         try {
-          const response = await fetch('/team/leave', {
+          const response = await fetch('/advisor/team/projects', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -61,6 +65,31 @@ export default function AdvTeam() {
           });
           if (response.ok) {
             console.log('Data sent successfully');
+            const jsonData = await response.json();
+            setProjects(jsonData);
+            // Clear form data after successful submission
+          } else {
+            console.error('Failed to send data');
+          }
+        } catch (error) {
+          console.error('Error sending data:', error);
+        }
+      };
+
+      const finalizeProject = async event => {
+      
+        try {
+          const response = await fetch('/advisor/team/projects', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(finalizedID)
+          });
+          if (response.ok) {
+            console.log('Data sent successfully');
+            const jsonData = await response.json();
+            setProjects(jsonData);
             // Clear form data after successful submission
           } else {
             console.error('Failed to send data');

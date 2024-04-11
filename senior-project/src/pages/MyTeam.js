@@ -9,12 +9,9 @@ export default function MyTeam() {
 
     const [ leavePopUp, setLeavePopup ] = useState(false);
     const [team, setTeam] = useState([]);
-    const [ inTeam, setInTeam ] = useState(false);
+    const [ inTeam, setInTeam ] = useState(true);
     const navigate = useNavigate();
 
-    const iD = {
-        pID: 14
-    }
 
     useEffect(() => {
         getTeam();
@@ -24,6 +21,7 @@ export default function MyTeam() {
         const emailJSON = {
             email: localStorage.getItem("email")
             // email: 'julia@ufl.edu'
+            //email: 'masterbear123@ufl.edu'
         }
 
         try {
@@ -50,6 +48,8 @@ export default function MyTeam() {
       const leaveTeam = async event => {
         const emailJSON = {
             email: localStorage.getItem("email")
+            //email: 'masterbear123@ufl.edu'
+
         }
         try {
           const response = await fetch('/team/leave', {
