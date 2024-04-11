@@ -203,12 +203,19 @@ body .signedIn {
     color: black;
 }
 
+.formTitle {
+    color: black;
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 1%;
+}
+
 .desc {
     background-color: #f5f6f7;
 }
 
 .descHeader {
-    font-size: 32px;
+    font-size: 1.7rem;
     font-weight: 500;
     margin-top: 3%;
     color: black;
@@ -216,7 +223,7 @@ body .signedIn {
 
 .descText {
     color: rgb(59, 59, 59);
-    font-size: 18px;
+    font-size: 1.2rem;
     margin-bottom: 1%;
 }
 

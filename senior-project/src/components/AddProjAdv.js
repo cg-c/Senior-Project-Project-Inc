@@ -163,7 +163,7 @@ export default function AddProjAdv() {
                     <MultiSelect value={selectedLang} options={options} onChange={setSelectedLang} hasSelectAll={false} id="languages" />
                 </div>
                 <div className="addCar3">
-                    <h4 className="addFormReq">Select Application Type:<br /></h4>
+                    <h4 className="addFormReq">Select Application Type(s):<br /></h4>
                     <MultiSelect value={selectedAppType} options={appType} onChange={setSelectedAppType} hasSelectAll={false} id="type" />
                 </div>
                 <div className="addCar4">

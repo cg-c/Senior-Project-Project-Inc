@@ -127,12 +127,12 @@ export default function AdvProjAdv() {
                     <h2 className="descHeader">Description</h2>
                     <hr />
                     <p className="descText">{displayDes}</p>
-                    <h2 className="descHeader">Type</h2> 
+                    <h2 className="descHeader">Type(s)</h2> 
                     <hr />
                     <p className="descText">{displayType.map(type => (
                       <p>{type.NAME}</p>
                     ))}</p>
-                    <h2 className="descHeader">Lanuage</h2>
+                    <h2 className="descHeader">Lanuage(s)</h2>
                     <hr />
                     <p className="descText">{displayLang.map(lang => (
                       <p>{lang.NAME}</p>
