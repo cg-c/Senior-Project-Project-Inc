@@ -125,8 +125,8 @@ export default function ProjPitch() {
             <h2 className="flex-title">
                 <div className="pitch-title1">Topic</div>
                 <div className="pitch-title2">Availability</div>
-                <div className="pitch-title3">Type</div>
-                <div className="pitch-title4">Language</div>
+                <div className="pitch-title3">Type(s)</div>
+                <div className="pitch-title4">Language(s)</div>
             </h2>
             <hr />
             <InfiniteScroll dataLength={projects.length}

@@ -4,6 +4,7 @@ import "./style.css"
 import CloseButton from "./CloseButton";
 
 const options = [
+    { label: "Any", value: "Any" },
     { label: "ABAP", value: "ABAP" },
     { label: "ActionScript", value: "ActionScript" },
     { label: "Ada", value: "Ada" },
@@ -101,6 +102,7 @@ const options = [
 ]
 
 const appType = [
+    {label: "Advising", value: "Advising"},
     {label: "AI/ML", value: "AI/ML"},
     {label: "Bioinfomatics/Health", value: "Bioinfomatics/Health"},
     {label: "Data Analysis", value: "Data Analysis"},
