@@ -2,7 +2,11 @@ import React from 'react';
 import '../App.css';
 import HeroSection from '../components/HeroSection';
 
+const types = ['Student', 'Advisor', 'Admin', 'Default']
+
 export default function Home() {
+    
+
     return (
         <>
             <HeroSection />
@@ -13,6 +17,10 @@ export default function Home() {
                 <p>2. Watch the introductory video (Click <a className="text-blue-600" href="https://mediasite.video.ufl.edu/Mediasite/Play/8ebcb534f140433296041170863ba8631d" target="_blank"> "Watch Intro" </a> above) </p>
                 <p>3. Click the <strong>Google Sign-in button</strong> in the top right of this page </p>
                 <p> (You will need to sign in with your gatorlink account) </p>
+
+                {localStorage.getItem("account") === types[0] &&
+                <div>
+                <h2 className="py-4 px-4 text-2xl font-bold">Students</h2>
                 <p>4. Establish your team, teams must be 2-5 people </p>
                 <div className="px-5 py-1">
                     <p>a) Use the project page to join an advisor suggested project</p>
@@ -20,6 +28,15 @@ export default function Home() {
                 </div>
                 <p>5. If you chose option b, join an advisor with your team (any UF faculty can be your advisor) </p>
                 <p>6. Wait patiently for the course to be added to your schedule </p>
+                </div>
+                }
+
+                {localStorage.getItem("account") === types[1] &&
+                <div>
+                <h2 className="py-4 px-4 text-2xl font-bold">Advisors</h2>
+                <p>4. Post your projects under the projects tab </p>
+                </div>
+                }
             </div>
         </>
     )

@@ -41,6 +41,13 @@ function Navbar() {
     // Add more fields if needed
   });
 
+
+  //refresh the page 
+  function refreshPage(){ 
+    window.location.reload(); 
+  }
+
+
   //Send Sign in to backend
   const SubmitSignIn = async event => {
     try {
@@ -142,6 +149,7 @@ function Navbar() {
       SignInData.NAME = user.given_name + " " + user.family_name;
       SignInData.UFID = id;
       SubmitSignIn();
+      refreshPage();
     }
     else{
       openText(); //ufid error text
@@ -212,7 +220,6 @@ function Navbar() {
   
       //checking if user has gatorlink
       if (userObj.email && userObj.email.includes("@ufl.edu")) {
-        //check for first time sign in - Jonathan
   
         setUser(userObj);
         localStorage.setItem("email", userObj.email);
