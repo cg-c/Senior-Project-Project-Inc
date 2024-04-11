@@ -23,10 +23,11 @@ export default function MyTeam() {
       const getTeam = async event => {
         const emailJSON = {
             email: localStorage.getItem("email")
+            // email: 'julia@ufl.edu'
         }
 
         try {
-          const response = await fetch('/team', {
+          const response = await fetch('/student/team', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

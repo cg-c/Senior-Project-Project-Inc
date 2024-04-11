@@ -24,7 +24,8 @@ CREATE TABLE project (
     filled int DEFAULT 0,
     descInput varchar(1000),
     pass varchar(100),
-    contact varchar(100)
+    contact varchar(100),
+    final int
     );
 
 CREATE TABLE language (
@@ -49,16 +50,29 @@ CREATE SEQUENCE pIDSeq
     INCREMENT BY 1
     CACHE 1000;
     
+    
+-- Trigger after project is made
+-- IF advisor made project add new value shwoing that to aProjects table
+-- IF student made project update student pID
 CREATE OR REPLACE TRIGGER addProj
 AFTER INSERT ON project
 FOR EACH ROW
+DECLARE
+    advisor_count INTEGER;
 BEGIN
-    UPDATE student
-    SET student.pID = :NEW.pID
-    WHERE student.UFID = :NEW.cID;
+    SELECT COUNT(*)
+    INTO advisor_count
+    FROM advisor
+    WHERE :NEW.cID = advisor.aID;
+
+    IF advisor_count > 0 THEN
+        INSERT INTO aProjects (aID, pID) VALUES (:NEW.cID, :NEW.pID);
+    END IF;
 END;
 /
 
+-- IF Student joins project increase filled value
+-- IF Student leaves project decrease filled value
 CREATE OR REPLACE TRIGGER addCount
 AFTER UPDATE ON student
 FOR EACH ROW

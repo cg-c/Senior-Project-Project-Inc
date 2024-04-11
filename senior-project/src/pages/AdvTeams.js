@@ -21,10 +21,12 @@ export default function AdvTeam() {
       const getTeam = async event => {
         const emailJSON = {
             email: localStorage.getItem("email")
+            // email: 'john@ufl.edu'
         }
 
+
         try {
-          const response = await fetch('/team', {
+          const response = await fetch('/advisor/team', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -35,6 +37,7 @@ export default function AdvTeam() {
             console.log('Data sent successfully');
             const jsonData = await response.json();
             setTeam(jsonData);
+            checkedInTeam();
             // Clear form data after successful submission
           } else {
             console.error('Failed to send data');
@@ -102,14 +105,13 @@ export default function AdvTeam() {
                         <div className="team-title3">Contact</div>
                     </h2>
                     <hr />
-                    {/*
-                        Jonathan: load all members & advisors 
-                    */}
-                    <StuMembers />
-                    <StuMembers />
-                    <StuMembers />
-                    <StuMembers />
-                    <StuMembers />
+                    {team.map(item => (
+                      <div className="memFlex">
+                        <div className="memCar1" key = {item.EMAIL}>{item.STUDENTNAME}</div>
+                        <div className="memCar2" key = {item.EMAIL}>{item.NAME}</div>
+                        <div className="memCar3" key = {item.EMAIL}>{item.EMAIL}</div>
+                      </div>
+                    ))}
                     <button className="leaveButton" onClick={()=> setLeavePopup(true)}>Finalize Team</button>
                     <Model isOpen={leavePopUp} style={{
                         overlay: {
