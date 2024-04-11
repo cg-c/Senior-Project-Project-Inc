@@ -9,7 +9,7 @@ export default function MyTeam() {
 
     const [ leavePopUp, setLeavePopup ] = useState(false);
     const [team, setTeam] = useState([]);
-    const [ inTeam, setInTeam ] = useState(false);
+    // const [ inTeam, setInTeam ] = useState();
     const navigate = useNavigate();
 
 
@@ -61,6 +61,7 @@ export default function MyTeam() {
           });
           if (response.ok) {
             console.log('Data sent successfully');
+            // setInTeam(false);
             // Clear form data after successful submission
           } else {
             console.error('Failed to send data');
@@ -79,12 +80,15 @@ export default function MyTeam() {
         if(team.length > 1 || team.pID != null) {
           // does have team
           console.log("has team");
-          setInTeam(true);
+          return true;
+        }
+        else {
+          return false;
         }
     }
 
 
-    if (inTeam) {
+    if (checkedInTeam()) {
             return (
                 <body className="signedIn">
                     <div className="page-title">

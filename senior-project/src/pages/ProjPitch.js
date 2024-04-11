@@ -5,6 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import "../components/style.css"
 import Description from "../components/Description";
 import JoinButton from "../components/JoinButton";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CloseButton from "../components/CloseButton";
 
@@ -14,7 +15,6 @@ export default function ProjPitch() {
     const [ numPitch, setNumPitch ] = useState(Array.from({length : 10}));
     const [ des, setDes ] = useState(false);
     const [projects, setData] = useState([]);
-
     const [ displayDes, setDisplayDes ] = useState([]);
     const [ displayConact, setDisplacyContact ] = useState([]);
     const [ displayPID, setDisplayPID ] = useState(0);
@@ -22,6 +22,8 @@ export default function ProjPitch() {
       email: null,
       pID: null
     })
+
+    const navigate = useNavigate();
       
         useEffect(() => {
           fetchData();
@@ -53,6 +55,7 @@ export default function ProjPitch() {
             });
             if (response.ok) {
               console.log('Data sent successfully');
+              navigate(0);
               // Clear form data after successful submission
             } else {
               console.error('Failed to send data');

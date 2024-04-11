@@ -105,7 +105,7 @@ body .signedIn {
 
 /* FLEX FOR PAGE SUBHEADINGS*/
 .adv1-title {
-    flex: 2;
+    flex: 3;
     margin-left: 7%;
 }
 
@@ -164,15 +164,15 @@ body .signedIn {
 }
 
 .advCar1 {
-    flex: 2;
+    flex: 3;
 }
 
 .advCar2 {
-    flex: 1;
+    flex: 2;
 }
 
 .advCar3 {
-    flex: 2;
+    flex: 1;
 }
 
 .pplCar1, .pplCar2, .pplCar3, .pplCar4, .pplCar5 {
@@ -301,7 +301,7 @@ select option[value=""] {
     text-align: center;
     font-size: 1.4rem;
     font-weight: 700;
-    color: #ad0707;
+    color: #ad0707  ;
 }
 
 
