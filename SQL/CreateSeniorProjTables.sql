@@ -84,7 +84,7 @@ BEGIN
     ELSE
         UPDATE project
         SET filled = filled - 1
-        WHERE :NEW.pID = project.pID;
+        WHERE :OLD.pID = project.pID;
     END IF;
 END;
 /

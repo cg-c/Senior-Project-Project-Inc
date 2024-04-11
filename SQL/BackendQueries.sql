@@ -128,3 +128,10 @@ WHERE email = '${email}';
 UPDATE project
 SET final = 1
 WHERE pID = ${PID};
+
+-- advisors projects
+SELECT p.name as NAME ,p.pID as PID
+FROM advisor a, aProjects ap, project p
+WHERE a.aID = ap.aID
+AND ap.pID = p.pID
+AND a.email = 'john@ufl.edu';
