@@ -362,10 +362,10 @@ app.post("/student/create/project", (req, res) => {
     try {
       con = await oracledb.getConnection(dbConfig);
 
-      const {NAME, CAPACITY, DESCINPUT, PASS, TYPE, EMAIL, LANG} = req.body;
+      const {NAME, CAPACITY, DESCINPUT, PASS, TYPE, EMAIL, CONTACT, LANGUAGES} = req.body;
 
-      const sql = `insert into project(NAME , PID , CID , CAPACITY , FILLED , DESCINPUT , PASS, FINAL) 
-                    values(:name, :pid , :cid , :capacity , :filled , :descinput , :pass, 0) RETURNING pID INTO outPID`;
+      const sql = `insert into project(NAME , PID , CID , CAPACITY , FILLED , DESCINPUT , PASS, CONTACT, FINAL) 
+                    values(:name, pIDSEQ.nextval , :cid , :capacity , 0 , :descinput , :pass, :contact, 0) RETURNING pID INTO :outPID`;
 
       const creatorSQL = `SELECT UFID
                           FROM student
@@ -373,39 +373,73 @@ app.post("/student/create/project", (req, res) => {
 
       const getUFID = await con.execute(creatorSQL);
 
+      console.log(getUFID.rows[0].UFID);
+
       // Bind parameters for the SQL statement
       const binds = {
-        name: NAME, 
-        pid: 'pIDSEQ.nextVal' , 
-        cid: getUFID.rows.UFID , 
+        name: NAME,   
+        cid: getUFID.rows[0].UFID , 
         capacity: CAPACITY , 
-        filled: 0, 
         descinput: DESCINPUT , 
         pass: PASS,
+        contact: CONTACT,
         outPID: { type: oracledb.NUMBER, dir: oracledb.BIND_OUT }
       };
 
-      //console.log(binds);
+      console.log(binds);
+    
 
       // Execute the SQL statement
-      const result = await con.execute(sql, binds, { autoCommit: true });
-      async function submitLang(item) {
-        const langSQL = `INSERT INTO language (name, pid) VALUES (${item.value}, ${outPID})`;
-        const getUFID = await con.execute(sql);
-      }
-
-      LANG.map(submitLang)
+      const result = await con.execute(sql, binds);
+      con.commit();
 
 
-      const type = await con.execute(`INSERT INTO type values('${TYPE}', ${outPID})`);
-
-      const update = await con.execute(`UPDATE student
-                                      SET pID = ${outPID}
-                                      WHERE UFID = ${binds.cid}`);
-
-
-      con.execute();
       console.log("Data inserted successfully:", result);
+
+
+      async function submitLang(item) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const langSQL = `INSERT INTO language (name, pid) VALUES ('${item.value}', ${result.outBinds.outPID})`;
+                const lang = await con.execute(langSQL);
+                console.log(lang);
+                con.commit();
+                resolve("good");
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
+    
+    const resultLang = await Promise.all(LANGUAGES.map(submitLang));
+
+    console.log("langs done");
+
+      async function submitType(item) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const typeSQL = await con.execute(`INSERT INTO type (name, pID) values('${item.value}', ${result.outBinds.outPID})`);
+                console.log(typeSQL);
+                con.commit();
+                resolve("good");
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
+    
+    const resultType = await Promise.all(TYPE.map(submitType));
+
+    const update = await con.execute(`UPDATE student
+      SET pID = ${result.outBinds.outPID}
+      WHERE UFID = ${binds.cid}`);
+
+      console.log(update);
+
+      con.commit();
+
+      console.log('everything done');
+
       con.close();
     } catch (err) {
       console.error(err);
@@ -432,10 +466,11 @@ app.post("/advisor/create/project", (req, res) => {
     try {
       con = await oracledb.getConnection(dbConfig);
 
-      const {NAME, CAPACITY, DESCINPUT, PASS, TYPE, EMAIL, LANG} = req.body;
+ 
+      const {NAME, CAPACITY, DESCINPUT, PASS, TYPE, EMAIL, CONTACT, LANGUAGES} = req.body;
 
-      const sql = `insert into project(NAME , PID , CID , CAPACITY , FILLED , DESCINPUT , PASS, FINAL) 
-                    values(:name, :pid , :cid , :capacity , :filled , :descinput , :pass, 0) RETURNING pID INTO outPID`;
+      const sql = `insert into project(NAME , PID , CID , CAPACITY , FILLED , DESCINPUT , PASS, CONTACT, FINAL) 
+                    values(:name, pIDSEQ.nextval , :cid , :capacity , 0 , :descinput , :pass, :contact, 0) RETURNING pID INTO :outPID`;
 
       const creatorSQL = `SELECT aID
                           FROM advisor
@@ -443,35 +478,60 @@ app.post("/advisor/create/project", (req, res) => {
 
 
       const getAID = await con.execute(creatorSQL);
-
-      // Bind parameters for the SQL statement
+      console.log(binds);
+    
       const binds = {
-        name: NAME, 
-        pid: 'pIDSEQ.nextVal' , 
-        cid: getAID.rows.AID , 
+        name: NAME,   
+        cid: getAID.rows[0].AID , 
         capacity: CAPACITY , 
-        filled: 0, 
         descinput: DESCINPUT , 
         pass: PASS,
+        contact: CONTACT,
         outPID: { type: oracledb.NUMBER, dir: oracledb.BIND_OUT }
       };
 
-      //console.log(binds);
 
       // Execute the SQL statement
-      const result = await con.execute(sql, binds, { autoCommit: true });
+      const result = await con.execute(sql, binds);
+      con.commit();
 
+      console.log("Data inserted successfully:", result);
 
       async function submitLang(item) {
-        const langSQL = `INSERT INTO language (name, pid) VALUES (${item.value}, ${outPID})`;
-        const getUFID = await con.execute(sql);
-      };
+        return new Promise(async (resolve, reject) => {
+            try {
+                const langSQL = `INSERT INTO language (name, pid) VALUES ('${item.value}', ${result.outBinds.outPID})`;
+                const lang = await con.execute(langSQL);
+                console.log(lang);
+                con.commit();
+                resolve("good");
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
+    
+    const resultLang = await Promise.all(LANGUAGES.map(submitLang));
 
-      LANG.map(submitLang);
+    console.log("langs done");
+
+      async function submitType(item) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const typeSQL = await con.execute(`INSERT INTO type (name, pID) values('${item.value}', ${result.outBinds.outPID})`);
+                console.log(typeSQL);
+                con.commit();
+                resolve("good");
+            } catch (error) {
+                reject(error);
+            }
+        });
+    }
+    
+    const resultType = await Promise.all(TYPE.map(submitType));
+    console.log("all data inserted succesfully")
 
       
-      //con.execute();
-      console.log("Data inserted successfully:", result);
       con.close();
     } catch (err) {
       console.error(err);
