@@ -4,6 +4,7 @@ import "./style.css"
 import CloseButton from "./CloseButton";
 
 const options = [
+    { label: "Any", value: "Any" },
     { label: "ABAP", value: "ABAP" },
     { label: "ActionScript", value: "ActionScript" },
     { label: "Ada", value: "Ada" },
@@ -101,6 +102,7 @@ const options = [
 ]
 
 const appType = [
+    {label: "Advising", value: "Advising"},
     {label: "AI/ML", value: "AI/ML"},
     {label: "Bioinfomatics/Health", value: "Bioinfomatics/Health"},
     {label: "Data Analysis", value: "Data Analysis"},
@@ -161,7 +163,7 @@ export default function AddProjAdv() {
                     <MultiSelect value={selectedLang} options={options} onChange={setSelectedLang} hasSelectAll={false} id="languages" />
                 </div>
                 <div className="addCar3">
-                    <h4 className="addFormReq">Select Application Type:<br /></h4>
+                    <h4 className="addFormReq">Select Application Type(s):<br /></h4>
                     <MultiSelect value={selectedAppType} options={appType} onChange={setSelectedAppType} hasSelectAll={false} id="type" />
                 </div>
                 <div className="addCar4">
