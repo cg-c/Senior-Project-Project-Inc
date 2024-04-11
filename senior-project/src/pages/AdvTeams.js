@@ -9,7 +9,7 @@ export default function AdvTeam() {
     const [ leavePopUp, setLeavePopup ] = useState(false);
     const [team, setTeam] = useState([]);
     const [projects, setProjects] = useState([]);
-    const [ inTeam, setInTeam ] = useState(true);
+    const [ inTeam, setInTeam ] = useState(false);
     const [finalizedID, setID] = useState({
       pID: null
     });

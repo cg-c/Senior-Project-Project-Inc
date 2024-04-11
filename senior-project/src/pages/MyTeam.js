@@ -9,7 +9,7 @@ export default function MyTeam() {
 
     const [ leavePopUp, setLeavePopup ] = useState(false);
     const [team, setTeam] = useState([]);
-    const [ inTeam, setInTeam ] = useState(true);
+    const [ inTeam, setInTeam ] = useState(false);
     const navigate = useNavigate();
 
 
