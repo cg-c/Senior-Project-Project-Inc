@@ -102,11 +102,6 @@ body .signedIn {
     align-content: space-between;
 }
 
-.formTitle {
-    text-align: center;
-    font-size: 30px;
-}
-
 
 /* FLEX FOR PAGE SUBHEADINGS*/
 .adv1-title {
@@ -260,7 +255,7 @@ textarea {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-input[type=text], input[type=number] {
+input[type=text], input[type=number], input[type=email] {
     width: 90%;
     padding: 10px;
     height: 45px;
@@ -301,6 +296,13 @@ select option[value=""] {
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
   }
+
+  .bottom {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ad0707;
+}
 
 
 

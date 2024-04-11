@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
+import { useNavigate } from "react-router-dom";
 import "./style.css"
 import CloseButton from "./CloseButton";
 
@@ -123,7 +124,8 @@ export default function AddProj() {
     const [ selectedName, setSlectedName ] = useState([]);
     const [ selectedCap, setSelectedCap ] = useState([]);
     const [ selectedDes, setSelectedDes ] = useState([]);
-    const [ selectedEmail, setSelectedEmail ] =useState([]);
+    const [ selectedEmail, setSelectedEmail ] = useState([]);
+    const [ errorMess, setErrorMess ] = useState(false);
     const [newProj, setNewProj] = useState({
         NAME: null,
         CAPACITY: null, 
@@ -133,6 +135,8 @@ export default function AddProj() {
         TYPE: null,
         LANGUAGES: null
     });
+
+    const navigate = useNavigate();
 
 
     const handleSubmit = async event => {
@@ -154,19 +158,16 @@ export default function AddProj() {
             });
             if (response.ok) {
               console.log('Data sent successfully');
+              navigate(0);
               // Clear form data after successful submission
             } else {
               console.error('Failed to send data');
+              throw new Error();
             }
           } catch (error) {
             console.error('Error sending data:', error);
+            setErrorMess(true);
           }
-        {/* 
-            Submit:
-                close popup & refresh page --> display proj?
-                Jonathan: add proj to database
-    
-        */}
     }
 
     return (
@@ -199,12 +200,13 @@ export default function AddProj() {
                     </label>
                 </div>
                 <div className="addCar6">
-                    <label className="addFormReq">Contact:<br />
-                        <input type="text" id="contact" value={selectedEmail} onChange={(e) => setSelectedEmail(e.target.value)} />
+                    <label className="addFormReq" for="text" >Contact:<br />
+                        <input type="text" id="contact" value={selectedEmail} onChange={(e) => setSelectedEmail(e.target.value)} required />
                     </label>
                 </div>
                 <input type="submit" className="eventButton" onSubmit={()=>handleSubmit()} />
             </form>
+            {errorMess == true && <p className="bottom">Unsuccessful Submission</p>}
         </div>
     );
 }
