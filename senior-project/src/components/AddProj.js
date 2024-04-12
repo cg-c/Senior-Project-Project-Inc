@@ -131,8 +131,9 @@ export default function AddProj() {
         CAPACITY: null, 
         DESCINPUT: null, 
         PASS: null, 
-        EMAIL: null,
         TYPE: null,
+        EMAIL: null,
+        CONTACT: null,
         LANGUAGES: null
     });
 
@@ -146,7 +147,8 @@ export default function AddProj() {
         newProj.NAME = selectedName;
         newProj.CAPACITY = selectedCap;
         newProj.DESCINPUT = selectedDes;
-        newProj.EMAIL = selectedEmail;
+        newProj.CONTACT = selectedEmail;
+        newProj.EMAIL = localStorage.getItem("email");
 
         try {
             const response = await fetch('/student/create/project', {
