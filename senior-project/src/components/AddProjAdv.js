@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
+import { useNavigate } from "react-router-dom";
 import "./style.css"
 import CloseButton from "./CloseButton";
 
 const options = [
-    { label: "Any", value: "Any" },
     { label: "ABAP", value: "ABAP" },
     { label: "ActionScript", value: "ActionScript" },
     { label: "Ada", value: "Ada" },
@@ -102,7 +102,6 @@ const options = [
 ]
 
 const appType = [
-    {label: "Advising", value: "Advising"},
     {label: "AI/ML", value: "AI/ML"},
     {label: "Bioinfomatics/Health", value: "Bioinfomatics/Health"},
     {label: "Data Analysis", value: "Data Analysis"},
@@ -118,35 +117,60 @@ const appType = [
 ]
 
 
-export default function AddProjAdv() {
+export default function AddProj() {
 
     const [ selectedLang, setSelectedLang ] = useState([]);
     const [ selectedAppType, setSelectedAppType ] = useState([]);
     const [ selectedName, setSlectedName ] = useState([]);
     const [ selectedCap, setSelectedCap ] = useState([]);
     const [ selectedDes, setSelectedDes ] = useState([]);
-    const [ selectedEmail, setSelectedEmail ] =useState([]);
+    const [ selectedEmail, setSelectedEmail ] = useState([]);
+    const [ errorMess, setErrorMess ] = useState(false);
     const [newProj, setNewProj] = useState({
         NAME: null,
         CAPACITY: null, 
         DESCINPUT: null, 
         PASS: null, 
-        EMAIL: null,
         TYPE: null,
+        EMAIL: null,
+        CONTACT: null,
         LANGUAGES: null
     });
 
+    const navigate = useNavigate();
 
-    const handleSubmit = (event) => {
+
+    const handleSubmit = async event => {
         event.preventDefault();
-        {/* 
-            Submit:
-                close popup & refresh page --> display proj?
-                Jonathan: add proj to database
-    
-        */}
-    }
+        newProj.LANGUAGES = selectedLang;
+        newProj.TYPE = selectedAppType;
+        newProj.NAME = selectedName;
+        newProj.CAPACITY = selectedCap;
+        newProj.DESCINPUT = selectedDes;
+        newProj.CONTACT = selectedEmail;
+        newProj.EMAIL = localStorage.getItem("email");
 
+        try {
+            const response = await fetch('/advisor/create/project', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(newProj)
+            });
+            if (response.ok) {
+              console.log('Data sent successfully');
+              navigate(0);
+              // Clear form data after successful submission
+            } else {
+              console.error('Failed to send data');
+              throw new Error();
+            }
+          } catch (error) {
+            console.error('Error sending data:', error);
+            setErrorMess(true);
+          }
+    }
 
     return (
         <div className="form">
@@ -154,7 +178,7 @@ export default function AddProjAdv() {
             <hr />
             <form onSubmit={handleSubmit}>
                 <div className="addCar1">
-                    <label className="addFormReq">Post Title:<br />
+                    <label className="addFormReq">Project Name:<br />
                         <input type="text" id="projName" value={selectedName} onChange={(e) => setSlectedName(e.target.value)} required />
                     </label>
                 </div>
@@ -167,23 +191,24 @@ export default function AddProjAdv() {
                     <MultiSelect value={selectedAppType} options={appType} onChange={setSelectedAppType} hasSelectAll={false} id="type" />
                 </div>
                 <div className="addCar4">
-                    <label for="quantity" className="addFormReq">Max Number of Members/Teams:<br />
-                        <input type="number" id="quantity" min="1" max="5" value={selectedCap} onChange={(e) => setSelectedCap(e.target.value)} required />
+                    <label for="quantity" className="addFormReq">Max Number of Members:<br />
+                        <input type="number" id="quantity" min="2" max="5" value={selectedCap} onChange={(e) => setSelectedCap(e.target.value)} required />
                     </label>
                 </div>
                 <div className="addCar5">
                     <label className="addFormReq">Description:<br /> 
                         <textarea name="description" id="desc" value={selectedDes} onChange={(e) => setSelectedDes(e.target.value)}
-                        placeholder="Write about the project or state that you are open to advising..." />
+                        placeholder="Short description of project...can include links, potential languages, looking for people..." />
                     </label>
                 </div>
                 <div className="addCar6">
-                    <label className="addFormReq">Contact:<br />
-                        <input type="text" id="contact" value={selectedEmail} onChange={(e) => setSelectedEmail(e.target.value)} />
+                    <label className="addFormReq" for="text" >Contact:<br />
+                        <input type="text" id="contact" value={selectedEmail} onChange={(e) => setSelectedEmail(e.target.value)} required />
                     </label>
                 </div>
                 <input type="submit" className="eventButton" onSubmit={()=>handleSubmit()} />
             </form>
+            {errorMess == true && <p className="bottom">Unsuccessful Submission</p>}
         </div>
     );
 }

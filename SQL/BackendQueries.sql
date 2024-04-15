@@ -69,6 +69,12 @@ INSERT INTO advisor (name, aID, email) VALUES (:name, :aID, :email);
 insert into project(NAME , PID , CID , CAPACITY , FILLED , DESCINPUT , PASS, FINAL) 
 values(:name, :pid , :cid , :capacity , :filled , :descinput , :pass, 0) RETURNING pID INTO outPID;
 
+insert into project(NAME , PID , CID , CAPACITY , FILLED , DESCINPUT , PASS, FINAL) 
+values('Jonathan Is Cool', pIDSEQ.nextVal , 11111112 , 4 , 0 , 'AHHHHHHH' , null, 0);
+
+DELETE FROM project WHERE pID = 15;
+
+SELECT * FROM PROJECT;
 
 SELECT UFID
 FROM student

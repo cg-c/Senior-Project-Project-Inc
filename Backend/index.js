@@ -319,7 +319,7 @@ app.post("/advisor/create", (req, res) => {
     try {
       con = await oracledb.getConnection(dbConfig);
 
-      const sql = `INSERT INTO advisor (name, aID, email) VALUES (:name, :aID, :email)`;
+      const sql = `INSERT INTO advisor (name, aID, email) VALUES (:name, aIDSeq.nextVal, :email)`;
 
       const { PID, NAME, UFID, EMAIL } = req.body;
 
@@ -327,7 +327,7 @@ app.post("/advisor/create", (req, res) => {
       const binds = {
         email: EMAIL,
         name: NAME,
-        aID: 'aIDSeq.nextVal',
+    
       };
 
       console.log(binds);
@@ -478,7 +478,6 @@ app.post("/advisor/create/project", (req, res) => {
 
 
       const getAID = await con.execute(creatorSQL);
-      console.log(binds);
     
       const binds = {
         name: NAME,   
@@ -489,6 +488,8 @@ app.post("/advisor/create/project", (req, res) => {
         contact: CONTACT,
         outPID: { type: oracledb.NUMBER, dir: oracledb.BIND_OUT }
       };
+
+      console.log(binds);
 
 
       // Execute the SQL statement

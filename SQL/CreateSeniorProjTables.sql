@@ -81,11 +81,13 @@ BEGIN
         UPDATE project
         SET filled = filled + 1
         WHERE :NEW.pID = project.pID;
-    ELSE
+    END IF;
+    
+    IF :OLD.pID is NOT NULL
+        AND :OLD.pID != :NEW.pID THEN
         UPDATE project
         SET filled = filled - 1
         WHERE :OLD.pID = project.pID;
     END IF;
 END;
 /
-

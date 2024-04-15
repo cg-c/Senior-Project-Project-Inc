@@ -31,7 +31,8 @@ function Navbar() {
 
   //permissions
   let [account, setAccount] = useState(types[3]);
-  const [exists, setExists] = useState([]);
+  const [userData, setUserData] = useState([]);
+  const [exists, setExists] = useState(false);
 
   const [SignInData, SetSignIN] = useState({
         PID: null,
@@ -92,14 +93,17 @@ function Navbar() {
 
 
   const advisorOrStud = () => {
-    if(exists.length == 0) {
+    if(userData.length == 0) {
       // set first time sign in
+      setExists(false);
     }
-    else if(exists.EMAIL == null) {
+    else if(userData[0].EMAIL == null) {
       // set advisor
+      setExists(true);
     }
     else {
       // set student
+      setExists(true);
     }
   };
 
@@ -120,7 +124,7 @@ function Navbar() {
         console.log('Data sent successfully');
         const jsonData = await response.json();
         console.log(jsonData);
-        setExists(jsonData); //TODO: change later
+        setUserData(jsonData); //TODO: change later
         advisorOrStud();
         // Clear form data after successful submission
       } else {
@@ -148,7 +152,17 @@ function Navbar() {
       SignInData.EMAIL = user.email;
       SignInData.NAME = user.given_name + " " + user.family_name;
       SignInData.UFID = id;
-      SubmitSignIn();
+
+      if(localStorage.getItem('account') == 'Student') {
+        SubmitSignIn();
+      }
+      else if(localStorage.getItem('account') == 'Advisor') {
+        submitAdvisorSignIn();
+      }
+      else {
+        // include stuff for admin
+      }
+
       refreshPage();
     }
     else{
