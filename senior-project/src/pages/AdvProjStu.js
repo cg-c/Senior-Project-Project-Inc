@@ -17,6 +17,8 @@ export default function AdvProjStu() {
     const [projects, setData] = useState([]);
     const [ displayDes, setDisplayDes ] = useState([]);
     const [ displayConact, setDisplacyContact ] = useState([]);
+    const [ displayType, setDisplayType ] = useState([]);
+    const [ displayLang, setDisplayLang ] = useState([]);
       
         useEffect(() => {
           fetchData();
@@ -49,10 +51,12 @@ export default function AdvProjStu() {
           );
       }
 
-      function DispayDes(description, contact) {
+      function DispayDes(description, contact, type, language) {
         setDisplayDes(description);
         setDisplacyContact(contact);
         setDes(true);
+        setDisplayType(type);
+        setDisplayLang(language);
       }
       
 
@@ -71,7 +75,7 @@ export default function AdvProjStu() {
                 loader={<p>Loading...</p>}
             >
                 {projects.map(item => (
-                <button className="clickDes" onClick={()=>DispayDes(item.DESCINPUT, item.CONTACT)}>
+                <button className="clickDes" onClick={()=>DispayDes(item.DESCINPUT, item.CONTACT, item.TYPE, item.LANGUAGE)}>
                 <div className="flex-container projCard">
                   <div className="advCar1" key={item}>{item.NAME}</div>
                   <div className="advCar2" key={item}>{displaySlots(item.FILLED, item.CAPACITY)}</div>
@@ -102,6 +106,16 @@ export default function AdvProjStu() {
                     <h2 className="descHeader">Description</h2>
                     <hr />
                     <p className="descText">{displayDes}</p>
+                    <h2 className="descHeader">Type(s)</h2> 
+                    <hr />
+                    <p className="descText">{displayType.map(type => (
+                      <p>{type.NAME}</p>
+                    ))}</p>
+                    <h2 className="descHeader">Lanuage(s)</h2>
+                    <hr />
+                    <p className="descText">{displayLang.map(lang => (
+                      <p>{lang.NAME}</p>
+                    ))}</p>
                     <h2 className="descHeader">Contact</h2>
                     <hr />
                     <p className="descText">{displayConact}</p>

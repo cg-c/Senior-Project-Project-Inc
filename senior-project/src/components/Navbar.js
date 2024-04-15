@@ -41,6 +41,13 @@ function Navbar() {
     // Add more fields if needed
   });
 
+
+  //refresh the page 
+  function refreshPage(){ 
+    window.location.reload(); 
+  }
+
+
   //Send Sign in to backend
   const SubmitSignIn = async event => {
     try {
@@ -137,12 +144,12 @@ function Navbar() {
       setAccount(selected); //sets user account
       localStorage.setItem('account', selected);
 
-
-      //TODO: ADD ACCOUNT TYPE
+      
       SignInData.EMAIL = user.email;
       SignInData.NAME = user.given_name + " " + user.family_name;
       SignInData.UFID = id;
       SubmitSignIn();
+      refreshPage();
     }
     else{
       openText(); //ufid error text
@@ -213,7 +220,6 @@ function Navbar() {
   
       //checking if user has gatorlink
       if (userObj.email && userObj.email.includes("@ufl.edu")) {
-        //check for first time sign in - Jonathan
   
         setUser(userObj);
         localStorage.setItem("email", userObj.email);
@@ -221,7 +227,10 @@ function Navbar() {
         document.getElementById("signInDiv").hidden = true;
   
         doesExist();
-        openModal(); //opens first time account creation popup
+        if (!exists){
+          openModal(); //opens first time account creation popup
+        }
+        
       } else {
         console.log("User's email is not a gatorlink");
         openError(); //opens invalid sign-in popup
@@ -287,7 +296,7 @@ function Navbar() {
       <nav className='navbar'>
         <div className='navbar-container'>
           <Link to="/home">
-            <img className='navbar-logo' src={UFlogo} width="200" height="150" />
+            <img className='navbar-logo' src={UFlogo} width="200" height="150" onClick={openModal} />
           </Link>
         
           <div className='menu-icon' onClick={handleClick}>
