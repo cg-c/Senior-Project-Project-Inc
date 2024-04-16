@@ -130,10 +130,6 @@ export default function MyTeam() {
                         <h3 className="descText leaveText">Do you want to leave the team?</h3>
                         <br></br>
                         <button className="eventButton yesButton" onClick={leaveTeam}>Yes</button>
-                            {/* yes button:
-                                redirect and refresh the page
-                                Jonathan: delete user from the team
-                            */}
                         <button className="eventButton" onClick={()=>setLeavePopup(false)}>No</button>
                     </Model>
                 </body>
