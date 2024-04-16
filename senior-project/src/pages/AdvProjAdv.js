@@ -34,6 +34,10 @@ export default function AdvProjAdv() {
           }
         };
 
+        const joinTeam = async event => {
+          
+        }
+
         function displaySlots(taken, cap) {
           const slots = []
           for (let i = 0; i < taken; i++) {
@@ -99,7 +103,6 @@ export default function AdvProjAdv() {
                 <div className="flex-container projCard">
                   <div className="advCar1" key={item}>{item.NAME}</div>
                   <div className="advCar2" key={item}>{displaySlots(item.FILLED, item.CAPACITY)}</div>
-                  {/* Use map/array to push the rect divs --> display */}
                   <div className="advCar3"><div className="downArrow" /></div>
                 </div>
                 </button>   
@@ -140,11 +143,8 @@ export default function AdvProjAdv() {
                     <h2 className="descHeader">Contact</h2>
                     <hr />
                     <p className="descText">{displayConact}</p>
-                    <JoinButton />
+                    <button className="joinButton" onClick={()=>joinTeam()}>Join</button>
                   </div>
-                    {/*
-                        Jonathan: load in description of selected project 
-                    */}
                 </Model>
             </InfiniteScroll>
             
