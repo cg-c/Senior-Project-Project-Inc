@@ -29,12 +29,17 @@ function App() {
           <Route path="/FAQ" element={<FAQ />} />
 
           {/* Need to be logged in */}
+          {/* STUDENTS */}
           <Route path="/projectpitch" element={<ProjPitch />} />
           <Route path="/advisorsprojects" element={<AdvProjStu />} />
-          <Route path="/addadvisorsprojects" element={<AdvProjAdv />} />
           <Route path="/myteam" element={<MyTeam />} />
+          
+          {/* ADVISORS */}
+          <Route path="/addadvisorsprojects" element={<AdvProjAdv />} />
           <Route path ="/mystudents" element={<AdvTeam />} />
           <Route path="/grades" element={<Grades />} />
+
+          {/* ADMIN */}
           <Route path="/directory" element={<Directory />} />
 
           {/* Error Page */}

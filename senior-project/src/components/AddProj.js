@@ -159,8 +159,9 @@ export default function AddProj() {
               body: JSON.stringify(newProj)
             });
             if (response.ok) {
-              console.log('Data sent successfully');
-              navigate(0);
+                document.getElementById("projPitch").reset();
+                console.log('Data sent successfully');
+                navigate(0);
               // Clear form data after successful submission
             } else {
               console.error('Failed to send data');
@@ -176,7 +177,7 @@ export default function AddProj() {
         <div className="form">
             <h1 className="formTitle">Pitch Your Project</h1>
             <hr />
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} id="projPitch" >
                 <div className="addCar1">
                     <label className="addFormReq">Project Name:<br />
                         <input type="text" id="projName" value={selectedName} onChange={(e) => setSlectedName(e.target.value)} required />

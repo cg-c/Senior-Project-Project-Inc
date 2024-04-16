@@ -121,9 +121,6 @@ export default function AdvProjStu() {
                     <p className="descText">{displayConact}</p>
                     <JoinButton />
                   </div>
-                    {/*
-                        Jonathan: load in description of selected project 
-                    */}
                 </Model>
             </InfiniteScroll>
             
