@@ -183,7 +183,7 @@ export default function AdvTeam() {
             return (
                 <body className="signedIn">
                     <div className="page-title">
-                        <div className="text-wrapper teamWarn">Please Join a Team</div>
+                        <div className="text-wrapper teamWarn">No Teams to Show</div>
                     </div>
                 </body>
             );
