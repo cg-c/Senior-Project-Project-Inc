@@ -1,3 +1,4 @@
+
 body .signedIn {
     background-color: rgba(7, 16, 49, 1);
     color:#ffffff;
@@ -225,6 +226,7 @@ body .signedIn {
     color: rgb(59, 59, 59);
     font-size: 1.2rem;
     margin-bottom: 1%;
+    font-family: "DM Sans";
 }
 
 .leaveText {
