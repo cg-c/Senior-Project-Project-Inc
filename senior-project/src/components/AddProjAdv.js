@@ -203,7 +203,7 @@ export default function AddProj() {
                 </div>
                 <div className="addCar6">
                     <label className="addFormReq" for="text" >Contact:<br />
-                        <input type="text" id="contact" value={selectedEmail} onChange={(e) => setSelectedEmail(e.target.value)} required />
+                        <input type="text" id="contact" value={selectedEmail} onChange={(e) => setSelectedEmail(e.target.value)} />
                     </label>
                 </div>
                 <input type="submit" className="eventButton" onSubmit={()=>handleSubmit()} />

@@ -175,9 +175,6 @@ export default function ProjPitch() {
                     <p className="descText">{displayConact}</p>
                     <button className="joinButton" onClick={()=>joinTeam()}>Join</button>
                   </div>
-                    {/*
-                        Jonathan: load in the descriptions of projects using Description template
-                    */}
                 </Model>
 
             </InfiniteScroll>
