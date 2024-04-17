@@ -19,6 +19,8 @@ export default function AdvProjStu() {
     const [ displayConact, setDisplacyContact ] = useState([]);
     const [ displayType, setDisplayType ] = useState([]);
     const [ displayLang, setDisplayLang ] = useState([]);
+    const [ numSlots, setNumSlots ] = useState(-1);
+    const [ numCap, setNumCap ] = useState(-1);
       
         useEffect(() => {
           fetchData();
@@ -35,7 +37,10 @@ export default function AdvProjStu() {
         };
 
         function displaySlots(taken, cap) {
-          const slots = []
+          const slots = [];
+          let numSlots = taken;
+          let numCap = cap;
+
           for (let i = 0; i < taken; i++) {
             slots.push(<li className="noBullets"><div className="filledRect rectCar1" /></li>)
           }
@@ -51,14 +56,25 @@ export default function AdvProjStu() {
           );
       }
 
-      function DispayDes(description, contact, type, language) {
+      const joinTeam = async event => {
+
+      }
+
+      function DispayDes(description, contact, type, language, slots, cap) {
         setDisplayDes(description);
         setDisplacyContact(contact);
         setDes(true);
         setDisplayType(type);
         setDisplayLang(language);
+        setNumSlots(slots);
+        setNumCap(cap);
       }
-      
+
+      const ReturnButton = () => {
+        if (numSlots < numCap) {
+          return <button className="joinButton" onClick={()=>joinTeam()}>Join</button>
+        }
+      }
 
     return (
         <body className="signedIn">
@@ -75,7 +91,7 @@ export default function AdvProjStu() {
                 loader={<p>Loading...</p>}
             >
                 {projects.map(item => (
-                <button className="clickDes" onClick={()=>DispayDes(item.DESCINPUT, item.CONTACT, item.TYPE, item.LANGUAGE)}>
+                <button className="clickDes" onClick={()=>DispayDes(item.DESCINPUT, item.CONTACT, item.TYPE, item.LANGUAGE, item.FILLED, item.CAPACITY)}>
                 <div className="flex-container projCard">
                   <div className="advCar1" key={item}>{item.NAME}</div>
                   <div className="advCar2" key={item}>{displaySlots(item.FILLED, item.CAPACITY)}</div>
@@ -119,7 +135,7 @@ export default function AdvProjStu() {
                     <h2 className="descHeader">Contact</h2>
                     <hr />
                     <p className="descText">{displayConact}</p>
-                    <JoinButton />
+                    {ReturnButton()}
                   </div>
                 </Model>
             </InfiniteScroll>

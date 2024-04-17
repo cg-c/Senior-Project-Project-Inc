@@ -16,12 +16,15 @@ export default function ProjPitch() {
     const [ des, setDes ] = useState(false);
     const [projects, setData] = useState([]);
     const [ displayDes, setDisplayDes ] = useState([]);
-    const [ displayConact, setDisplacyContact ] = useState([]);
+    const [ displayConact, setDisplayContact ] = useState([]);
     const [ displayPID, setDisplayPID ] = useState(0);
     const [join, setJoin] = useState({
       email: null,
       pID: null
     })
+
+    const [ numSlots, setNumSlots ] = useState(-1);
+    const [ numCap, setNumCap ] = useState(-1);
 
     const navigate = useNavigate();
       
@@ -73,7 +76,8 @@ export default function ProjPitch() {
     }
 
     function displaySlots(taken, cap) {
-      const slots = []
+      const slots = [];
+
       for (let i = 0; i < taken; i++) {
         slots.push(<li className="noBullets"><div className="filledRect rectCar1" /></li>)
       }
@@ -89,11 +93,20 @@ export default function ProjPitch() {
       );
     }
 
-    function DispayDes(description, contact, pID) {
+    function DispayDes(description, contact, pID, slots, cap) {
       setDisplayDes(description);
-      setDisplacyContact(contact);
+      setDisplayContact(contact);
       setDisplayPID(pID);
       setDes(true);
+      setNumSlots(slots);
+      setNumCap(cap);
+
+    }
+
+    const ReturnButton = () => {
+      if (numSlots < numCap) {
+        return <button className="joinButton" onClick={()=>joinTeam()}>Join</button>;
+      }
     }
 
     return (
@@ -133,7 +146,7 @@ export default function ProjPitch() {
                 loader={<p>Loading...</p>}
             >
                 {projects.map(item => (
-                <button className="clickDes" onClick={()=>DispayDes(item.DESCINPUT, item.CONTACT, item.PID)}>
+                <button className="clickDes" onClick={()=>DispayDes(item.DESCINPUT, item.CONTACT, item.PID, item.FILLED, item.CAPACITY)}>
                 <div className="flex-container projCard">
                   <div className="stuCar1" key={item}>{item.NAME}</div>
                   <div className="stuCar2" key={item}>{displaySlots(item.FILLED, item.CAPACITY)}</div>
@@ -173,7 +186,7 @@ export default function ProjPitch() {
                     <h2 className="descHeader">Contact</h2>
                     <hr />
                     <p className="descText">{displayConact}</p>
-                    <button className="joinButton" onClick={()=>joinTeam()}>Join</button>
+                    {ReturnButton()}
                   </div>
                 </Model>
 
