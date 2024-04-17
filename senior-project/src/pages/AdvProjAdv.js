@@ -34,10 +34,6 @@ export default function AdvProjAdv() {
           }
         };
 
-        const joinTeam = async event => {
-          
-        }
-
         function displaySlots(taken, cap) {
           const slots = []
           for (let i = 0; i < taken; i++) {
@@ -143,7 +139,6 @@ export default function AdvProjAdv() {
                     <h2 className="descHeader">Contact</h2>
                     <hr />
                     <p className="descText">{displayConact}</p>
-                    <button className="joinButton" onClick={()=>joinTeam()}>Join</button>
                   </div>
                 </Model>
             </InfiniteScroll>

@@ -4,6 +4,7 @@
   "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
+    "@fontsource/dm-sans": "^5.0.20",
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
     "@testing-library/jest-dom": "^5.17.0",

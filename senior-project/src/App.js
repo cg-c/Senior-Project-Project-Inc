@@ -14,6 +14,10 @@ import Directory from './pages/Directory';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+
+import "@fontsource/dm-sans"; // Defaults to weight 400
+import "@fontsource/dm-sans/400.css"; // Specify weight
+import "@fontsource/dm-sans/400-italic.css"; // Specify weight and style
 /*global google*/
 
 function App() {
