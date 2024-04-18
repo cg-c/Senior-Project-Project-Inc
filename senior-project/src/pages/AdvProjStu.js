@@ -57,7 +57,12 @@ export default function AdvProjStu() {
       }
 
       const joinTeam = async event => {
+        document.getElementById("JoinButton").style.visibility="hidden";
 
+
+
+
+        document.getElementById("JoinButton").style.visibility="visible";
       }
 
       function DispayDes(description, contact, type, language, slots, cap) {
@@ -72,7 +77,7 @@ export default function AdvProjStu() {
 
       const ReturnButton = () => {
         if (numSlots < numCap) {
-          return <button className="joinButton" onClick={()=>joinTeam()}>Join</button>
+          return <button className="joinButton" onClick={()=>joinTeam()} id="JoinButton" >Join</button>
         }
       }
 
