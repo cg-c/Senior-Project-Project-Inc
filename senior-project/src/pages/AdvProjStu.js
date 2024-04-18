@@ -6,6 +6,7 @@ import Model from "react-modal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Description from "../components/Description";
 import JoinButton from "../components/JoinButton";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../components/style.css"
 
@@ -21,6 +22,14 @@ export default function AdvProjStu() {
     const [ displayLang, setDisplayLang ] = useState([]);
     const [ numSlots, setNumSlots ] = useState(-1);
     const [ numCap, setNumCap ] = useState(-1);
+    const [ displayPID, setDisplayPID ] = useState(0);
+    const [join, setJoin] = useState({
+      email: null,
+      pID: null
+    });
+
+    const navigate = useNavigate();
+
       
         useEffect(() => {
           fetchData();
@@ -57,10 +66,32 @@ export default function AdvProjStu() {
       }
 
       const joinTeam = async event => {
+        join.email = localStorage.getItem("email");
+        //join.email = 'masterbear123@ufl.edu';
 
-      }
+        join.pID = displayPID;
 
-      function DispayDes(description, contact, type, language, slots, cap) {
+        try {
+          const response = await fetch('/student/join/project', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(join)
+          });
+          if (response.ok) {
+            console.log('Data sent successfully');
+            navigate(0);
+            // Clear form data after successful submission
+          } else {
+            console.error('Failed to send data');
+          }
+        } catch (error) {
+          console.error('Error sending data:', error);
+        }
+      };
+
+      function DispayDes(description, contact, type, language, slots, cap, pID) {
         setDisplayDes(description);
         setDisplacyContact(contact);
         setDes(true);
@@ -68,6 +99,7 @@ export default function AdvProjStu() {
         setDisplayLang(language);
         setNumSlots(slots);
         setNumCap(cap);
+        setDisplayPID(pID);
       }
 
       const ReturnButton = () => {
@@ -91,7 +123,7 @@ export default function AdvProjStu() {
                 loader={<p>Loading...</p>}
             >
                 {projects.map(item => (
-                <button className="clickDes" onClick={()=>DispayDes(item.DESCINPUT, item.CONTACT, item.TYPE, item.LANGUAGE, item.FILLED, item.CAPACITY)}>
+                <button className="clickDes" onClick={()=>DispayDes(item.DESCINPUT, item.CONTACT, item.TYPE, item.LANGUAGE, item.FILLED, item.CAPACITY, item.PID)}>
                 <div className="flex-container projCard">
                   <div className="advCar1" key={item}>{item.NAME}</div>
                   <div className="advCar2" key={item}>{displaySlots(item.FILLED, item.CAPACITY)}</div>
