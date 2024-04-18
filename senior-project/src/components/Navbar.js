@@ -134,6 +134,7 @@ function Navbar() {
         console.log(jsonData);
         setUserData(jsonData); //TODO: change later
         setExists(true);
+        console.log("setting exists to true");
         //advisorOrStud();
         // Clear form data after successful submission
       } else {
@@ -237,7 +238,7 @@ function Navbar() {
     google.accounts.id.prompt();
     */
 
-    function handleLogin(response) {
+    const handleLogin = async (response) => {
       closeMobileMenu();
       console.log("Encoded JWT ID Token: " + response.credential);
       var userObj = jwtDecode(response.credential);
@@ -251,7 +252,8 @@ function Navbar() {
   
         document.getElementById("signInDiv").hidden = true;
   
-        doesExist();
+        const response = await doesExist();
+        console.log("exists: " + exists);
         if (!exists){
           openModal(); //opens first time account creation popup
         }

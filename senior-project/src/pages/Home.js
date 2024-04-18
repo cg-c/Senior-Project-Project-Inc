@@ -17,7 +17,7 @@ export default function Home() {
                 <p>1. View the Course Syllabus: <a className="text-blue-600" href="https://docs.google.com/document/d/1aD1e59oZ9O2pif9JBqHOFLR86eLSLB8vZ4sgEAS2Nx0/edit" target="_blank"> Here </a></p>
                 <p>2. Watch the introductory video (Click <a className="text-blue-600" href="https://mediasite.video.ufl.edu/Mediasite/Play/8ebcb534f140433296041170863ba8631d" target="_blank"> "Watch Intro" </a> above) </p>
                 <p>3. Click the <strong>Google Sign-in button</strong> in the top right of this page </p>
-                <p> (You will need to sign in with your gatorlink account) </p>
+                <p> (You will need to sign in with your GatorLink account) </p>
             </div>
                 {localStorage.getItem("account") === types[0] &&
                 <div>
