@@ -8,7 +8,7 @@ function HeroSection() {
   return (
     <div className='hero-container'> 
     
-      <h1 className='rounded-md bg-black/15 px-4 py-2 text-5xl'>SENIOR PROJECT</h1>
+      <h1 className='rounded-md font-serif bg-black/15 px-4 py-2 text-5xl'>SENIOR PROJECT</h1>
 
       <div className='py-8'>
         <a href="https://mediasite.video.ufl.edu/Mediasite/Play/8ebcb534f140433296041170863ba8631d" target="_blank">

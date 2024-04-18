@@ -95,16 +95,22 @@ function Navbar() {
   const advisorOrStud = () => {
     if(userData.length == 0) {
       // set first time sign in
+      //openModal();
       setExists(false);
     }
     else if(userData[0].EMAIL == null) {
       // set advisor
       setExists(true);
+      setAccount = types[1];
     }
     else {
       // set student
       setExists(true);
+      setAccount = types[0];
+      //localStorage.setItem("account", types[1]);
     }
+
+    localStorage.setItem("account", account);
   };
 
 
@@ -125,7 +131,7 @@ function Navbar() {
         const jsonData = await response.json();
         console.log(jsonData);
         setUserData(jsonData); //TODO: change later
-        advisorOrStud();
+        //advisorOrStud();
         // Clear form data after successful submission
       } else {
         console.error('Failed to send data');
@@ -191,6 +197,8 @@ function Navbar() {
   function handleSignOut(event) {
     setUser({});
     localStorage.removeItem("email");
+    localStorage.removeItem("account");
+    localStorage.removeItem("googleCredential");
     document.getElementById("signInDiv").hidden = false;
   }
 
@@ -244,6 +252,9 @@ function Navbar() {
         if (!exists){
           openModal(); //opens first time account creation popup
         }
+        else{
+          advisorOrStud(); //sets the account type
+        }
         
       } else {
         console.log("User's email is not a gatorlink");
@@ -277,7 +288,7 @@ function Navbar() {
     const cachedCredential = localStorage.getItem('googleCredential');
     const cachedAccount = localStorage.getItem('account');
     console.log("cached account: ", cachedAccount);
-    if (cachedCredential) {
+    if (cachedCredential && cachedAccount) {
       // If there's a cached credential, try to authenticate silently
       google.accounts.id.initialize({
         client_id: "429389368839-m58qo46gt4olevpripa856uvrlnl8arb.apps.googleusercontent.com",
