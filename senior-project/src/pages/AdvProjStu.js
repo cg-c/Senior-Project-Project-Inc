@@ -9,6 +9,7 @@ import JoinButton from "../components/JoinButton";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../components/style.css"
+/*global google*/
 
 export default function AdvProjStu() {
 

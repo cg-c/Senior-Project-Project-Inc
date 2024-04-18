@@ -8,6 +8,7 @@ import Description from "../components/Description";
 import JoinButton from "../components/JoinButton";
 import { useState, useEffect } from "react";
 import "../components/style.css"
+/*global google*/
 
 export default function AdvProjAdv() {
 

@@ -3,6 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Model from "react-modal";
 import { useState } from "react";
 import "../components/style.css";
+/*global google*/
 
 export default function Directory() {
 

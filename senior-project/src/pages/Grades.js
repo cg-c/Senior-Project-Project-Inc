@@ -1,4 +1,5 @@
 import "../components/style.css"
+/*global google*/
 
 
 export default function Grades() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import HeroSection from '../components/HeroSection';
+/*global google*/
 
 const types = ['Student', 'Advisor', 'Admin', 'Default']
 
