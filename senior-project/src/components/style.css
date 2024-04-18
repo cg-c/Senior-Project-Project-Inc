@@ -390,7 +390,7 @@ select option[value=""] {
     background-color: #ad0707;
     color: #f5f6f7;
     border: none;
-    font-size: 30px;
+    font-size: 1.6rem;
     font-family: 'Poppins';
     border-radius: 10px;
     height: 60px;
