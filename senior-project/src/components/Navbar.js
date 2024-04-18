@@ -131,6 +131,7 @@ function Navbar() {
         const jsonData = await response.json();
         console.log(jsonData);
         setUserData(jsonData); //TODO: change later
+        setExists(true);
         //advisorOrStud();
         // Clear form data after successful submission
       } else {
@@ -352,7 +353,7 @@ function Navbar() {
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Projects
+                Advisor
               </Link>
             </li>
             }

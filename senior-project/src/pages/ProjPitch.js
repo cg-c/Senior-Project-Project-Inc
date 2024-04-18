@@ -21,7 +21,7 @@ export default function ProjPitch() {
     const [join, setJoin] = useState({
       email: null,
       pID: null
-    })
+    });
 
     const [ numSlots, setNumSlots ] = useState(-1);
     const [ numCap, setNumCap ] = useState(-1);
