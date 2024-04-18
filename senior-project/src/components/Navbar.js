@@ -362,7 +362,7 @@ function Navbar() {
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Projects
+                Advisor
               </Link>
             </li>
             }

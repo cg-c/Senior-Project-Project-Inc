@@ -18,6 +18,10 @@ import Footer from './components/Footer';
 import "@fontsource/dm-sans"; // Defaults to weight 400
 import "@fontsource/dm-sans/400.css"; // Specify weight
 import "@fontsource/dm-sans/400-italic.css"; // Specify weight and style
+import "@fontsource/poppins"; // Defaults to weight 400
+import "@fontsource/poppins/400.css"; // Specify weight
+import "@fontsource/poppins/400-italic.css"; // Specify weight and style
+
 /*global google*/
 
 function App() {

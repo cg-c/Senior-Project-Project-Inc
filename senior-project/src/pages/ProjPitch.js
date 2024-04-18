@@ -44,6 +44,7 @@ export default function ProjPitch() {
         };
 
         const joinTeam = async event => {
+          document.getElementById("JoinButton").style.visibility="hidden";
           join.email = localStorage.getItem("email");
           //join.email = 'masterbear123@ufl.edu';
 
@@ -62,6 +63,7 @@ export default function ProjPitch() {
               navigate(0);
               // Clear form data after successful submission
             } else {
+              document.getElementById("JoinButton").style.visibility="visible";
               console.error('Failed to send data');
             }
           } catch (error) {
@@ -106,7 +108,7 @@ export default function ProjPitch() {
 
     const ReturnButton = () => {
       if (numSlots < numCap) {
-        return <button className="joinButton" onClick={()=>joinTeam()}>Join</button>;
+        return <button className="joinButton" onClick={()=>joinTeam()} id="JoinButton">Join</button>;
       }
     }
 
