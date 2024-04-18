@@ -3,6 +3,7 @@ import { MultiSelect } from "react-multi-select-component";
 import { useNavigate } from "react-router-dom";
 import "./style.css"
 import CloseButton from "./CloseButton";
+/*global google*/
 
 const options = [
     { label: "ABAP", value: "ABAP" },

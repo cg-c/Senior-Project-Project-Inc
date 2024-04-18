@@ -42,6 +42,8 @@ function Navbar() {
     // Add more fields if needed
   });
 
+  const google = window.google;
+
 
   //refresh the page 
   function refreshPage(){ 
@@ -289,6 +291,7 @@ function Navbar() {
     const cachedCredential = localStorage.getItem('googleCredential');
     const cachedAccount = localStorage.getItem('account');
     console.log("cached account: ", cachedAccount);
+    try {
     if (cachedCredential && cachedAccount) {
       // If there's a cached credential, try to authenticate silently
       google.accounts.id.initialize({
@@ -305,11 +308,17 @@ function Navbar() {
       // If no cached credential, load Google Sign-In normally
       loadGoogleSignIn();
     }
+  
 
     google.accounts.id.renderButton(
       document.getElementById("signInDiv"),
       { theme: "outline", size: "large" }
     );
+
+  }catch(error) {
+    console.log(error);
+    refreshPage();
+  }
 
     //menu stuff
     showButton();

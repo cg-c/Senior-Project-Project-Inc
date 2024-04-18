@@ -1,4 +1,5 @@
 import Header from "../components/Header";
+/*global google*/
 
 
 export default function NoPage() {

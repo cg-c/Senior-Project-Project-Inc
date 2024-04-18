@@ -8,6 +8,7 @@ import JoinButton from "../components/JoinButton";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CloseButton from "../components/CloseButton";
+/*global google*/
 
 export default function ProjPitch() {
 

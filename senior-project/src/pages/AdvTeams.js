@@ -2,6 +2,7 @@ import StuMembers from "../components/StuMembers";
 import Model from "react-modal";
 import { useState, useEffect } from "react";
 import "../components/style.css";
+/*global google*/
 
 
 export default function AdvTeam() {

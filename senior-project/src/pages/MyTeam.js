@@ -3,6 +3,7 @@ import Model from "react-modal";
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import "../components/style.css";
+/*global google*/
 
 
 export default function MyTeam() {
