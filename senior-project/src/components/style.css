@@ -107,32 +107,37 @@ body .signedIn {
 /* FLEX FOR PAGE SUBHEADINGS*/
 .adv1-title {
     flex: 3;
-    margin-left: 7%;
+    margin-left: 9%;
 }
 
 .adv2-title {
     flex: 2;
+    margin-right: 3%;
 }
 
 .adv3-title {
     flex: 1;
+    margin-right: 4%;
 }
 
 .pitch-title1 {
     flex: 2;
-    margin-left: 7%;
+    margin-left: 9%;
 }
 
 .pitch-title2 {
     flex: 2;
+    margin-right: 5%;
 }
 
 .pitch-title3 {
     flex: 1;
+    margin-right: 3%;
 }
 
 .pitch-title4 {
     flex: 1;
+    margin-right: 3%;
 }
 
 .dir-title1, .dir-title2, .dir-title3, .dir-title4, .dir-title5 {
@@ -166,6 +171,7 @@ body .signedIn {
 
 .advCar1 {
     flex: 3;
+    margin-left: 2%;
 }
 
 .advCar2 {
