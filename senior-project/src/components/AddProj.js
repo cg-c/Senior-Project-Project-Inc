@@ -2,10 +2,11 @@ import { useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import { useNavigate } from "react-router-dom";
 import "./style.css"
-import CloseButton from "./CloseButton";
 /*global google*/
 
-const options = [
+
+{/* Coding Language Options */}
+const langOptions = [
     { label: "ABAP", value: "ABAP" },
     { label: "ActionScript", value: "ActionScript" },
     { label: "Ada", value: "Ada" },
@@ -102,6 +103,7 @@ const options = [
     { label: "Other", value: "Other" }
 ]
 
+{/* App Type Options */}
 const appType = [
     {label: "AI/ML", value: "AI/ML"},
     {label: "Bioinfomatics/Health", value: "Bioinfomatics/Health"},
@@ -140,7 +142,7 @@ export default function AddProj() {
 
     const navigate = useNavigate();
 
-
+    {/* Sends Form Data to Backend */}
     const handleSubmit = async event => {
         event.preventDefault();
         document.getElementById("SubmitButton").style.visibility="hidden";
@@ -177,6 +179,7 @@ export default function AddProj() {
           }
     }
 
+    {/* Student Form */}
     return (
         <div className="form">
             <h1 className="formTitle">Pitch Your Project</h1>
@@ -189,7 +192,7 @@ export default function AddProj() {
                 </div>
                 <div className="addCar2">
                     <h4 className="addFormReq">Select Programming Language(s):<br /></h4>
-                    <MultiSelect value={selectedLang} options={options} onChange={setSelectedLang} hasSelectAll={false} id="languages" />
+                    <MultiSelect value={selectedLang} options={langOptions} onChange={setSelectedLang} hasSelectAll={false} id="languages" />
                 </div>
                 <div className="addCar3">
                     <h4 className="addFormReq">Select Application Type(s):<br /></h4>

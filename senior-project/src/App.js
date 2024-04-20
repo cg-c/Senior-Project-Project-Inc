@@ -36,7 +36,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/FAQ" element={<FAQ />} />
 
-          {/* Need to be logged in */}
+          {/* 
+            Need to be logged in
+            To Do: make sure only people in those roles can access those routes
+           */}
           {/* STUDENTS */}
           <Route path="/projectpitch" element={<ProjPitch />} />
           <Route path="/advisorsprojects" element={<AdvProjStu />} />

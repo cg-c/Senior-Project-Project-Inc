@@ -322,19 +322,25 @@ select option[value=""] {
 
 .add {
     background-color: rgba(34, 136, 76, 1);
-    color: #f5f6f7;
+    margin: auto;
     border: none;
-    font-size: 55px;
-    font-family: 'Poppins';
     border-radius: 10px;
     right: 0;
     height: 74px;
     width: 74px;
-    text-align: center;
-    align-content: center;
     margin-top: 20px;
     margin-right: 20px;
     position: absolute;
+    text-align: center;
+}
+
+.addText {
+    display: block;
+    margin: auto;
+    color: #f5f6f7;
+    font-size: 45px;
+    font-weight: 600;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .joinButton {
@@ -351,19 +357,21 @@ select option[value=""] {
 
 .closeButton {
     background-color: rgba(228, 130, 73, 1);
-    color: black;
     border: none;
-    font-size: 30px;
-    border-radius: 15px;
-    height: 60px;
+    border-radius: 10px;
+    height: 50px;
+    width: 50px;
     position: relative;
-    width: 60px;
-    height: 54px;
     float: right;
     /* left: 3px;
     position: absolute;
     top: 3px;
     width: 54px; */
+}
+
+.closeText {
+    color: black;
+    font-size: 25px;
 }
 
 .deleteButton {
@@ -444,6 +452,23 @@ select option[value=""] {
     margin: 2px;
 }
 
+.clearRect {
+    background-color: transparent;
+    height: 30px;
+    left: 555px;
+    top: 59px;
+    width: 30px;
+    margin: 2px;
+}
+
+.xSlot {
+    color: rgba(217, 217, 217, 1);
+    font-weight: bolder;
+    font-size: 1.7rem;
+    align-content: center;
+    text-align: center;
+}
+
 .filledRect {
     background-color: rgba(34, 136, 76, 1);
     height: 30px;
@@ -461,4 +486,12 @@ select option[value=""] {
     border-top: 29px solid rgba(217, 217, 217, 1);
     margin-right: 5vw;
     float: right;
+}
+
+.gradeSite {
+    height: 150vh;
+    width: 99vw;
+    display: block;
+    align-items: center;
+    margin: auto;
 }
