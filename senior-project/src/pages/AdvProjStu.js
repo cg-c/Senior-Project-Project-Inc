@@ -61,6 +61,8 @@ export default function AdvProjStu() {
   {/* Student joins advisor's project - sends data to backend */}  
   const joinTeam = async event => {
     document.getElementById("JoinButton").style.visibility="hidden";
+    join.email = localStorage.getItem("email");
+    join.pID = displayPID;
 
     try {
       const response = await fetch('/student/join/project', {
