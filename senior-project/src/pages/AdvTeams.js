@@ -25,8 +25,8 @@ export default function AdvTeam() {
     
       const getTeam = async event => {
         const emailJSON = {
-            //email: localStorage.getItem("email")
-            email: 'john@ufl.edu'
+            email: localStorage.getItem("email")
+            //email: 'john@ufl.edu'
         }
 
         try {
@@ -53,8 +53,8 @@ export default function AdvTeam() {
 
       const getProjects = async event => {
         const emailJSON = {
-            //email: localStorage.getItem("email")
-            email: 'john@ufl.edu'
+            email: localStorage.getItem("email")
+            //email: 'john@ufl.edu'
         }
 
         try {
