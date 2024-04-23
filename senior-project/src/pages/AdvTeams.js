@@ -24,8 +24,8 @@ export default function AdvTeam() {
     
       const getTeam = async event => {
         const emailJSON = {
-            //email: localStorage.getItem("email")
-            email: 'john@ufl.edu'
+            email: localStorage.getItem("email")
+            //email: 'john@ufl.edu'
         }
 
         try {
@@ -52,8 +52,8 @@ export default function AdvTeam() {
 
       const getProjects = async event => {
         const emailJSON = {
-            //email: localStorage.getItem("email")
-            email: 'john@ufl.edu'
+            email: localStorage.getItem("email")
+            //email: 'john@ufl.edu'
         }
 
         try {
@@ -179,8 +179,9 @@ export default function AdvTeam() {
                             <h4 className="addFormReq">Which team do you want to finalize:<br /></h4>
                             <select name="teamSelect" id="teamSelect">
                                 <option value="" selected disabled hidden>Select...</option>
-                                <option></option>
-                                {/* PULL OPTIONS FROM DATABASE*/}
+                                {projects.map(item => (
+                                  <option key={item.PID}>{item.NAME}</option>
+                                ))}
                             </select>
                             <div className="space" />
                             <input type="submit" className="eventButton" onSubmit={()=>handleSubmit()} />
