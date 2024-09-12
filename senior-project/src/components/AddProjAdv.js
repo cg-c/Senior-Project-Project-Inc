@@ -2,9 +2,10 @@ import { useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import { useNavigate } from "react-router-dom";
 import "./style.css"
-import CloseButton from "./CloseButton";
 
-const options = [
+{/* Coding Language Options */}
+const langOptions = [
+    { label: "Any", value: "Any" },
     { label: "ABAP", value: "ABAP" },
     { label: "ActionScript", value: "ActionScript" },
     { label: "Ada", value: "Ada" },
@@ -101,7 +102,9 @@ const options = [
     { label: "Other", value: "Other" }
 ]
 
+{/* App Type Options */}
 const appType = [
+    {label: "Advising", value: "Advising"},
     {label: "AI/ML", value: "AI/ML"},
     {label: "Bioinfomatics/Health", value: "Bioinfomatics/Health"},
     {label: "Data Analysis", value: "Data Analysis"},
@@ -140,8 +143,11 @@ export default function AddProj() {
     const navigate = useNavigate();
 
 
+    {/* Sends form to backend */}
     const handleSubmit = async event => {
         event.preventDefault();
+        document.getElementById("SubmitButton").style.visibility="hidden";
+
         newProj.LANGUAGES = selectedLang;
         newProj.TYPE = selectedAppType;
         newProj.NAME = selectedName;
@@ -152,11 +158,11 @@ export default function AddProj() {
 
         try {
             const response = await fetch('/advisor/create/project', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(newProj)
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newProj)
             });
             if (response.ok) {
                 document.getElementById("advPitch").reset();
@@ -164,15 +170,17 @@ export default function AddProj() {
                 navigate(0);
               // Clear form data after successful submission
             } else {
-              console.error('Failed to send data');
-              throw new Error();
+                document.getElementById("SubmitButton").style.visibility="visible";
+                console.error('Failed to send data');
+                throw new Error();
             }
           } catch (error) {
-            console.error('Error sending data:', error);
-            setErrorMess(true);
+                console.error('Error sending data:', error);
+                setErrorMess(true);
           }
     }
 
+    {/* Advisor Form */}
     return (
         <div className="form">
             <h1 className="formTitle">Pitch Your Project</h1>
@@ -185,7 +193,7 @@ export default function AddProj() {
                 </div>
                 <div className="addCar2">
                     <h4 className="addFormReq">Select Programming Language(s):<br /></h4>
-                    <MultiSelect value={selectedLang} options={options} onChange={setSelectedLang} hasSelectAll={false} id="languages" />
+                    <MultiSelect value={selectedLang} options={langOptions} onChange={setSelectedLang} hasSelectAll={false} id="languages" />
                 </div>
                 <div className="addCar3">
                     <h4 className="addFormReq">Select Application Type(s):<br /></h4>
@@ -193,7 +201,7 @@ export default function AddProj() {
                 </div>
                 <div className="addCar4">
                     <label for="quantity" className="addFormReq">Max Number of Members:<br />
-                        <input type="number" id="quantity" min="2" max="5" value={selectedCap} onChange={(e) => setSelectedCap(e.target.value)} required />
+                        <input type="number" id="quantity" min="1" max="5" value={selectedCap} onChange={(e) => setSelectedCap(e.target.value)} required />
                     </label>
                 </div>
                 <div className="addCar5">
@@ -207,7 +215,7 @@ export default function AddProj() {
                         <input type="text" id="contact" value={selectedEmail} onChange={(e) => setSelectedEmail(e.target.value)} />
                     </label>
                 </div>
-                <input type="submit" className="eventButton" onSubmit={()=>handleSubmit()} />
+                <input type="submit" className="eventButton" onSubmit={()=>handleSubmit()} id="SubmitButton" />
             </form>
             {errorMess == true && <p className="bottom">Unsuccessful Submission</p>}
         </div>

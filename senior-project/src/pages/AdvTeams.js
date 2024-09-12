@@ -1,7 +1,7 @@
-import StuMembers from "../components/StuMembers";
 import Model from "react-modal";
 import { useState, useEffect } from "react";
 import "../components/style.css";
+/*global google*/
 
 
 export default function AdvTeam() {
@@ -16,7 +16,7 @@ export default function AdvTeam() {
     });
 
 
-
+    {/* Get data from backend */} 
     useEffect(() => {
         getTeam();
         getProjects();
@@ -52,8 +52,8 @@ export default function AdvTeam() {
 
       const getProjects = async event => {
         const emailJSON = {
-            //email: localStorage.getItem("email")
-            email: 'john@ufl.edu'
+            email: localStorage.getItem("email")
+            //email: 'john@ufl.edu'
         }
 
         try {
@@ -77,6 +77,7 @@ export default function AdvTeam() {
         }
       };
 
+      {/* Finalize Team - Sends data to backend */} 
       const finalizeProject = async event => {
       
         try {
@@ -100,6 +101,7 @@ export default function AdvTeam() {
         }
       };
 
+    {/* Check if advisor has a team */} 
     function checkedInTeam() {
 
         if(team.length > 1 || team.pID != null) {
@@ -112,6 +114,7 @@ export default function AdvTeam() {
         }
     }
 
+
     const handleSubmit = (event) => {
         event.preventDefault();
         {/* 
@@ -123,21 +126,26 @@ export default function AdvTeam() {
     }
 
 
+    {/* 
+      if advisor has a team --> shows student and contact info
+      else --> tells them theres nothing to show
+  */} 
     if (checkedInTeam()) {
             return (
                 <body className="signedIn">
+
+                    {/* Headers */} 
                     <div className="page-title">
                         <div className="text-wrapper">My Team</div>
-                        {/* Should it be the name of the team? */}
                     </div>
-                    
-
                     <h2 className="flex-title center">
                         <div className="team-title1">Name</div>
                         <div className="team-title2">Team</div>
                         <div className="team-title3">Contact</div>
                     </h2>
                     <hr />
+
+                    {/* Displays each person */} 
                     {team.map(item => (
                       <div className="memFlex">
                         <div className="memCar1" key = {item.EMAIL}>{item.STUDENTNAME}</div>
@@ -146,6 +154,8 @@ export default function AdvTeam() {
                       </div>
                     ))}
                     <button className="leaveButton" onClick={()=> setLeavePopup(true)}>Finalize Team</button>
+                    
+                    {/* Finalize team popup */} 
                     <Model isOpen={leavePopUp} style={{
                         overlay: {
                         position: 'fixed',
@@ -169,8 +179,9 @@ export default function AdvTeam() {
                             <h4 className="addFormReq">Which team do you want to finalize:<br /></h4>
                             <select name="teamSelect" id="teamSelect">
                                 <option value="" selected disabled hidden>Select...</option>
-                                <option></option>
-                                {/* PULL OPTIONS FROM DATABASE*/}
+                                {projects.map(item => (
+                                  <option key={item.PID}>{item.NAME}</option>
+                                ))}
                             </select>
                             <div className="space" />
                             <input type="submit" className="eventButton" onSubmit={()=>handleSubmit()} />

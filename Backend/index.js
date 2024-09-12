@@ -23,6 +23,7 @@ if (process.platform === 'win32') {
 // enable node-oracledb Thick mode
 oracledb.initOracleClient(clientOpts);
 
+// sign in information
 const dbConfig = {
   user: "admin",
   password: "CapeTownRox28!",
@@ -30,6 +31,7 @@ const dbConfig = {
 };
 
 
+// test information 
 const data = [
   { id: 1, name: "Item 1" },
   { id: 2, name: "Item 2" },
