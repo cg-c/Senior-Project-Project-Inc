@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 /*global google*/
 
-
+{/* Error Page */}
 export default function NoPage() {
     return (
         <>

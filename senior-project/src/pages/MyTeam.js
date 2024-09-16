@@ -1,4 +1,3 @@
-import Members from "../components/Members";
 import Model from "react-modal";
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
@@ -14,6 +13,7 @@ export default function MyTeam() {
     const navigate = useNavigate();
 
 
+    {/* Gets data from backend */} 
     useEffect(() => {
         getTeam();
       }, []);
@@ -46,6 +46,7 @@ export default function MyTeam() {
         }
       };
 
+      {/* Leave team */} 
       const leaveTeam = async event => {
         const emailJSON = {
             email: localStorage.getItem("email")
@@ -76,6 +77,7 @@ export default function MyTeam() {
       
       };
 
+    {/* Returns if student is in a team */} 
     function checkedInTeam() {
 
         if(team.length > 1 || team.pID != null) {
@@ -88,30 +90,32 @@ export default function MyTeam() {
         }
     }
 
-
+    {/* Shows team members if on team */} 
     if (checkedInTeam()) {
             return (
                 <body className="signedIn">
+
+                    {/* Headers */} 
                     <div className="page-title">
                         <div className="text-wrapper">My Team</div>
                         {/* Should it be the name of the team? */}
                     </div>
-                    
-
                     <h2 className="flex-title center">
                         <div className="team-title1">Name</div>
                         <div className="team-title2">Contact</div>
                     </h2>
                     <hr />
 
-                        {team.map(item => (
-                                <div className="memFlex">
-                                    <div className="memCar1" key = {item.EMAIL}>{item.STUDENTNAME}</div>
-                                    <div className="memCar3" key = {item.EMAIL}>{item.EMAIL}</div>
-                                </div>   
-                        ))}
-       
+                    {/* Display all team members */} 
+                    {team.map(item => (
+                            <div className="memFlex">
+                                <div className="memCar1" key = {item.EMAIL}>{item.STUDENTNAME}</div>
+                                <div className="memCar3" key = {item.EMAIL}>{item.EMAIL}</div>
+                            </div>   
+                    ))}
                     <button className="leaveButton" onClick={()=> setLeavePopup(true)}>Leave Team</button>
+
+                    {/* Leave Team Popup */}
                     <Model isOpen={leavePopUp} style={{
                         overlay: {
                         position: 'fixed',
